@@ -1,6 +1,6 @@
 import Image from "next/image";
 import "./style.css";
-import { NextIvon, PrevIvon } from "@/helpers/icons";
+import { LikeIcon, NextIvon, PrevIvon, SaveIcon } from "@/helpers/icons";
 export default function Detail() {
   const dizi = [
     { label: "Category", value: "Sofas" },
@@ -16,12 +16,7 @@ export default function Detail() {
     <div className="detailContainer">
       <div className="productImages">
         <div className="mainImage">
-          <Image
-            src="/img/9.jpg"
-            alt="SOFTBAY CHAISE LOUNGE"
-            width={600}
-            height={600}
-          />
+          <Image src="/img/9.jpg" alt="Slider" width={600} height={600} />
           <button className="navButton prev">
             <PrevIvon />
           </button>
@@ -29,12 +24,12 @@ export default function Detail() {
             <NextIvon />
           </button>
         </div>
-        <div className="thumbnail-container">
+        <div className="thumbnailContainer">
           {[9, 10, 11].map((i) => (
             <div key={i} className="thumbnail">
               <Image
                 src={`/img/${i}.jpg`}
-                alt={`Thumbnail ${i}`}
+                alt={`Slider ${i}`}
                 width={96}
                 height={96}
               />
@@ -45,8 +40,14 @@ export default function Detail() {
 
       <div className="productDetails">
         <div className="productHeader">
-          <h1 className="productTitle">Modular sofa SOFTBAY CHAISE LOUNGE</h1>
-          <button className="favoriteButton">♡</button>
+          <h1>Modular sofa SOFTBAY CHAISE LOUNGE</h1>
+          <button>
+            <LikeIcon />
+          </button>
+
+          <button>
+            <SaveIcon />
+          </button>
         </div>
         <div className="productPrice">
           <span className="price">$344</span>
@@ -59,9 +60,9 @@ export default function Detail() {
         </div>
 
         <div className="infoCard">
-          <button className="infoButton">Request Catalogue &gt;</button>
-          <button className="infoButton">Request The Price List &gt;</button>
-          <button className="infoButton">Where to Buy 📍</button>
+          <button className="infoButton">Request Catalogue </button>
+          <button className="infoButton">Request The Price List </button>
+          <button className="infoButton">Where to Buy </button>
         </div>
 
         <div className="productSpecs">
@@ -69,7 +70,7 @@ export default function Detail() {
           <div className="specsGrid">
             {dizi.map((detail) => (
               <div key={detail.label} className="specItem">
-                <span className="specLabel">{detail.label}</span>
+                <span className="specLabel">{detail.label} :</span>
                 <span className="specValue">{detail.value}</span>
               </div>
             ))}
