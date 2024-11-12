@@ -39,6 +39,10 @@
         background: transparent;
       }
 
+      a {
+        color: black;
+      }
+
       .hamburger {
         display: none;
       }

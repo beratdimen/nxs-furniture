@@ -29,7 +29,7 @@ export default function Detail() {
             <div key={i} className="thumbnail">
               <Image
                 src={`/img/${i}.jpg`}
-                alt={`Slider ${i}`}
+                alt={`Thumbnail ${i}`}
                 width={96}
                 height={96}
               />

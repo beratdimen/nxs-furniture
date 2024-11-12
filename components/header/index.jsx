@@ -31,9 +31,9 @@ export default function Header() {
           <button>
             <BasketIcon />
           </button>
-          <button>
+          <Link href={"/login"}>
             <UserIcon />
-          </button>
+          </Link>
 
           <button className="hamburger">
             <HamburgerIcon />
