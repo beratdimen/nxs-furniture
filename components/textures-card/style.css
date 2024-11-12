@@ -1,0 +1,85 @@
+.textureContainer {
+  display: flex;
+  flex-direction: column;
+
+  h5 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffefcd;
+    padding: 4px 8px;
+    border-radius: 8px;
+  }
+
+  h2 {
+    text-align: center;
+    letter-spacing: 1.4px;
+  }
+
+  .textureCard {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.377);
+    width: fit-content;
+    position: relative;
+    border-radius: 12px;
+
+    .like {
+      position: absolute;
+      width: 36px;
+      height: 36px;
+      right: 8px;
+      border: none;
+      border-radius: 50%;
+      top: 4px;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 12px 12px 0 0;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-inline: 16px;
+
+      .rating {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        p {
+          display: flex;
+          gap: 6px;
+        }
+      }
+
+      .sell {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        p {
+          display: flex;
+          flex-direction: column;
+
+          span {
+            font-weight: bold;
+          }
+        }
+
+        button {
+          border: none;
+          background-color: var(--button);
+          color: var(--buttonText);
+          border-radius: 8px;
+          padding: 4px 8px;
+          font-size: 14px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

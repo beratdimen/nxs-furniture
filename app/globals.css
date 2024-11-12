@@ -1,3 +1,9 @@
+:root {
+  --navText: #32383e;
+  --button: rgb(224, 145, 50);
+  --buttonText: #fefefe;
+}
+
 *,
 *::before,
 *::after {

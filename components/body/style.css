@@ -1,0 +1,10 @@
+.bodyContainer {
+  display: flex;
+  gap: 16px;
+  margin-block: 24px;
+  padding-inline: 16px;
+  justify-content: center;
+  img {
+    width: 100%;
+  }
+}
