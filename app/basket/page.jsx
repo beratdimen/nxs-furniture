@@ -6,6 +6,9 @@ import ProgresStep from "@/components/progres-step";
 import ProgressButton from "@/components/progres-step/button";
 import BillAdress from "@/components/bill-adress";
 import CreditCard from "@/components/payment";
+import OrderReview from "@/components/order-review";
+import ButtonGroup from "@/components/button-group";
+import Empty from "@/components/empty";
 
 export default function BasketPage() {
   const steps = ["Cart", "Shipping", "Payment", "Order Review"];
@@ -26,23 +29,27 @@ export default function BasketPage() {
       <div className="basketContent">
         {activeStep === 0 ? (
           <>
-            <Image
-              src={"/img/bag.png"}
-              width={300}
-              height={300}
-              alt="Empty Cart"
-            />
-            <h3>Cart is Empty</h3>
-            <p>You haven't added any products yet. Let's start shopping!</p>
+            <Empty />
+            <ProgressButton nextStep={nextStep} prevStep={prevStep} />
           </>
         ) : activeStep === 1 ? (
-          <BillAdress />
+          <>
+            <BillAdress />
+            <ProgressButton nextStep={nextStep} prevStep={prevStep} />
+          </>
         ) : activeStep === 2 ? (
-          <CreditCard />
+          <>
+            <CreditCard />
+            <ProgressButton nextStep={nextStep} prevStep={prevStep} />
+          </>
+        ) : activeStep === 3 ? (
+          <>
+            <OrderReview />
+            <ButtonGroup />
+          </>
         ) : (
           ""
         )}
-        <ProgressButton nextStep={nextStep} prevStep={prevStep} />
       </div>
     </div>
   );

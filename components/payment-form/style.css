@@ -1,0 +1,73 @@
+.cardDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 90px;
+  padding-inline: 24px;
+  margin-bottom: 28px;
+}
+
+.holderName {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.holderNumber {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.expDate {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cvc {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#holderInput {
+  width: 100%;
+}
+
+#numberInput {
+  width: 100%;
+}
+
+.generalIpunts {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 32px;
+}
+
+#aayy {
+  display: flex;
+}
+
+.expDate input {
+  width: 70px;
+}
+
+.cvc input {
+  width: 160px;
+}
+
+.btn {
+  width: 100%;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22.97px;
+  text-align: center;
+  background-color: #21092f;
+  color: #ffffff;
+  margin: 0 auto;
+  padding-block: 15px;
+  border-radius: 8px;
+}

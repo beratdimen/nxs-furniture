@@ -1,0 +1,24 @@
+.buttonCotaniner {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+
+  button {
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+  }
+
+  .edit {
+    background-color: var(--button3);
+  }
+
+  .delete {
+    background-color: var(--button4);
+  }
+
+  .required {
+    background-color: var(--button2);
+  }
+}

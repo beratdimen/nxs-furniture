@@ -2,7 +2,6 @@
   margin-top: 40px;
   display: flex;
   flex-direction: column;
-  align-items: center;
 
   .baksetContent {
     margin-top: 24px;
@@ -14,20 +13,7 @@
     padding: 24px;
     border-radius: 16px;
     text-align: center;
-
-    button {
-      width: fit-content;
-      border: none;
-      background-color: var(--button2);
-      color: var(--buttonText);
-      padding: 4px 8px;
-      border-radius: 8px;
-    }
   }
-}
-
-.basketContainer {
-  text-align: center;
 }
 
 .progressContainer {
@@ -56,6 +42,8 @@
 }
 
 .step {
+  display: flex;
+  flex-direction: column;
   font-size: 14px;
   color: #aaa;
   position: relative;
@@ -83,16 +71,21 @@
   border-color: #4caf50;
 }
 
-button {
-  margin: 5px;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
+.buttonContainer {
+  display: flex;
+  justify-content: center;
 
-button:hover {
-  background-color: #0056b3;
+  button {
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
 }
