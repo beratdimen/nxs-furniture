@@ -11,7 +11,9 @@ export default function Header() {
   return (
     <div className="headerContainer">
       <div className="headerContent">
-        <h1>LOGO </h1>
+        <Link href={"/"}>
+          <h1>LOGO</h1>
+        </Link>
 
         <ul className="nav">
           <Link href={"/"}>
@@ -27,10 +29,11 @@ export default function Header() {
             <li>Scenes</li>
           </Link>
         </ul>
+
         <div className="headerRight">
-          <button>
+          <Link href={"/basket"}>
             <BasketIcon />
-          </button>
+          </Link>
           <Link href={"/login"}>
             <UserIcon />
           </Link>

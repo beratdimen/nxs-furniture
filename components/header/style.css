@@ -14,15 +14,18 @@
     justify-content: space-between;
     align-items: center;
 
+    a {
+      text-decoration: none;
+      color: var(--navText);
+    }
+
     .nav {
       display: flex;
       gap: 16px;
       list-style: none;
 
       a {
-        text-decoration: none;
         border-bottom: 3px solid transparent;
-        color: var(--navText);
       }
 
       a:hover {

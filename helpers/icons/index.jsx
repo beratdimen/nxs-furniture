@@ -78,7 +78,7 @@ export function ViewIcon() {
       height="24px"
       viewBox="0 0 24 24"
     >
-      <g fill="none" stroke="currentColor" stroke-width="2">
+      <g fill="none" stroke="currentColor" strokeWidth="2">
         <circle cx="12" cy="12" r="3" />
         <path d="M20.188 10.934c.388.472.582.707.582 1.066s-.194.594-.582 1.066C18.768 14.79 15.636 18 12 18s-6.768-3.21-8.188-4.934c-.388-.472-.582-.707-.582-1.066s.194-.594.582-1.066C5.232 9.21 8.364 6 12 6s6.768 3.21 8.188 4.934Z" />
       </g>
@@ -90,16 +90,16 @@ export function LikeIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="24x"
-      height="24x"
+      width="24px"
+      height="24px"
       viewBox="0 0 48 48"
     >
       <path
         fill="none"
         stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="4"
         d="M15 8C8.925 8 4 12.925 4 19c0 11 13 21 20 23.326C31 40 44 30 44 19c0-6.075-4.925-11-11-11c-3.72 0-7.01 1.847-9 4.674A10.99 10.99 0 0 0 15 8"
       />
     </svg>
@@ -165,9 +165,9 @@ export function SaveIcon() {
       <path
         fill="none"
         stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
         d="M18 7v14l-6-4l-6 4V7a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4"
       />
     </svg>

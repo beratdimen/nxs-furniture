@@ -2,6 +2,29 @@
   --navText: #32383e;
   --button: rgb(224, 145, 50);
   --buttonText: #fefefe;
+  --button2: #4661e6;
+  --button3: #3a4374;
+  --button4: #d73737;
+  --button2hover: #7c91f9;
+  --button3hover: #656ea3;
+  --button4hover: #e98888;
+}
+
+[data-theme="dark"] {
+  --bodyBg: #141625;
+  --headerBg: #10183d;
+  --cardBg: #0c0e16;
+  --titleText: #f2f4fe;
+  --contentText: #f2f4fea4;
+  --likeBtnBg: #352f2f;
+  --likeBtnBgHover: #4a5168;
+  --likeBtnText: #f2f4fe;
+  --categoryButtonBg: #352f2f;
+  --categoryButtonBgHover: #cfb6b6;
+  --button1: #540974;
+  --button2: #1c2e85;
+  --button3: #3a4374;
+  --button4: #d73737;
 }
 
 *,
@@ -54,4 +77,16 @@ h6 {
 
 button {
   cursor: pointer;
+}
+
+.generalBody {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.general {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }

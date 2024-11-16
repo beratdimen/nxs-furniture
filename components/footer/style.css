@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-around;
   padding: 24px;
-  margin-block: 24px;
+  margin-top: 24px;
   ul {
     display: flex;
     flex-direction: column;
