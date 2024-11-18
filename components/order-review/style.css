@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  padding-inline: 32px;
+
   h2 {
     text-align: center;
   }

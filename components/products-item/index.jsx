@@ -1,27 +1,8 @@
-"use client";
 import Image from "next/image";
 import "./style.css";
 import ReactStars from "react-rating-stars-component";
 import { LikeIcon, ViewIcon } from "@/helpers/icons";
-
-export default function Textures() {
-  return (
-    <div className="textureContainer">
-      <h5>textures</h5>
-      <h2>NEW TEXTURES</h2>
-      <div className="productsGrid">
-        <ProductsItem />
-        <ProductsItem />
-        <ProductsItem />
-        <ProductsItem />
-        <ProductsItem />
-        <ProductsItem />
-      </div>
-    </div>
-  );
-}
-
-function ProductsItem() {
+export default function ProductsItem() {
   return (
     <div className="textureCard">
       <Image src={"/img/9.jpg"} width={200} height={200} alt="card-img" />

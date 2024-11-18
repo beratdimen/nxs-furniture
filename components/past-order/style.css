@@ -1,0 +1,32 @@
+.pastOrderContainer {
+  display: flex;
+  gap: 16px;
+  background-color: #f5f6f8;
+  padding: 12px;
+  border-left: 3px solid blue;
+
+  .card {
+    display: flex;
+    gap: 8px;
+    background-color: #ffffff;
+
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .btn {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    button {
+      border: none;
+      background-color: var(--button2);
+      color: var(--buttonText);
+      border-radius: 8px;
+      padding: 4px 8px;
+    }
+  }
+}

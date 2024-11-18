@@ -1,14 +1,15 @@
 .textureContainer {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
 
   h5 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: #ffefcd;
-    padding: 4px 8px;
+    padding: 8px;
     border-radius: 8px;
+    width: fit-content;
   }
 
   h2 {
@@ -16,68 +17,87 @@
     letter-spacing: 1.4px;
   }
 
-  .textureCard {
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.377);
-    width: fit-content;
-    position: relative;
-    border-radius: 12px;
+  .productsGrid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
 
-    .like {
-      position: absolute;
-      width: 36px;
-      height: 36px;
-      right: 8px;
-      border: none;
-      border-radius: 50%;
-      top: 4px;
-    }
-
-    img {
-      width: 100%;
-      border-radius: 12px 12px 0 0;
-    }
-
-    .content {
+    .textureCard {
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      padding-inline: 16px;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.178);
+      width: fit-content;
+      position: relative;
+      border-radius: 12px;
 
-      .rating {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        p {
-          display: flex;
-          gap: 6px;
-        }
+      .like {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        right: 10px;
+        border: none;
+        border-radius: 50%;
+        top: 12px;
       }
 
-      .sell {
+      img {
+        width: 275px;
+        height: 275px;
+        border-radius: 12px 12px 0 0;
+      }
+
+      .description {
+        font-size: 12px;
+        opacity: 0.7;
+      }
+
+      .content {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
+        flex-direction: column;
+        gap: 4px;
+        padding: 16px;
 
-        p {
+        .rating {
           display: flex;
-          flex-direction: column;
+          align-items: center;
+          justify-content: space-between;
 
-          span {
+          p {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
             font-weight: bold;
+            color: var(--button);
           }
         }
 
-        button {
-          border: none;
-          background-color: var(--button);
-          color: var(--buttonText);
-          border-radius: 8px;
-          padding: 4px 8px;
-          font-size: 14px;
-          font-weight: bold;
+        .sell {
+          display: flex;
+          align-items: flex-end;
+          justify-content: space-between;
+          margin-top: 18px;
+
+          p {
+            display: flex;
+            flex-direction: column;
+            font-size: 12px;
+
+            span {
+              font-size: 14px;
+              font-weight: bold;
+            }
+          }
+
+          button {
+            border: none;
+            background-color: var(--button);
+            color: var(--buttonText);
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-size: 14px;
+            font-weight: bold;
+          }
         }
       }
     }

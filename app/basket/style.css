@@ -2,7 +2,10 @@
   margin-top: 40px;
   display: flex;
   flex-direction: column;
-
+  h2 {
+    text-align: center;
+    letter-spacing: 1.3px;
+  }
   .baksetContent {
     margin-top: 24px;
     display: flex;
@@ -74,6 +77,7 @@
 .buttonContainer {
   display: flex;
   justify-content: center;
+  margin-top: 16px;
 
   button {
     margin: 5px;

@@ -32,10 +32,10 @@ export default function Header() {
 
         <div className="headerRight">
           <Link href={"/basket"}>
-            <BasketIcon />
+            <BasketIcon /> Sepetim
           </Link>
           <Link href={"/login"}>
-            <UserIcon />
+            <UserIcon /> Giriş Yap
           </Link>
 
           <button className="hamburger">

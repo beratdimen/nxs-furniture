@@ -3,7 +3,9 @@ import "./style.css";
 
 export default function ButtonGroup() {
   function handleClick() {
-    window.location.reload();
+    if (window.confirm("İptal Etmek İstediğine Emin misin ? ")) {
+      window.location.reload();
+    }
   }
   return (
     <div className="buttonCotaniner">
