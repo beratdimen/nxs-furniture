@@ -1,14 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./style.css";
 import { login, signup } from "@/actions/actions";
 
 export default function AuthForms() {
   const [isSignIn, setIsSignIn] = useState(false);
+  const signUpFormRef = useRef(null);
 
   const toggleForm = () => {
     setIsSignIn(!isSignIn);
+  };
+
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(signUpFormRef.current);
+
+    await signup(formData);
+
+    signUpFormRef.current.reset();
   };
 
   return (
@@ -16,13 +27,11 @@ export default function AuthForms() {
       <div className={`authForms ${isSignIn ? "slideLeft" : ""}`}>
         <div className="authForm">
           <h2>Create Account</h2>
-          <form>
+          <form ref={signUpFormRef} onSubmit={handleSignUp}>
             <input type="text" name="name" placeholder="Name" />
             <input type="email" name="email" placeholder="Email" />
             <input type="password" name="password" placeholder="Password" />
-            <button className="authButton" formAction={signup}>
-              Sign Up
-            </button>
+            <button className="authButton">Sign Up</button>
           </form>
           <p>
             Already have an account?

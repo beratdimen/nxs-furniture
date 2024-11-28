@@ -5,6 +5,10 @@ import { redirect } from "next/navigation";
 
 import { createClient } from "@/utils/supabase/server";
 
+const defaultUserMetadata = {
+  firstName: "",
+};
+
 export async function login(formData) {
   const supabase = createClient();
 
@@ -15,7 +19,7 @@ export async function login(formData) {
 
   const { error } = await supabase.auth.signInWithPassword(data);
 
-  console.log("giriş yaptım");
+  console.log("giriş oldum");
 
   if (error) {
     redirect("/error");
@@ -30,8 +34,13 @@ export async function signup(formData) {
 
   const data = {
     email: formData.get("email"),
-    name: formData.get("name"),
     password: formData.get("password"),
+    options: {
+      data: {
+        ...defaultUserMetadata,
+        firstName: formData.get("name"),
+      },
+    },
   };
 
   const { error } = supabase.auth.signUp(data);
@@ -41,6 +50,14 @@ export async function signup(formData) {
   if (error) {
     redirect("/error");
   }
+
+  revalidatePath("/", "layout");
+  redirect("/login");
+}
+
+export async function signout() {
+  const supabase = createClient();
+  const { error } = await supabase.auth.signOut();
 
   revalidatePath("/", "layout");
   redirect("/");

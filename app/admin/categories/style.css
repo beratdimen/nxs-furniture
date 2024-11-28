@@ -1,0 +1,51 @@
+.addProductContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+
+  .head {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.add {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #dddddd;
+  width: fit-content;
+  padding: 8px 10px;
+  border-radius: 16px;
+}
+
+td,
+th {
+  border: 1px solid #050303;
+  text-align: center;
+  padding: 8px;
+}
+tr {
+  color: blue;
+}
+
+th {
+  color: black;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+  color: red;
+}
+
+button {
+  border: none;
+  background: transparent;
+}

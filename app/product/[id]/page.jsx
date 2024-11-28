@@ -1,22 +1,65 @@
+"use client";
 import Image from "next/image";
 import "./style.css";
 import { LikeIcon, NextIvon, PrevIvon, SaveIcon } from "@/helpers/icons";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { createClient } from "@/utils/supabase/client";
+import { viewPost } from "@/api/category";
 export default function Detail() {
+  const { id } = useParams();
+  const [product, setProduct] = useState({});
+
+  const supabase = createClient();
+
+  const detailProducts = async () => {
+    const { data, error } = await supabase
+      .from("products")
+      .select(
+        `
+            *,
+            productsCategories (
+             categories (*)
+            ) , product_images(*)
+        `
+      )
+      .eq("id", id)
+      .single();
+    if (!error) setProduct(data);
+  };
+
+  useEffect(() => {
+    viewPost(id);
+    detailProducts();
+  }, []);
+  console.log(product);
+
   const dizi = [
-    { label: "Category", value: "Sofas" },
-    { label: "Material", value: "Fabric" },
-    { label: "Style", value: "Modern" },
-    { label: "Color", value: "Beige" },
-    { label: "Width", value: "266 cm" },
-    { label: "Depth", value: "113 cm" },
-    { label: "Height", value: "85 cm" },
-    { label: "Seat Height", value: "45 cm" },
+    {
+      label: "Category",
+      value: product?.productsCategories
+        ?.map((category) => category.categories.name)
+        .join(", "),
+    },
+    { label: "Material", value: product.material },
+    { label: "Style", value: product.style },
+    { label: "Color", value: product.color },
+    { label: "Width", value: product.width },
+    { label: "Height", value: product.height },
   ];
+
   return (
     <div className="detailContainer">
       <div className="productImages">
         <div className="mainImage">
-          <Image src="/img/9.jpg" alt="Slider" width={600} height={600} />
+          {product.image_url && (
+            <Image
+              src={product.image_url}
+              alt="Slider"
+              width={600}
+              height={600}
+            />
+          )}
           <button className="navButton prev">
             <PrevIvon />
           </button>
@@ -25,10 +68,10 @@ export default function Detail() {
           </button>
         </div>
         <div className="thumbnailContainer">
-          {[9, 10, 11].map((i) => (
+          {product?.product_images?.map((i) => (
             <div key={i} className="thumbnail">
               <Image
-                src={`/img/${i}.jpg`}
+                src={`${i.image_url}`}
                 alt={`Thumbnail ${i}`}
                 width={96}
                 height={96}
@@ -40,7 +83,7 @@ export default function Detail() {
 
       <div className="productDetails">
         <div className="productHeader">
-          <h1>Modular sofa SOFTBAY CHAISE LOUNGE</h1>
+          <h1>{product.title}</h1>
           <button>
             <LikeIcon />
           </button>
@@ -50,7 +93,7 @@ export default function Detail() {
           </button>
         </div>
         <div className="productPrice">
-          <span className="price">$344</span>
+          <span className="price">${product.price}</span>
           <span className="priceTag">Lowest price</span>
         </div>
 

@@ -1,13 +1,23 @@
 import {
   BasketIcon,
   HamburgerIcon,
+  LogoutIcon,
   SearchIcon,
   UserIcon,
 } from "@/helpers/icons";
 import "./style.css";
 import Link from "next/link";
+import { createClient } from "@/utils/supabase/server";
+import { signout } from "@/actions/actions";
+import { listCategories } from "@/api/category";
 
-export default function Header() {
+export default async function Header() {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const categories = await listCategories();
   return (
     <div className="headerContainer">
       <div className="headerContent">
@@ -19,24 +29,30 @@ export default function Header() {
           <Link href={"/"}>
             <li>Home</li>
           </Link>
-          <Link href={"texture"}>
-            <li>Textures</li>
-          </Link>
-          <Link href={"/models"}>
-            <li>Models</li>
-          </Link>
-          <Link href={"/scenes"}>
-            <li>Scenes</li>
-          </Link>
+          {categories?.map((category) => (
+            <Link href={`/${category?.slug}`} key={category?.id}>
+              <li>{category?.name}</li>
+            </Link>
+          ))}
         </ul>
-
         <div className="headerRight">
           <Link href={"/basket"}>
             <BasketIcon /> Sepetim
           </Link>
-          <Link href={"/login"}>
-            <UserIcon /> Giriş Yap
-          </Link>
+          {user ? (
+            <>
+              <p>{user.user_metadata.firstName}</p>
+              <form action={signout}>
+                <button>
+                  <LogoutIcon />
+                </button>
+              </form>
+            </>
+          ) : (
+            <Link href={"/login"}>
+              <UserIcon /> Giriş Yap
+            </Link>
+          )}
 
           <button className="hamburger">
             <HamburgerIcon />

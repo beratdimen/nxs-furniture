@@ -1,11 +1,13 @@
+import AllCategories from "@/components/all-categories";
 import Body from "@/components/body";
+import ProjectsPage from "@/components/projects";
 
-import Textures from "@/components/textures-card";
 export default function Home() {
   return (
     <div className="homeContainer">
       <Body />
-      <Textures />
+      <AllCategories title={"xxx"} />
+      <ProjectsPage />
     </div>
   );
 }

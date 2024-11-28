@@ -4,6 +4,11 @@
   justify-content: center;
   align-items: center;
   gap: 16px;
+  padding-bottom: 64px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.518);
+  &:last-child {
+    border-bottom: none;
+  }
 
   h5 {
     background-color: #ffefcd;
@@ -51,11 +56,22 @@
         opacity: 0.7;
       }
 
+      .categories {
+        font-size: 14px;
+        opacity: 0.9;
+        color: #f27e18;
+      }
+
       .content {
         display: flex;
         flex-direction: column;
         gap: 4px;
         padding: 16px;
+
+        a {
+          text-decoration: none;
+          color: black;
+        }
 
         .rating {
           display: flex;

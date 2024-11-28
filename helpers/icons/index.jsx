@@ -237,3 +237,75 @@ export function LinkedinIcon() {
     </svg>
   );
 }
+
+export function LogoutIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24px"
+      height="24px"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M20 12h-9.5m7.5 3l3-3l-3-3m-5-2V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-1"
+      />
+    </svg>
+  );
+}
+
+export function AddProductsIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24px"
+      height="24px"
+      viewBox="0 0 24 24"
+    >
+      <g fill="currentColor" fill-rule="evenodd" clip-rule="evenodd">
+        <path d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12m10-8a8 8 0 1 0 0 16a8 8 0 0 0 0-16" />
+        <path d="M13 7a1 1 0 1 0-2 0v4H7a1 1 0 1 0 0 2h4v4a1 1 0 1 0 2 0v-4h4a1 1 0 1 0 0-2h-4z" />
+      </g>
+    </svg>
+  );
+}
+
+export function DeleteIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24px"
+      height="24px"
+      viewBox="0 0 2048 2048"
+    >
+      <path
+        fill="red"
+        d="M1792 384h-128v1472q0 40-15 75t-41 61t-61 41t-75 15H448q-40 0-75-15t-61-41t-41-61t-15-75V384H128V256h512V128q0-27 10-50t27-40t41-28t50-10h384q27 0 50 10t40 27t28 41t10 50v128h512zM768 256h384V128H768zm768 128H384v1472q0 26 19 45t45 19h1024q26 0 45-19t19-45zM768 1664H640V640h128zm256 0H896V640h128zm256 0h-128V640h128z"
+      />
+    </svg>
+  );
+}
+
+export function EditIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24px"
+      height="24px"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="none"
+        stroke="blue"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2.5"
+        d="m5 16l-1 4l4-1L19.586 7.414a2 2 0 0 0 0-2.828l-.172-.172a2 2 0 0 0-2.828 0zM15 6l3 3m-5 11h8"
+      />
+    </svg>
+  );
+}

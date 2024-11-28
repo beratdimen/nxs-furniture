@@ -1,32 +1,52 @@
 .pastOrderContainer {
-  display: flex;
+  display: grid;
   gap: 16px;
   background-color: #f5f6f8;
   padding: 12px;
   border-left: 3px solid blue;
+  margin: 24px;
+  border-radius: 0 8px 8px 0;
 
-  .card {
-    display: flex;
-    gap: 8px;
-    background-color: #ffffff;
-
-    img {
-      height: 100%;
-      width: 100%;
+  .status {
+    p {
+      opacity: 0.6;
+      font-size: 14px;
+      font-weight: 300;
     }
   }
 
-  .btn {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
 
-    button {
-      border: none;
-      background-color: var(--button2);
-      color: var(--buttonText);
-      border-radius: 8px;
-      padding: 4px 8px;
+    .card {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      box-shadow: 0 0 16px rgba(0, 0, 0, 0.108);
+      border-radius: 6px;
+
+      img {
+        border-radius: 6px;
+      }
+    }
+
+    .btn {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+
+      button {
+        border: none;
+        background-color: transparent;
+        color: var(--button2);
+        border-radius: 8px;
+        padding: 10px;
+        border: 1px solid var(--button2);
+      }
     }
   }
 }
