@@ -135,6 +135,30 @@ export const listCategories = async () => {
   }
 };
 
+export const listCategoriesForHeader = async () => {
+  try {
+    const { data, error } = await supabase
+      .from("categories")
+      .select(`*`)
+      .eq("show_header", true);
+
+    if (error) {
+      console.error("Error fetching categories:", error);
+      return [];
+    }
+
+    if (!data || data.length === 0) {
+      console.log("No categories found");
+      return [];
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching all categories:", error.message);
+    return [];
+  }
+};
+
 export const viewPost = async (id) => {
   try {
     const { data, error } = await supabase

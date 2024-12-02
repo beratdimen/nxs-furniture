@@ -62,3 +62,22 @@ export async function signout() {
   revalidatePath("/", "layout");
   redirect("/");
 }
+
+export default async function FormValidation(prevState, formData) {
+  const formObj = Object.fromEntries(formData);
+
+  const errors = {
+    fullName: !formObj.fullName && "Full Name is required.",
+    address: !formObj.address && "Address is required.",
+    city: !formObj.city && "City is required.",
+    postalCode: !formObj.postalCode && "Postal Code is required.",
+  };
+
+  const filteredErrors = Object.fromEntries(
+    Object.entries(errors).filter(([_, v]) => v)
+  );
+
+  if (Object.keys(filteredErrors).length > 0) {
+    return { error: filteredErrors };
+  }
+}

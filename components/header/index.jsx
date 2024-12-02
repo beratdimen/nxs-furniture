@@ -9,7 +9,7 @@ import "./style.css";
 import Link from "next/link";
 import { createClient } from "@/utils/supabase/server";
 import { signout } from "@/actions/actions";
-import { listCategories } from "@/api/category";
+import { listCategoriesForHeader } from "@/api/category";
 
 export default async function Header() {
   const supabase = createClient();
@@ -17,7 +17,7 @@ export default async function Header() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const categories = await listCategories();
+  const categories = await listCategoriesForHeader();
   return (
     <div className="headerContainer">
       <div className="headerContent">

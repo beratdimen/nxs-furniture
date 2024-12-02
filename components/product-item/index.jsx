@@ -85,17 +85,34 @@ export default function ProductItem({ product }) {
     }
 
     try {
-      const { data, error } = await supabase.from("basket").insert([
-        {
-          user_id: user?.user?.id,
-          product_id: product?.id,
-          quantity: 1,
-        },
-      ]);
+      const { data: control, error: errorControl } = await supabase
+        .from("basket")
+        .select("*")
+        .eq("product_id", product?.id)
+        .eq("user_id", user?.user?.id)
+        .single();
 
-      if (error) throw error;
+      if (!control) {
+        const { data, error } = await supabase.from("basket").insert([
+          {
+            user_id: user?.user?.id,
+            product_id: product?.id,
+            quantity: 1,
+          },
+        ]);
 
-      toast.success("Ürün sepete eklendi!");
+        if (error) throw error;
+        toast.success("Ürün sepete eklendi!");
+      } else {
+        const { data, error } = await supabase
+          .from("basket")
+          .update({ quantity: control.quantity + 1 })
+          .eq("id", control.id)
+          .single();
+
+        if (error) throw error;
+        toast.success("Ürün adedi artırıldı! " + Number(control.quantity + 1));
+      }
     } catch (error) {
       toast.error("Sepete eklenirken hata oluştu: " + error.message);
     }

@@ -23,7 +23,19 @@ export default function CategoriesPage() {
 
   return (
     <div className="categoryContainer">
-      <Categories title={category} products={products} />
+      {products.length == 0 ? (
+        <div className="notProducts">
+          <img
+            className="gif"
+            src="/img/Searching-but-not-found-and-empty-folder.gif"
+            alt=""
+          />
+
+          <p>Products İs Not Found</p>
+        </div>
+      ) : (
+        <Categories title={category} products={products} />
+      )}
     </div>
   );
 }
