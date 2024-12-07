@@ -1,38 +1,75 @@
 "use client";
+
 import Image from "next/image";
 import "./style.css";
-import { LikeIcon, NextIvon, PrevIvon, SaveIcon } from "@/helpers/icons";
-import { useParams } from "next/navigation";
+import { DisLikeIcon, LikeIcon, SaveIcon } from "@/helpers/icons";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
 import { viewPost } from "@/api/category";
+import { toast } from "sonner";
+import Accordion from "@/components/accordion";
+
 export default function Detail() {
   const { id } = useParams();
+  const router = useRouter();
   const [product, setProduct] = useState({});
+  const [images, setImages] = useState([]);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [user, setUser] = useState(null);
+  const [productLike, setProductLike] = useState(false);
 
   const supabase = createClient();
+
+  const userFetch = async () => {
+    const { data, error } = await supabase.auth.getUser();
+    if (!error) setUser(data);
+  };
+
+  useEffect(() => {
+    userFetch();
+  }, []);
 
   const detailProducts = async () => {
     const { data, error } = await supabase
       .from("products")
       .select(
         `
-            *,
-            productsCategories (
-             categories (*)
-            ) , product_images(*)
+          *,
+          productsCategories ( categories (*) ),
+          product_images(*)
         `
       )
       .eq("id", id)
       .single();
-    if (!error) setProduct(data);
+
+    if (!error) {
+      setProduct(data);
+      const allImages = [
+        data.image_url,
+        ...data.product_images.map((i) => i.image_url),
+      ];
+      setImages(allImages);
+      setSelectedIndex(0);
+    }
   };
 
   useEffect(() => {
     viewPost(id);
     detailProducts();
   }, []);
-  console.log(product);
+
+  const handlePrev = () => {
+    setSelectedIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
+  const handleNext = () => {
+    setSelectedIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
 
   const dizi = [
     {
@@ -48,76 +85,183 @@ export default function Detail() {
     { label: "Height", value: product.height },
   ];
 
+  const likeProduct = async (productId) => {
+    if (user) {
+      console.log(user, "user");
+      const { data, error } = await supabase
+        .from("productsLikes")
+        .insert([{ user_id: user?.user?.id, product_id: productId }])
+        .select();
+
+      if (!error) {
+        setProductLike(true);
+      } else {
+        console.log("error :>> ", error);
+      }
+    } else {
+      toast.error("Giriş Yapmalısınız");
+    }
+  };
+
+  const deleteProductLike = async (productId) => {
+    if (user) {
+      const { data, error } = await supabase
+        .from("productsLikes")
+        .delete()
+        .eq("user_id", user?.user?.id)
+        .eq("product_id", productId);
+
+      if (!error) {
+        setProductLike(false);
+      } else {
+        console.log("error :>> ", error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    const likeControl = async () => {
+      let { data, error } = await supabase
+        .from("productsLikes")
+        .select("*")
+        .eq("user_id", user?.user?.id)
+        .eq("product_id", product?.id);
+
+      if (data?.length > 0) {
+        setProductLike(true);
+      }
+
+      if (error) {
+        console.log(error);
+      }
+    };
+
+    if (user) {
+      likeControl();
+    }
+  }, [product?.id, user]);
+
+  const addToBasket = async () => {
+    if (!user) {
+      toast.error("Giriş yapmalısınız.");
+      return;
+    }
+
+    try {
+      const { data: control, error: errorControl } = await supabase
+        .from("basket")
+        .select("*")
+        .eq("product_id", product?.id)
+        .eq("user_id", user?.user?.id)
+        .single();
+
+      if (!control) {
+        const { data, error } = await supabase.from("basket").insert([
+          {
+            user_id: user?.user?.id,
+            product_id: product?.id,
+            quantity: 1,
+          },
+        ]);
+
+        if (error) throw error;
+        toast.success("Ürün sepete eklendi!");
+      } else {
+        const { data, error } = await supabase
+          .from("basket")
+          .update({ quantity: control.quantity + 1 })
+          .eq("id", control.id)
+          .single();
+
+        if (error) throw error;
+        toast.success("Ürün adedi artırıldı! " + Number(control.quantity + 1));
+      }
+    } catch (error) {
+      toast.error("Sepete eklenirken hata oluştu: " + error.message);
+    }
+  };
+
   return (
     <div className="detailContainer">
       <div className="productImages">
         <div className="mainImage">
-          {product.image_url && (
+          {images.length > 0 && (
             <Image
-              src={product.image_url}
+              src={images[selectedIndex]}
               alt="Slider"
               width={600}
               height={600}
             />
           )}
-          <button className="navButton prev">
-            <PrevIvon />
+          <button className="navButton prev" onClick={handlePrev}>
+            &#10094;
           </button>
-          <button className="navButton next">
-            <NextIvon />
+          <button className="navButton next" onClick={handleNext}>
+            &#10095;
           </button>
         </div>
+
         <div className="thumbnailContainer">
-          {product?.product_images?.map((i) => (
-            <div key={i} className="thumbnail">
+          {images.map((img, index) => (
+            <div
+              key={index}
+              className={`thumbnail ${index === selectedIndex ? "active" : ""}`}
+              onClick={() => setSelectedIndex(index)}
+            >
               <Image
-                src={`${i.image_url}`}
-                alt={`Thumbnail ${i}`}
-                width={96}
-                height={96}
+                src={img}
+                alt={`Thumbnail ${index}`}
+                width={50}
+                height={50}
               />
             </div>
           ))}
         </div>
+
+        <Accordion dizi={dizi} />
       </div>
 
       <div className="productDetails">
         <div className="productHeader">
           <h1>{product.title}</h1>
-          <button>
-            <LikeIcon />
-          </button>
-
-          <button>
-            <SaveIcon />
+          <button
+            onClick={() =>
+              productLike
+                ? deleteProductLike(product?.id)
+                : likeProduct(product?.id)
+            }
+          >
+            {productLike ? <DisLikeIcon /> : <LikeIcon />}
           </button>
         </div>
+
         <div className="productPrice">
           <span className="price">${product.price}</span>
           <span className="priceTag">Lowest price</span>
         </div>
 
         <div className="actionButtons">
-          <button className="buyButton">Buy</button>
+          <button className="buyButton" onClick={() => addToBasket()}>
+            Buy
+          </button>
           <button className="downloadButton">Free Download</button>
         </div>
 
-        <div className="infoCard">
-          <button className="infoButton">Request Catalogue </button>
-          <button className="infoButton">Request The Price List </button>
-          <button className="infoButton">Where to Buy </button>
-        </div>
+        <hr />
 
-        <div className="productSpecs">
-          <h2 className="specsTitle">Product Detail:</h2>
-          <div className="specsGrid">
-            {dizi.map((detail) => (
-              <div key={detail.label} className="specItem">
-                <span className="specLabel">{detail.label} :</span>
-                <span className="specValue">{detail.value}</span>
-              </div>
-            ))}
-          </div>
+        <div className="infoCard">
+          <button
+            className="infoButton"
+            onClick={() =>
+              router.push(
+                "https://xiseukjsxraiqmqgdlcs.supabase.co/storage/v1/object/public/products/c25f9c2a-d786-440b-bf86-17da0a350523.pdf"
+              )
+            }
+          >
+            Request Catalogue
+          </button>
+          <button className="infoButton">Request The Price List</button>
+          <button className="infoButton">Where to Buy</button>
         </div>
       </div>
     </div>

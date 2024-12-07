@@ -11,6 +11,7 @@ export default function ProductsPage() {
   const supabase = createClient();
 
   const [products, setProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState([]);
   const newProduct = useRef(null);
 
   const listProducts = async () => {

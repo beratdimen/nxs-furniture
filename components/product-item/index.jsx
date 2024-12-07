@@ -6,11 +6,12 @@ import { createClient } from "@/utils/supabase/client";
 import { toast } from "sonner";
 import Link from "next/link";
 
-export default function ProductItem({ product }) {
+const supabase = createClient();
+
+export default function ProductItem({ product: initialProduct }) {
   const [user, setUser] = useState(null);
   const [productLike, setProductLike] = useState(false);
-
-  const supabase = createClient();
+  const [product, setProduct] = useState(initialProduct);
 
   const userFetch = async () => {
     const { data, error } = await supabase.auth.getUser();
@@ -118,6 +119,94 @@ export default function ProductItem({ product }) {
     }
   };
 
+  const handleRating = async (newRating) => {
+    if (!user) {
+      toast.error("Giriş yapmalısınız.");
+      return;
+    }
+
+    try {
+      const { data: existingRating, error: fetchError } = await supabase
+        .from("product_rating")
+        .select("*")
+        .eq("user_id", user.user?.id)
+        .eq("product_id", product?.id)
+        .single();
+
+      if (fetchError && fetchError.code !== "PGRST116") {
+        throw fetchError;
+      }
+
+      if (existingRating) {
+        const { error: updateError } = await supabase
+          .from("product_rating")
+          .update({ rating: newRating })
+          .eq("id", existingRating.id);
+
+        if (updateError) throw updateError;
+
+        toast.success("Değerlendirmeniz başarıyla güncellendi!");
+      } else {
+        const { error: insertError } = await supabase
+          .from("product_rating")
+          .insert({
+            user_id: user.user?.id,
+            product_id: product?.id,
+            rating: newRating,
+          });
+
+        if (insertError) throw insertError;
+
+        toast.success("Puanlama başarıyla kaydedildi!");
+      }
+
+      await updateProductRating();
+    } catch (error) {
+      console.error(error);
+      toast.error("Puanlama sırasında bir hata oluştu.");
+    }
+  };
+
+  const updateProductRating = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("product_rating")
+        .select("rating")
+        .eq("product_id", product?.id);
+
+      if (error) throw error;
+
+      if (data && data.length > 0) {
+        const ratings = data.map((item) => item.rating);
+        const totalRatings = ratings.length;
+        const sumRatings = ratings.reduce((sum, current) => sum + current, 0);
+        const averageRating = sumRatings / totalRatings;
+
+        const { error: updateError } = await supabase
+          .from("products")
+          .update({
+            rating_average: averageRating.toFixed(1),
+            rating_count: totalRatings,
+          })
+          .eq("id", product?.id);
+
+        if (updateError) throw updateError;
+
+        toast.success("Ürün değerlendirmesi başarıyla güncellendi!");
+
+        const updatedProduct = {
+          ...product,
+          rating_average: averageRating.toFixed(1),
+          rating_count: totalRatings,
+        };
+        setProduct(updatedProduct);
+      }
+    } catch (error) {
+      console.error("Puan güncelleme sırasında bir hata oluştu:", error);
+      toast.error("Güncelleme sırasında bir hata oluştu.");
+    }
+  };
+
   return (
     <>
       <div className="textureCard">
@@ -140,7 +229,20 @@ export default function ProductItem({ product }) {
             <h4>{product.title} </h4>
           </Link>
           <div className="rating">
-            <ReactStars count={5} size={24} activeColor="#ffd700" />
+            <ReactStars
+              count={5}
+              size={24}
+              activeColor="#ffd700"
+              value={
+                product?.rating_average ? Number(product?.rating_average) : 0
+              }
+              onChange={handleRating}
+            />
+
+            <p>
+              Ortalama: <strong>{product?.rating_average}</strong> (
+              {product?.rating_count} oy)
+            </p>
             <p>
               <ViewIcon />
               <p>{product.view}</p>

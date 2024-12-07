@@ -1,0 +1,14 @@
+.categoryContainer {
+  padding: 24px 48px;
+}
+
+.notProducts {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+.gif {
+  width: 300px;
+}

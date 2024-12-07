@@ -10,6 +10,7 @@ import Link from "next/link";
 import { createClient } from "@/utils/supabase/server";
 import { signout } from "@/actions/actions";
 import { listCategoriesForHeader } from "@/api/category";
+import SearchComponent from "../search";
 
 export default async function Header() {
   const supabase = createClient();
@@ -59,11 +60,12 @@ export default async function Header() {
           </button>
         </div>
       </div>
-      <div className="search">
+      {/* <div className="search">
         <SearchIcon />
         <input type="text" placeholder="Search in website.." />
         <button>Search</button>
-      </div>
+      </div> */}
+      <SearchComponent />
     </div>
   );
 }

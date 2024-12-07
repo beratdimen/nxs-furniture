@@ -64,7 +64,6 @@ export const listProductsAllCategories = async () => {
       return [];
     }
 
-    // Tüm kategoriler ve ürünleri ayıkla
     const categoriesWithProducts = data.map((category) => ({
       ...category,
       products: category.productsCategories.map((item) => ({
@@ -110,6 +109,38 @@ export const listAllProducts = async () => {
       "Error fetching all products with categories:",
       error.message
     );
+    return [];
+  }
+};
+
+export const searchProducts = async (searchTerm) => {
+  try {
+    const { data, error } = await supabase
+      .from("products")
+      .select(
+        `
+          *,
+          productsCategories (
+            categories (*)
+          ),
+          product_images (*)
+        `
+      )
+      .or(`title.ilike.%${searchTerm}%,content.ilike.%${searchTerm}%`);
+
+    if (error) {
+      console.error("Error searching products:", error);
+      return [];
+    }
+
+    if (!data || data.length === 0) {
+      console.log("No products found for the search term:", searchTerm);
+      return [];
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Error in searchProducts function:", error.message);
     return [];
   }
 };
@@ -171,6 +202,31 @@ export const viewPost = async (id) => {
 
     const { error: updateError } = await supabase
       .from("products")
+      .update({ view: (data.view || 0) + 1 })
+      .eq("id", id);
+
+    if (updateError) throw new Error(updateError.message);
+
+    return {
+      data,
+    };
+  } catch (err) {
+    return { error: err.message };
+  }
+};
+
+export const viewProject = async (id) => {
+  try {
+    const { data, error } = await supabase
+      .from("projects")
+      .select("*")
+      .eq("id", id)
+      .single();
+
+    if (error) throw new Error(error.message);
+
+    const { error: updateError } = await supabase
+      .from("projects")
       .update({ view: (data.view || 0) + 1 })
       .eq("id", id);
 

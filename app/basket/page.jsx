@@ -37,11 +37,7 @@ export default function BasketPage() {
         const { data, error } = await supabase
           .from("basket")
           .select(
-            `
-            id, 
-            quantity, 
-            product:products (title, content, price, image_url)
-          `
+            `id, quantity, product:products (title, content, price, image_url)`
           )
           .eq("user_id", user?.id);
 
@@ -64,6 +60,16 @@ export default function BasketPage() {
     setActiveStep((prev) => Math.max(prev - 1, 0));
   };
 
+  const updateQuantity = (id, delta) => {
+    setBasketItems((prev) =>
+      prev.map((item) =>
+        item.id === id
+          ? { ...item, quantity: Math.max(1, item.quantity + delta) }
+          : item
+      )
+    );
+  };
+
   return (
     <div className="basketContainer">
       <h2>YOUR BASKET</h2>
@@ -77,12 +83,18 @@ export default function BasketPage() {
                   <img
                     src={product.image_url}
                     alt={product.title}
-                    width={100}
+                    className="productImage"
                   />
-                  <h3>{product.title}</h3>
-                  <p>{product.content}</p>
-                  <p>Quantity: {quantity}</p>
-                  <p>Price: ${product.price}</p>
+                  <div className="productDetails">
+                    <h3>{product.title}</h3>
+                    <p>{product.content}</p>
+                    <div className="quantityControls">
+                      <button onClick={() => updateQuantity(id, -1)}>-</button>
+                      <span>{quantity}</span>
+                      <button onClick={() => updateQuantity(id, 1)}>+</button>
+                    </div>
+                    <p className="productPrice">${product.price * quantity}</p>
+                  </div>
                 </div>
               ))
             ) : (
@@ -105,9 +117,7 @@ export default function BasketPage() {
             <OrderReview />
             <ButtonGroup />
           </>
-        ) : (
-          ""
-        )}
+        ) : null}
       </div>
     </div>
   );

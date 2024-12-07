@@ -2,9 +2,9 @@ import "./style.css";
 
 export default function PaymentForm() {
   return (
-    <div class="cardDetail">
+    <div className="cardDetail">
       <form id="form" name="omer">
-        <div class="holderName">
+        <div className="holderName">
           <h6>Kart Sahibinin Adı</h6>
           <input
             required
@@ -15,7 +15,7 @@ export default function PaymentForm() {
             autocomplete="off"
           />
         </div>
-        <div class="holderNumber">
+        <div className="holderNumber">
           <h6>Kart Numarası</h6>
           <input
             required
@@ -26,8 +26,8 @@ export default function PaymentForm() {
             placeholder="Örn. 0000 0000 0000 0000"
           />
         </div>
-        <div class="generalIpunts">
-          <div class="expDate">
+        <div className="generalIpunts">
+          <div className="expDate">
             <h6>Son Kullanma Tarihi</h6>
             <label id="#aayy">
               <input
@@ -50,7 +50,7 @@ export default function PaymentForm() {
               />
             </label>
           </div>
-          <div class="cvc">
+          <div className="cvc">
             <h6>CVC</h6>
             <input
               required
@@ -63,7 +63,7 @@ export default function PaymentForm() {
             />
           </div>
         </div>
-        <button class="btn">ONAYLA</button>
+        <button className="btn">ONAYLA</button>
       </form>
     </div>
   );

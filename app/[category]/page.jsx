@@ -4,10 +4,11 @@ import Categories from "@/components/categories-card";
 import "./style.css";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { listProductsForCategory } from "@/api/category";
+import { listProductsForCategory, searchProducts } from "@/api/category";
 
 export default function CategoriesPage() {
   const { category } = useParams();
+
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -15,7 +16,15 @@ export default function CategoriesPage() {
       const response = await listProductsForCategory(category);
 
       console.log("response :>> ", response);
-      setProducts(response);
+
+      if (response.length === 0) {
+        const response = await searchProducts(category);
+
+        console.log("response :>> ", response);
+        setProducts(response);
+      } else {
+        setProducts(response);
+      }
     };
 
     listProducts();

@@ -17,6 +17,55 @@
     border-radius: 16px;
     text-align: center;
   }
+
+  .basketItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    width: 80%;
+    margin: 4px auto;
+  }
+
+  .productImage {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+
+  .productDetails {
+    flex: 1;
+  }
+
+  .quantityControls {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+  }
+
+  .quantityControls button {
+    width: 30px;
+    height: 30px;
+    background-color: var(--button);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  .quantityControls span {
+    margin: 0 10px;
+    font-size: 16px;
+  }
+
+  .productPrice {
+    font-weight: bold;
+    color: #333;
+  }
 }
 
 .progressContainer {

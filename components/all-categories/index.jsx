@@ -30,10 +30,13 @@ export default function AllCategories() {
 
   return (
     <div className="all">
-      <Categories title={"All"} products={products} />
-      {allCategoires.map((x) => (
-        <Categories title={x.name} products={x.products} />
-      ))}
+      {products?.length > 0 && <Categories title={"All"} products={products} />}
+      {allCategoires.map(
+        (x,i) =>
+          x?.products?.length > 0 && (
+            <Categories key={i} title={x.name} products={x.products} />
+          )
+      )}
     </div>
   );
 }

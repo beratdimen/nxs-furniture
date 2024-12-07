@@ -1,0 +1,76 @@
+.accordionContainer {
+  padding-block: 20px;
+
+  h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+
+  .accordion {
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .accordion-btn {
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+    border: none;
+    background-color: #f9f9f9;
+    color: #000;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .accordion-btn:hover {
+    background-color: #f0f4f8;
+  }
+
+  .accordion-content {
+    padding: 10px;
+    background-color: #f9f9f9;
+    font-size: 14px;
+    line-height: 1.5;
+
+    .productSpecs {
+      border-top: 1px solid #ddd;
+      padding-top: 20px;
+
+      h2 {
+        font-size: 18px;
+        margin-bottom: 15px;
+      }
+
+      .specsTitle {
+        font-size: 14px;
+      }
+
+      .specsGrid {
+        display: grid;
+        gap: 10px;
+        background-color: #f0f4f8;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 12px;
+
+        .specItem {
+          display: flex;
+          gap: 8px;
+          padding-bottom: 5px;
+
+          .specLabel {
+            color: #666;
+          }
+
+          .specValue {
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+}

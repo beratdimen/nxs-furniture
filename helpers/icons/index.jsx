@@ -90,8 +90,8 @@ export function LikeIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="24px"
-      height="24px"
+      width="16px"
+      height="16px"
       viewBox="0 0 48 48"
     >
       <path
@@ -301,9 +301,9 @@ export function EditIcon() {
       <path
         fill="none"
         stroke="blue"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2.5"
         d="m5 16l-1 4l4-1L19.586 7.414a2 2 0 0 0 0-2.828l-.172-.172a2 2 0 0 0-2.828 0zM15 6l3 3m-5 11h8"
       />
     </svg>

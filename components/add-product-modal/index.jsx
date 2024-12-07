@@ -193,8 +193,10 @@ export default function AddModal({ newProduct, listProducts }) {
           <input type="text" name="width" placeholder="Width" />
           <input type="text" name="height" placeholder="Height" />
 
-          <button type="submit">Kaydet</button>
-          <button type="button" onClick={closeModal}>
+          <button className="send" type="submit">
+            Kaydet
+          </button>
+          <button className="close" type="button" onClick={closeModal}>
             Close
           </button>
         </form>

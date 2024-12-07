@@ -1,43 +1,4 @@
-dialog {
-  opacity: 0;
-  transform: scale(0.5);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  border: none;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.5);
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 16px 32px;
-
-  input {
-    width: 100%;
-    border: none;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 6px 8px;
-    border-radius: 8px;
-  }
-
-  input[type="file"] {
-    cursor: pointer;
-  }
-}
-
-dialog[open] {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-}
-
+/* Modal backdrop styling */
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -45,13 +6,94 @@ dialog[open] {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
+  display: none;
   z-index: 10;
 }
 
 .modal-backdrop.active {
-  opacity: 1;
-  pointer-events: all;
+  display: block;
+}
+
+/* Modal styling */
+dialog {
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  max-width: 90%;
+  z-index: 20;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Form styling */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+form input,
+form select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+form input:focus,
+form select:focus {
+  border-color: #007bff;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Image preview styling */
+img {
+  display: block;
+  margin-top: 10px;
+  border-radius: 8px;
+  max-width: 100px;
+  height: auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Button styling */
+.send {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.close[type="button"] {
+  background-color: #6c757d;
+}
+
+.close[type="button"]:hover {
+  background-color: #5a6268;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  dialog {
+    width: 90%;
+  }
 }

@@ -71,7 +71,7 @@ export default function ProjectPages() {
             <th colSpan={2}>Actions</th>
           </tr>
           {projects?.map((proj) => (
-            <tr>
+            <tr key={proj.id}>
               <td>{proj.title}</td>
               <td>{proj.view}</td>
               <td>

@@ -1,0 +1,71 @@
+.discount-section {
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.discount-card .title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.discount-card .price {
+  font-size: 14px;
+  color: #555;
+}
+
+.discount-card .highlight {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+/* Loan Section */
+.loan-section {
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.loan-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.loan-desc {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.loan-section .details {
+  color: #007bff;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.delivery-section {
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.delivery-title {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.delivery-subtitle {
+  font-size: 14px;
+  color: #555;
+  margin-top: 5px;
+}

@@ -1,47 +1,96 @@
 .addProductContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-top: 24px;
-
-  .head {
-    display: flex;
-    justify-content: space-between;
-  }
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.head h1 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
 }
 
 .add {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 8px;
-  background-color: #dddddd;
-  width: fit-content;
-  padding: 8px 10px;
-  border-radius: 16px;
+  gap: 10px;
+  transition: background-color 0.3s;
 }
 
-td,
+.add:hover {
+  background-color: #0056b3;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
 th {
-  border: 1px solid #000000;
-  text-align: center;
-  padding: 8px;
+  background-color: #f1f1f1;
+  color: #555;
+  font-weight: bold;
 }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-
-img {
-  width: 50px;
+td img {
+  max-width: 60px;
+  height: auto;
+  border-radius: 8px;
 }
 
 button {
+  background-color: transparent;
   border: none;
-  background: transparent;
+  cursor: pointer;
+  padding: 8px;
+}
+
+button svg {
+  width: 20px;
+  height: 20px;
+  fill: #555;
+  transition: fill 0.3s;
+}
+
+button:hover svg {
+  fill: #d9534f;
+}
+
+/* Son satırdaki çizgiyi kaldır */
+table tr:last-child td {
+  border-bottom: none;
+}
+
+@media (max-width: 768px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .addProductContainer {
+    padding: 10px;
+  }
 }
