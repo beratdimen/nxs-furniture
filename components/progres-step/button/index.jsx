@@ -3,10 +3,10 @@
 export default function ProgressButton({ nextStep, prevStep }) {
   return (
     <div className="buttonContainer">
-      <button className="nextPrevious" onClick={prevStep}>
+      <button className="previous" onClick={prevStep}>
         Previous
       </button>
-      <button className="nextPrevious" onClick={nextStep}>
+      <button className="next" onClick={nextStep}>
         Next
       </button>
     </div>

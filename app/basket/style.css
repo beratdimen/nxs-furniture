@@ -84,7 +84,7 @@
 }
 
 .progress {
-  background-color: #4caf50;
+  background-color: var(--button);
   height: 100%;
   transition: width 0.3s ease;
 }
@@ -105,7 +105,7 @@
 }
 
 .step.active {
-  color: #4caf50;
+  color: var(--button);
   font-weight: bold;
 }
 
@@ -121,8 +121,8 @@
 }
 
 .step.active:before {
-  background-color: #4caf50;
-  border-color: #4caf50;
+  background-color: var(--button);
+  border-color: var(--button);
 }
 
 .buttonContainer {
@@ -130,17 +130,31 @@
   justify-content: center;
   margin-top: 16px;
 
-  .nextPrevious {
+  .next {
     margin: 5px;
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: var(--button);
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
   }
 
-  button:hover {
-    background-color: #0056b3;
+  .previous {
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #d4d4d4;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .previous:hover {
+    background-color: rgb(206, 206, 206);
+  }
+
+  .next:hover {
+    background-color: rgb(212, 119, 4);
   }
 }
