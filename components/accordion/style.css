@@ -10,8 +10,22 @@
   .accordion {
     margin-bottom: 10px;
     border: 1px solid #ddd;
+    background-color: #f9f9f9 !important;
     border-radius: 8px;
     overflow: hidden;
+
+    .accordion-div {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f9f9f9 !important;
+
+      svg {
+        margin: 16px;
+        background-color: transparent;
+      }
+    }
   }
 
   .accordion-btn {
@@ -19,15 +33,15 @@
     text-align: left;
     padding: 10px;
     border: none;
-    background-color: #f9f9f9;
     color: #000;
     font-size: 16px;
+    background-color: transparent;
     cursor: pointer;
     transition: background-color 0.2s ease;
   }
 
-  .accordion-btn:hover {
-    background-color: #f0f4f8;
+  .accordion-div:hover {
+    background-color: #f0f4f8 !important;
   }
 
   .accordion-content {
@@ -36,8 +50,19 @@
     font-size: 14px;
     line-height: 1.5;
 
+    p {
+      padding: 8px;
+
+      a {
+        color: rgb(2, 2, 177);
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
     .productSpecs {
-      border-top: 1px solid #ddd;
       padding-top: 20px;
 
       h2 {

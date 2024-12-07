@@ -4,15 +4,21 @@ import Image from "next/image";
 import "./style.css";
 import { DisLikeIcon, LikeIcon, SaveIcon } from "@/helpers/icons";
 import { useParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
 import { viewPost } from "@/api/category";
 import { toast } from "sonner";
 import Accordion from "@/components/accordion";
+import DiscountSection from "@/components/product/discount";
+import LoanSection from "@/components/product/loan-section";
+import DeliverySection from "@/components/product/delivery";
+import BankTable from "@/components/product/payment";
 
 export default function Detail() {
   const { id } = useParams();
   const router = useRouter();
+  const priceRef = useRef();
+  const [isActive, setIsActive] = useState(false);
   const [product, setProduct] = useState({});
   const [images, setImages] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -25,6 +31,13 @@ export default function Detail() {
     const { data, error } = await supabase.auth.getUser();
     if (!error) setUser(data);
   };
+
+  function handleClick() {
+    if (priceRef.current) {
+      priceRef.current.showModal();
+    }
+    console.log("tıklandım");
+  }
 
   useEffect(() => {
     userFetch();
@@ -51,6 +64,13 @@ export default function Detail() {
       ];
       setImages(allImages);
       setSelectedIndex(0);
+    }
+  };
+
+  const close = () => {
+    if (priceRef.current) {
+      priceRef.current.close();
+      setIsActive(false);
     }
   };
 
@@ -186,12 +206,7 @@ export default function Detail() {
       <div className="productImages">
         <div className="mainImage">
           {images.length > 0 && (
-            <Image
-              src={images[selectedIndex]}
-              alt="Slider"
-              width={600}
-              height={600}
-            />
+            <img src={images[selectedIndex]} alt="Slider" />
           )}
           <button className="navButton prev" onClick={handlePrev}>
             &#10094;
@@ -218,6 +233,8 @@ export default function Detail() {
           ))}
         </div>
 
+        <hr />
+
         <Accordion dizi={dizi} />
       </div>
 
@@ -240,30 +257,38 @@ export default function Detail() {
           <span className="priceTag">Lowest price</span>
         </div>
 
+        <DiscountSection />
+
         <div className="actionButtons">
           <button className="buyButton" onClick={() => addToBasket()}>
             Buy
           </button>
-          <button className="downloadButton">Free Download</button>
+
+          <LoanSection />
+
+          <DeliverySection />
         </div>
 
         <hr />
 
         <div className="infoCard">
-          <button
+          <a
             className="infoButton"
-            onClick={() =>
-              router.push(
-                "https://xiseukjsxraiqmqgdlcs.supabase.co/storage/v1/object/public/products/c25f9c2a-d786-440b-bf86-17da0a350523.pdf"
-              )
-            }
+            href="https://xiseukjsxraiqmqgdlcs.supabase.co/storage/v1/object/public/products/c25f9c2a-d786-440b-bf86-17da0a350523.pdf"
+            target="blank"
           >
             Request Catalogue
+          </a>
+          <button className="infoButton" onClick={handleClick}>
+            Request The Price List
           </button>
-          <button className="infoButton">Request The Price List</button>
-          <button className="infoButton">Where to Buy</button>
         </div>
       </div>
+
+      <dialog ref={priceRef} open={isActive}>
+        <button onClick={close}>Close</button>
+        <BankTable />
+      </dialog>
     </div>
   );
 }

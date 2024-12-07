@@ -1,9 +1,8 @@
 .detailContainer {
-  margin: 0 auto;
   padding: 20px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  grid-template-columns: 2fr 1fr;
+  gap: 32px;
 
   .productImages {
     position: relative;
@@ -111,13 +110,13 @@
       flex-direction: column;
       gap: 10px;
 
-      .buyButton,
-      .downloadButton {
+      .buyButton {
         padding: 12px;
         border: none;
         border-radius: 4px;
         font-size: 16px;
         cursor: pointer;
+        margin-bottom: 10px;
       }
 
       .buyButton {
@@ -129,12 +128,6 @@
         background-color: #f5f5f5;
         color: #333;
       }
-    }
-
-    hr {
-      border: 0;
-      border-top: thin solid #00000022;
-      margin: 20px 0;
     }
 
     .infoCard {
@@ -200,4 +193,17 @@
 
 .thumbnail.active {
   border: 2px solid black;
+}
+
+dialog {
+  margin: auto;
+  border: none;
+  border-radius: 8px;
+  padding: 32px;
+}
+
+hr {
+  border: 0;
+  border-top: thin solid #00000022;
+  margin: 20px 0;
 }
