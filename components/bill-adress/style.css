@@ -57,9 +57,6 @@
       height: 500px;
 
       form {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
         max-width: 600px;
         border-radius: 12px;
 
@@ -95,28 +92,6 @@
         width: 100%;
       }
 
-      input {
-        width: 100%;
-        padding: 10px 12px;
-        font-size: 14px;
-        border-radius: 8px;
-        border: 1px solid #ddd;
-        box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
-        outline: none;
-        transition: border-color 0.3s, box-shadow 0.3s;
-      }
-
-      input:focus {
-        border-color: #5f6d7e;
-        box-shadow: 0 0 5px rgba(95, 109, 126, 0.5);
-      }
-
-      h6 {
-        font-weight: 500;
-        font-size: 16px;
-        color: #333;
-      }
-
       .error {
         font-size: 12px;
         color: #ff3b3b;
@@ -126,6 +101,12 @@
       input[type="text"],
       input[type="number"] {
         transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      h6 {
+        font-weight: 500;
+        font-size: 16px;
+        color: #333;
       }
 
       .city,
@@ -142,4 +123,26 @@ hr {
   border: 0;
   border-top: thin solid #00000022;
   margin: 20px 0;
+}
+
+input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus {
+  border-color: #5f6d7e;
+  box-shadow: 0 0 5px rgba(95, 109, 126, 0.5);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }

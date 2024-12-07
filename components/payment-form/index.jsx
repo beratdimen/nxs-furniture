@@ -63,7 +63,6 @@ export default function PaymentForm() {
             />
           </div>
         </div>
-        <button className="btn">ONAYLA</button>
       </form>
     </div>
   );
