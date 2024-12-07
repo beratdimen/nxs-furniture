@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import "./style.css";
-import { DisLikeIcon, LikeIcon, SaveIcon } from "@/helpers/icons";
+import { CloseIcon, DisLikeIcon, LikeIcon, SaveIcon } from "@/helpers/icons";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
@@ -286,7 +286,13 @@ export default function Detail() {
       </div>
 
       <dialog ref={priceRef} open={isActive}>
-        <button onClick={close}>Close</button>
+        <div className="modalHeader">
+          <h3>Price List</h3>
+          <button onClick={close}>
+            <CloseIcon />
+          </button>
+        </div>
+        <hr />
         <BankTable />
       </dialog>
     </div>

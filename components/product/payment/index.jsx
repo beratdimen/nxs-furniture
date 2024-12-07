@@ -41,6 +41,55 @@ export default function BankTable() {
 
   return (
     <div className="table-container">
+      <img src="/img/mastercard.png" alt="mastercard" width={55} />
+      <table className="bank-table">
+        <thead>
+          <tr>
+            <th>Vade</th>
+            <th>Faiz</th>
+            <th>Taksit</th>
+            <th>Toplam Tutar</th>
+            <th>Yıllık Maliyet</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((item, index) => (
+            <tr key={index}>
+              <td>{item.vade}</td>
+              <td>{item.faiz}</td>
+              <td>{item.taksit}</td>
+              <td>{item.toplamTutar}</td>
+              <td>{item.yillikMaliyet}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <img src="/img/visa.png" alt="visa" width={55} />
+      <table className="bank-table">
+        <thead>
+          <tr>
+            <th>Vade</th>
+            <th>Faiz</th>
+            <th>Taksit</th>
+            <th>Toplam Tutar</th>
+            <th>Yıllık Maliyet</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((item, index) => (
+            <tr key={index}>
+              <td>{item.vade}</td>
+              <td>{item.faiz}</td>
+              <td>{item.taksit}</td>
+              <td>{item.toplamTutar}</td>
+              <td>{item.yillikMaliyet}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <img src="/img/troy.png" alt="troy" width={55} />
       <table className="bank-table">
         <thead>
           <tr>

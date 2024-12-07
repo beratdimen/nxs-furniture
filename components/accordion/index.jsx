@@ -144,7 +144,7 @@ const Accordion = ({ dizi }) => {
               <a>İptal ve İade {">"} </a>
             </p>
             <p>
-              Bu ürünü 2 yıl boyunca Vivense garantisi altında gönül
+              Bu ürünü 2 yıl boyunca Nexus Mobilya garantisi altında gönül
               rahatlığıyla kullanabilirsin.
             </p>
 

@@ -72,7 +72,7 @@
       button {
         width: 30px;
         height: 30px;
-        background: #c41c1c;
+        background: rgba(255, 255, 255, 0.788);
         border: none;
         border-radius: 50%;
         font-size: 24px;
@@ -83,7 +83,7 @@
 
         svg {
           width: 24px;
-          color: white;
+          color: rgb(0, 0, 0);
         }
       }
     }
@@ -200,6 +200,17 @@ dialog {
   border: none;
   border-radius: 8px;
   padding: 32px;
+
+  .modalHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    button {
+      background-color: transparent;
+      border: none;
+    }
+  }
 }
 
 hr {
