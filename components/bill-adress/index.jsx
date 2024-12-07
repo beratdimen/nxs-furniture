@@ -82,7 +82,7 @@ export default function BillAdress() {
       } else {
         console.log("Data saved successfully:", data);
         fetchAddresses();
-        setIsModalOpen(false); 
+        setIsModalOpen(false);
       }
     } catch (err) {
       console.error("Unexpected error:", err);
@@ -92,10 +92,7 @@ export default function BillAdress() {
   return (
     <div className="address">
       <div className="address-selection">
-        <div
-          className="address-cards"
-          onClick={() => setIsModalOpen(true)} 
-        >
+        <div className="address-cards" onClick={() => setIsModalOpen(true)}>
           <div className="address-card">
             <p>Create New Address</p>
           </div>
@@ -248,10 +245,7 @@ export default function BillAdress() {
               </div>
 
               <button type="submit">Submit</button>
-              <button
-                type="button"
-                onClick={() => setIsModalOpen(false)} 
-              >
+              <button type="button" onClick={() => setIsModalOpen(false)}>
                 Cancel
               </button>
             </form>

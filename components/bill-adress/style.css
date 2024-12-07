@@ -1,158 +1,141 @@
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  max-width: 600px;
-  border-radius: 12px;
-}
-
-.name,
-.city,
-.number,
-.tax {
-  display: flex;
-  gap: 20px;
-}
-
-label {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  width: 100%;
-}
-
-input {
-  width: 100%;
-  padding: 10px 12px;
-  font-size: 14px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
-  outline: none;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-input:focus {
-  border-color: #5f6d7e;
-  box-shadow: 0 0 5px rgba(95, 109, 126, 0.5);
-}
-
-h6 {
-  font-weight: 500;
-  font-size: 16px;
-  color: #333;
-}
-
-button {
-  padding: 12px;
-  font-size: 16px;
-  font-weight: bold;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-.error {
-  font-size: 12px;
-  color: #ff3b3b;
-  margin-top: 4px;
-}
-
-input[type="text"],
-input[type="number"] {
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.city,
-.number,
-.tax {
-  display: flex;
-  gap: 20px;
-}
-
-@media (max-width: 768px) {
-  form {
-    padding: 20px;
-  }
-
-  .name,
-  .city,
-  .number,
-  .tax {
-    flex-direction: column;
-  }
-
-  button {
-    width: 100%;
-  }
-}
-
 .address {
   display: flex;
   justify-content: space-between;
   width: 80%;
   margin: 0 auto;
-}
 
-.address-selection {
-  margin-bottom: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  gap: 8px;
-}
-
-.address-cards {
-  background-color: white;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.178);
-  padding: 16px;
-  border-radius: 8px;
-  margin-top: 8px;
-
-  .address-card {
+  .address-selection {
+    margin-bottom: 8px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: stretch;
     gap: 8px;
-    height: 100%;
 
-    input {
-      width: fit-content;
-      height: fit-content;
+    .address-cards {
+      background-color: white;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.178);
+      padding: 16px;
+      border-radius: 8px;
       margin-top: 8px;
+
+      .address-card {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        height: 100%;
+
+        input {
+          width: fit-content;
+          height: fit-content;
+          margin-top: 8px;
+        }
+      }
     }
   }
-}
 
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 99999999999999999999999;
-}
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999999999999999999999;
 
-.modal-content {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
-  width: 100%;
-  overflow-y: auto;
-  height: 500px;
+    .modal-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 100%;
+      overflow-y: auto;
+      height: 500px;
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        max-width: 600px;
+        border-radius: 12px;
+
+        button {
+          padding: 12px;
+          font-size: 16px;
+          font-weight: bold;
+          background-color: #007bff;
+          color: #fff;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+        }
+
+        button:hover {
+          background-color: #0056b3;
+        }
+      }
+
+      .name,
+      .city,
+      .number,
+      .tax {
+        display: flex;
+        gap: 20px;
+      }
+
+      label {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 14px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+        outline: none;
+        transition: border-color 0.3s, box-shadow 0.3s;
+      }
+
+      input:focus {
+        border-color: #5f6d7e;
+        box-shadow: 0 0 5px rgba(95, 109, 126, 0.5);
+      }
+
+      h6 {
+        font-weight: 500;
+        font-size: 16px;
+        color: #333;
+      }
+
+      .error {
+        font-size: 12px;
+        color: #ff3b3b;
+        margin-top: 4px;
+      }
+
+      input[type="text"],
+      input[type="number"] {
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .city,
+      .number,
+      .tax {
+        display: flex;
+        gap: 20px;
+      }
+    }
+  }
 }
 
 hr {

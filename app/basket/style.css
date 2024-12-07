@@ -44,22 +44,24 @@
     display: flex;
     align-items: center;
     margin: 10px 0;
-  }
 
-  .quantityControls button {
-    width: 30px;
-    height: 30px;
-    background-color: var(--button);
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-  }
+    button {
+      width: 30px;
+      height: 30px;
+      background-color: var(--button);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
 
-  .quantityControls span {
-    margin: 0 10px;
-    font-size: 16px;
+    span {
+      margin: 0 10px;
+      font-size: 16px;
+    }
   }
 
   .productPrice {
@@ -128,7 +130,7 @@
   justify-content: center;
   margin-top: 16px;
 
-  button {
+  .nextPrevious {
     margin: 5px;
     padding: 10px 20px;
     background-color: #007bff;
