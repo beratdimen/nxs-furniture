@@ -1,7 +1,6 @@
 .basketContainer {
   margin-top: 40px;
   display: grid;
-  grid-template-columns: 4fr 1fr;
   padding: 24px;
 
   h2 {

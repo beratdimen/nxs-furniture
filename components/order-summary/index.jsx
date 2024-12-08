@@ -13,7 +13,7 @@ export default function OrderSummary({ basketItems, setTotalPrice }) {
     const kargo = 20;
     const tax = subtotal * taxRate;
     const total = subtotal + tax + kargo;
-    setTotalPrice(total);
+    setTotalPrice(total.toFixed(2));
 
     return {
       subtotal,

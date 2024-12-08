@@ -6,6 +6,9 @@ export default function PaymentForm({
   totalPrice,
   setCardDetails,
   cardDetails,
+  orderState,
+  setActiveStep,
+  setOrderState,
 }) {
   const creditRef = useRef();
   function handleCreditModal() {
@@ -69,7 +72,7 @@ export default function PaymentForm({
     const formObj = Object.fromEntries(new FormData(e.target));
 
     if (validateForm()) {
-      alert("Form başarıyla gönderildi!");
+      handleCreditModal();
       console.log("Form Data:", formState);
     }
     setCardDetails({
@@ -164,15 +167,16 @@ export default function PaymentForm({
           </div>
         </div>
 
-        <button type="submit" onClick={handleCreditModal}>
-          Gönder
-        </button>
+        <button type="submit">Gönder</button>
       </form>
 
       <CreditCardModal
         creditRef={creditRef}
         totalPrice={totalPrice}
         cardDetails={cardDetails}
+        orderState={orderState}
+        setActiveStep={setActiveStep}
+        setOrderState={setOrderState}
       />
     </div>
   );

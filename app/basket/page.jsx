@@ -44,7 +44,7 @@ export default function BasketPage() {
         const { data, error } = await supabase
           .from("basket")
           .select(
-            `id, quantity, product:products (title, content, price, image_url)`
+            `id, quantity, product:products (id,title, content, price, image_url)`
           )
           .eq("user_id", user?.id);
 
@@ -62,7 +62,11 @@ export default function BasketPage() {
   const nextStep = () => {
     if (activeStep == 0) {
       if (basketItems.length > 0) {
-        setOrderState({ basketItems: basketItems, totalPrice: totalPrice });
+        setOrderState({
+          basketItems: basketItems,
+          totalPrice: totalPrice,
+          user_id: user?.id,
+        });
         setActiveStep((prev) => Math.min(prev + 1, steps.length - 1));
       } else {
         toast.error("Product is not defined");
@@ -118,7 +122,13 @@ export default function BasketPage() {
   };
 
   return (
-    <div className="basketContainer">
+    <div
+      className="basketContainer"
+      style={{
+        gridTemplateColumns:
+          activeStep === 3 || basketItems.length === 0 ? "1fr" : "4fr 1fr",
+      }}
+    >
       <div>
         <h2>YOUR BASKET</h2>
         <ProgresStep activeStep={activeStep} steps={steps} />
@@ -166,18 +176,26 @@ export default function BasketPage() {
             </>
           ) : activeStep === 2 ? (
             <>
-              <CreditCard totalPrice={totalPrice} />
-              <ProgressButton nextStep={nextStep} prevStep={prevStep} />
+              <CreditCard
+                setActiveStep={setActiveStep}
+                totalPrice={totalPrice}
+                orderState={orderState}
+                setOrderState={setOrderState}
+              />
             </>
           ) : activeStep === 3 ? (
             <>
-              <OrderReview />
+              <OrderReview id={orderState?.orderId} />
               <ButtonGroup />
             </>
           ) : null}
         </div>
       </div>
-      <OrderSummary basketItems={basketItems} setTotalPrice={setTotalPrice} />
+      {activeStep === 3 || basketItems.length === 0 ? (
+        <></>
+      ) : (
+        <OrderSummary basketItems={basketItems} setTotalPrice={setTotalPrice} />
+      )}
     </div>
   );
 }

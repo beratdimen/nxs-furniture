@@ -10,15 +10,7 @@
     padding: 10px 20px;
   }
 
-  .edit {
-    background-color: var(--button3);
-  }
-
   .delete {
     background-color: var(--button4);
-  }
-
-  .required {
-    background-color: var(--button2);
   }
 }

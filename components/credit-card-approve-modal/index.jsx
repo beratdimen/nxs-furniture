@@ -2,14 +2,21 @@
 import { useRef, useState } from "react";
 import "./style.css";
 import { toast } from "sonner";
+import { v4 as uuidv4 } from "uuid";
+import { createClient } from "@/utils/supabase/client";
 
 export default function CreditCardModal({
   creditRef,
   totalPrice,
   cardDetails,
+  orderState,
+  setActiveStep,
+  setOrderState,
 }) {
   const [isActive, setIsActive] = useState(false);
   const [password, setPassword] = useState();
+
+  const supabase = createClient();
 
   const closeCreditModal = () => {
     if (creditRef.current) {
@@ -35,9 +42,57 @@ export default function CreditCardModal({
     return `${day}.${month}.${year}, ${hours}:${minutes}`;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (password == 123456) {
-      closeCreditModal();
+      try {
+        const orderId = uuidv4();
+        const { data: orderResponse, error: orderError } = await supabase
+          .from("orders")
+          .insert([
+            {
+              id: orderId,
+              user_id: orderState?.user_id,
+              total_price: orderState?.totalPrice,
+              status: "pending",
+              billing_id: orderState?.selectedBilingAddress,
+            },
+          ])
+          .select()
+          .single();
+
+        if (orderError) {
+          toast.error("Orders tablosuna eklerken hata:");
+        }
+
+        const orderItemsInsert = orderState?.basketItems.map((item) => ({
+          order_id: orderId,
+          product_id: item.product.id,
+          quantity: item.quantity,
+          price: item.product.price,
+        }));
+
+        const { error: orderItemsError } = await supabase
+          .from("order_items")
+          .insert(orderItemsInsert);
+
+        if (orderItemsError) {
+          toast.error("Order_items tablosuna eklerken hata");
+        }
+
+        if (!orderItemsError) {
+          toast.success("Sipariş oluşturuldu ve ürünler başarıyla eklendi");
+          closeCreditModal();
+          setActiveStep(3);
+          setOrderState({ ...orderState, orderId: orderId });
+          const { error } = await supabase
+            .from("basket")
+            .delete()
+            .match({ user_id: orderState?.user_id });
+        }
+      } catch (error) {
+        toast.error("Sunucu hatası:", error);
+        console.log("Sunucu hatası:", error);
+      }
     } else {
       toast.error("Your Password is Wrong");
     }
