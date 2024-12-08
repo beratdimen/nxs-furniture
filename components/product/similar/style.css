@@ -1,0 +1,14 @@
+.similarProducts {
+  width: 100%;
+
+  h2 {
+    margin-bottom: 16px;
+    text-align: center;
+  }
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}

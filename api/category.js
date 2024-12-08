@@ -127,8 +127,8 @@ export const fetchSimilarProducts = async (categoryId, excludeProductId) => {
         `
       )
       .eq("productsCategories.categories.id", categoryId)
-      .neq("id", excludeProductId) 
-      .limit(4); 
+      .neq("id", excludeProductId)
+      .limit(4);
 
     if (error) {
       console.error("Error fetching similar products:", error);
@@ -141,8 +141,6 @@ export const fetchSimilarProducts = async (categoryId, excludeProductId) => {
     return [];
   }
 };
-
-
 
 export const searchProducts = async (searchTerm) => {
   try {

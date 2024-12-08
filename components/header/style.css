@@ -74,6 +74,8 @@
       background-color: var(--button);
       color: var(--buttonText);
       border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 14px;
     }
   }
 }

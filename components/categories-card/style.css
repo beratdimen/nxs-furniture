@@ -7,10 +7,14 @@
   padding-bottom: 64px;
 
   h5 {
-    background-color: #ffefcd;
-    padding: 8px;
+    background-color: #f1f1f1;
+    padding: 12px 16px;
     border-radius: 8px;
     width: fit-content;
+    text-transform: uppercase;
+    color: var(--button);
+    font-weight: 900;
+    letter-spacing: 3px;
   }
 
   h2 {

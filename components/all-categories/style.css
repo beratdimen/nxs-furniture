@@ -1,4 +1,5 @@
 .all {
   display: grid;
   gap: 32px;
+  margin-top: 60px;
 }

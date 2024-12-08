@@ -1,11 +1,11 @@
 .projects {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
 }
 
 .card {
-  width: 300px;
+  width: 100%;
   border-radius: 8px;
   overflow: hidden;
 }
@@ -68,6 +68,7 @@
 .info {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 8px;
   padding: 16px 3px;
 
@@ -93,6 +94,13 @@
   border: 1px solid #ccc;
   border-radius: 16px;
   font-size: 8px;
+}
+
+.linkDiv,
+.userDiv {
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
 .link {

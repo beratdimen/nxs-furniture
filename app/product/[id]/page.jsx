@@ -3,17 +3,17 @@
 import Image from "next/image";
 import "./style.css";
 import { CloseIcon, DisLikeIcon, LikeIcon, SaveIcon } from "@/helpers/icons";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
-import { fetchSimilarProducts, viewPost } from "@/api/category";
+import { viewPost } from "@/api/category";
 import { toast } from "sonner";
 import Accordion from "@/components/accordion";
 import DiscountSection from "@/components/product/discount";
 import LoanSection from "@/components/product/loan-section";
 import DeliverySection from "@/components/product/delivery";
 import BankTable from "@/components/product/payment";
-import ProductItem from "@/components/product-item";
+import SimilarProducts from "@/components/product/similar";
 
 export default function Detail() {
   const { id } = useParams();
@@ -24,7 +24,6 @@ export default function Detail() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [user, setUser] = useState(null);
   const [productLike, setProductLike] = useState(false);
-  const [similarProducts, setSimilarProducts] = useState([]);
 
   const supabase = createClient();
 
@@ -141,10 +140,6 @@ export default function Detail() {
   };
 
   useEffect(() => {
-    if (product?.id) {
-      getSimilarProducts();
-    }
-
     const likeControl = async () => {
       if (product?.id && user?.id) {
         const { data, error } = await supabase
@@ -208,124 +203,106 @@ export default function Detail() {
     }
   };
 
-  const getSimilarProducts = async () => {
-    if (product?.productsCategories[0]?.categories?.id) {
-      const categoryId = product?.productsCategories[0]?.categories?.id;
-      const productId = product.id;
-
-      const fetchedProducts = await fetchSimilarProducts(categoryId, productId);
-      setSimilarProducts(fetchedProducts);
-    }
-  };
-
-  console.log(similarProducts, " dsadasdsadasdasa");
-
   return (
-    <div className="detailContainer">
-      <div className="productImages">
-        <div className="mainImage">
-          {images.length > 0 && (
-            <img src={images[selectedIndex]} alt="Slider" />
-          )}
-          <button className="navButton prev" onClick={handlePrev}>
-            &#10094;
-          </button>
-          <button className="navButton next" onClick={handleNext}>
-            &#10095;
-          </button>
+    <>
+      <div className="detailContainer">
+        <div className="productImages">
+          <div className="mainImage">
+            {images.length > 0 && (
+              <img src={images[selectedIndex]} alt="Slider" />
+            )}
+            <button className="navButton geri" onClick={handlePrev}>
+              &#10094;
+            </button>
+            <button className="navButton ileri" onClick={handleNext}>
+              &#10095;
+            </button>
+          </div>
+
+          <div className="thumbnailContainer">
+            {images.map((img, index) => (
+              <div
+                key={index}
+                className={`thumbnail ${
+                  index === selectedIndex ? "active" : ""
+                }`}
+                onClick={() => setSelectedIndex(index)}
+              >
+                <Image
+                  src={img}
+                  alt={`Thumbnail ${index}`}
+                  width={50}
+                  height={50}
+                />
+              </div>
+            ))}
+          </div>
+
+          <hr />
+
+          <Accordion dizi={dizi} />
         </div>
 
-        <div className="thumbnailContainer">
-          {images.map((img, index) => (
-            <div
-              key={index}
-              className={`thumbnail ${index === selectedIndex ? "active" : ""}`}
-              onClick={() => setSelectedIndex(index)}
+        <div className="productDetails">
+          <div className="productHeader">
+            <h1>{product.title}</h1>
+            <button
+              onClick={() =>
+                productLike
+                  ? deleteProductLike(product?.id)
+                  : likeProduct(product?.id)
+              }
             >
-              <Image
-                src={img}
-                alt={`Thumbnail ${index}`}
-                width={50}
-                height={50}
-              />
-            </div>
-          ))}
+              {productLike ? <DisLikeIcon /> : <LikeIcon />}
+            </button>
+          </div>
+
+          <div className="productPrice">
+            <span className="price">${product.price}</span>
+            <span className="priceTag">Lowest price</span>
+          </div>
+
+          <DiscountSection />
+
+          <div className="actionButtons">
+            <button className="buyButton" onClick={() => addToBasket()}>
+              Buy
+            </button>
+
+            <LoanSection />
+
+            <DeliverySection />
+          </div>
+
+          <hr />
+
+          <div className="infoCard">
+            <a
+              className="infoButton"
+              href="https://xiseukjsxraiqmqgdlcs.supabase.co/storage/v1/object/public/products/c25f9c2a-d786-440b-bf86-17da0a350523.pdf"
+              target="blank"
+            >
+              Request Catalogue
+            </a>
+            <button className="infoButton" onClick={handleClick}>
+              Request The Price List
+            </button>
+          </div>
         </div>
 
-        <hr />
-
-        <Accordion dizi={dizi} />
+        <dialog ref={priceRef} open={isActive}>
+          <div className="modalHeader">
+            <h3>Price List</h3>
+            <button onClick={close}>
+              <CloseIcon />
+            </button>
+          </div>
+          <hr />
+          <BankTable />
+        </dialog>
       </div>
 
-      <div className="productDetails">
-        <div className="productHeader">
-          <h1>{product.title}</h1>
-          <button
-            onClick={() =>
-              productLike
-                ? deleteProductLike(product?.id)
-                : likeProduct(product?.id)
-            }
-          >
-            {productLike ? <DisLikeIcon /> : <LikeIcon />}
-          </button>
-        </div>
-
-        <div className="productPrice">
-          <span className="price">${product.price}</span>
-          <span className="priceTag">Lowest price</span>
-        </div>
-
-        <DiscountSection />
-
-        <div className="actionButtons">
-          <button className="buyButton" onClick={() => addToBasket()}>
-            Buy
-          </button>
-
-          <LoanSection />
-
-          <DeliverySection />
-        </div>
-
-        <hr />
-
-        <div className="infoCard">
-          <a
-            className="infoButton"
-            href="https://xiseukjsxraiqmqgdlcs.supabase.co/storage/v1/object/public/products/c25f9c2a-d786-440b-bf86-17da0a350523.pdf"
-            target="blank"
-          >
-            Request Catalogue
-          </a>
-          <button className="infoButton" onClick={handleClick}>
-            Request The Price List
-          </button>
-        </div>
-      </div>
-
-      <dialog ref={priceRef} open={isActive}>
-        <div className="modalHeader">
-          <h3>Price List</h3>
-          <button onClick={close}>
-            <CloseIcon />
-          </button>
-        </div>
-        <hr />
-        <BankTable />
-      </dialog>
-
-      <div>
-        <h1>{product?.title}</h1>
-        <p>{product?.content}</p>
-
-        <h2>Benzer Ürünler</h2>
-        <div className="productsGrid">
-          {similarProducts.map((similarProduct) => (
-            <ProductItem key={similarProduct.id} product={similarProduct} />
-          ))}
-        </div>
-      </div>
-    </div>
+      <SimilarProducts product={product} user={user} />
+    </>
   );
 }

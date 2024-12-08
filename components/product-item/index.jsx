@@ -241,10 +241,6 @@ export default function ProductItem({ product: initialProduct }) {
             />
 
             <p>
-              Ortalama: <strong>{product?.rating_average}</strong> (
-              {product?.rating_count} oy)
-            </p>
-            <p>
               <ViewIcon />
               <p>{product.view}</p>
             </p>

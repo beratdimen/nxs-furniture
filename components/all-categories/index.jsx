@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import Categories from "../categories-card";
 import { listAllProducts, listProductsAllCategories } from "@/api/category";
 import "./style.css";
+import CategoryDesign from "../homepage/category-design";
+import SliderHome from "../homepage/slider";
 
 export default function AllCategories() {
   // const [chairs, setChairs] = useState([]);
@@ -31,12 +33,18 @@ export default function AllCategories() {
   return (
     <div className="all">
       {products?.length > 0 && <Categories title={"All"} products={products} />}
+
+      <SliderHome />
       {allCategoires.map(
-        (x,i) =>
+        (x, i) =>
           x?.products?.length > 0 && (
-            <Categories key={i} title={x.name} products={x.products} />
+            <div key={i}>
+              <Categories title={x.name} products={x.products} />
+            </div>
           )
       )}
+
+      <CategoryDesign />
     </div>
   );
 }

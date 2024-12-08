@@ -173,28 +173,32 @@ export default function ProjectsPage() {
               </div>
             </div>
             <div className="info">
-              <img className="avatar" src={x?.image_url} alt="Avatar" />
-              <span className="text">NZL Furniture</span>
-              <span className="chip">New</span>
-              <button
-                className="link"
-                onClick={() =>
-                  projectLikes[x.id]
-                    ? deleteProductLike(x.id)
-                    : likeProduct(x.id)
-                }
-              >
-                <span>
-                  {projectLikes[x.id] ? <DisLikeIcon /> : <LikeIcon />}
-                </span>
-                {x.like_count}
-              </button>
-              <button className="link">
-                <span>
-                  <ViewIcon />
-                </span>
-                {x.view}
-              </button>
+              <div className="userDiv">
+                <img className="avatar" src={x?.image_url} alt="Avatar" />
+                <span className="text">NZL Furniture</span>
+                <span className="chip">New</span>
+              </div>
+              <div className="linkDiv">
+                <button
+                  className="link"
+                  onClick={() =>
+                    projectLikes[x.id]
+                      ? deleteProductLike(x.id)
+                      : likeProduct(x.id)
+                  }
+                >
+                  <span>
+                    {projectLikes[x.id] ? <DisLikeIcon /> : <LikeIcon />}
+                  </span>
+                  {x.like_count}
+                </button>
+                <button className="link">
+                  <span>
+                    <ViewIcon />
+                  </span>
+                  {x.view}
+                </button>
+              </div>
             </div>
           </div>
         ))

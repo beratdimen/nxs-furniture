@@ -8,11 +8,7 @@ export default function Categories({ title, products, isSearchPage = false }) {
   return (
     <div className="textureContainer">
       {isSearchPage ? "" : <h5> {title.toLowerCase()}</h5>}
-      <h2>
-        {isSearchPage
-          ? "Searched Term: " + title
-          : "NEW " + title.toUpperCase()}{" "}
-      </h2>
+      <h2>{isSearchPage && "Searched Term: " + title}</h2>
       <div className="productsGrid">
         {products?.map((x) => (
           <ProductItem key={x.id} product={x} />

@@ -8,9 +8,10 @@ export default function Home() {
     <div className="homeContainer">
       <Body />
       <AllCategories />
-      <ProjectsPage />
 
       <OrderKnowladge />
+
+      <ProjectsPage />
     </div>
   );
 }
