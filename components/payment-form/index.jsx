@@ -1,69 +1,179 @@
+import React, { useRef, useState } from "react";
 import "./style.css";
+import CreditCardModal from "../credit-card-approve-modal";
 
-export default function PaymentForm() {
+export default function PaymentForm({
+  totalPrice,
+  setCardDetails,
+  cardDetails,
+}) {
+  const creditRef = useRef();
+  function handleCreditModal() {
+    if (creditRef.current) {
+      creditRef.current.showModal();
+    }
+  }
+  const [formState, setFormState] = useState({
+    holderName: "",
+    cardNumber: "",
+    expiryMonth: "",
+    expiryYear: "",
+    cvc: "",
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!formState.holderName.trim()) {
+      newErrors.holderName = "Kart sahibinin adı zorunludur.";
+    }
+
+    if (!formState.cardNumber || !/^\d{16}$/.test(formState.cardNumber)) {
+      newErrors.cardNumber = "Kart numarası 16 haneli olmalıdır.";
+    }
+
+    if (
+      !formState.expiryMonth ||
+      !(formState.expiryMonth >= 1 && formState.expiryMonth <= 12)
+    ) {
+      newErrors.expiryMonth = "Geçerli bir ay girin (01-12).";
+    }
+
+    if (
+      !formState.expiryYear ||
+      !(formState.expiryYear >= 23 && formState.expiryYear <= 99)
+    ) {
+      newErrors.expiryYear = "Geçerli bir yıl girin (23-99).";
+    }
+
+    if (!formState.cvc || !/^\d{3}$/.test(formState.cvc)) {
+      newErrors.cvc = "CVC 3 haneli olmalıdır.";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormState((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formObj = Object.fromEntries(new FormData(e.target));
+
+    if (validateForm()) {
+      alert("Form başarıyla gönderildi!");
+      console.log("Form Data:", formState);
+    }
+    setCardDetails({
+      holderName: formObj.holderName,
+      cardNumber: formObj.cardNumber,
+      expMonth: formObj.expiryMonth,
+      expYear: formObj.expiryYear,
+      cvv: formObj.cvc,
+    });
+    console.log(formObj);
+  };
+
   return (
     <div className="cardDetail">
-      <form id="form" name="omer">
+      <form id="form" name="paymentForm" onSubmit={handleSubmit}>
         <div className="holderName">
           <h6>Kart Sahibinin Adı</h6>
           <input
-            required
             type="text"
-            name="berat"
+            name="holderName"
             id="holderInput"
-            placeholder="Örn. berat dimen"
-            autocomplete="off"
+            placeholder="Örn. Berat Dimen"
+            autoComplete="off"
+            value={formState.holderName}
+            onChange={handleInputChange}
           />
+          {errors.holderName && (
+            <span className="error">{errors.holderName}</span>
+          )}
         </div>
+
         <div className="holderNumber">
           <h6>Kart Numarası</h6>
           <input
-            required
-            type="number"
+            type="text"
+            name="cardNumber"
             id="numberInput"
-            maxlength="16"
-            autocomplete="off"
+            maxLength="16"
+            autoComplete="off"
             placeholder="Örn. 0000 0000 0000 0000"
+            value={formState.cardNumber}
+            onChange={handleInputChange}
           />
+          {errors.cardNumber && (
+            <span className="error">{errors.cardNumber}</span>
+          )}
         </div>
-        <div className="generalIpunts">
+
+        <div className="generalInputs">
           <div className="expDate">
             <h6>Son Kullanma Tarihi</h6>
-            <label id="#aayy">
+            <label id="aayy">
               <input
-                required
-                type="number"
+                type="text"
+                name="expiryMonth"
                 id="aa"
-                min="1"
-                max="12"
-                maxlength="2"
+                maxLength="2"
                 placeholder="07"
+                value={formState.expiryMonth}
+                onChange={handleInputChange}
               />
               <input
-                required
-                type="number"
+                type="text"
+                name="expiryYear"
                 id="yy"
-                min="1"
-                max="99"
-                maxlength="2"
+                maxLength="2"
                 placeholder="29"
+                value={formState.expiryYear}
+                onChange={handleInputChange}
               />
             </label>
+            {errors.expiryMonth && (
+              <span className="error">{errors.expiryMonth}</span>
+            )}
+            {errors.expiryYear && (
+              <span className="error">{errors.expiryYear}</span>
+            )}
           </div>
+
           <div className="cvc">
             <h6>CVC</h6>
             <input
-              required
-              type="number"
+              type="text"
+              name="cvc"
               id="cvInput"
-              maxlength="3"
-              min="1"
-              max="999"
+              maxLength="3"
               placeholder="264"
+              value={formState.cvc}
+              onChange={handleInputChange}
             />
+            {errors.cvc && <span className="error">{errors.cvc}</span>}
           </div>
         </div>
+
+        <button type="submit" onClick={handleCreditModal}>
+          Gönder
+        </button>
       </form>
+
+      <CreditCardModal
+        creditRef={creditRef}
+        totalPrice={totalPrice}
+        cardDetails={cardDetails}
+      />
     </div>
   );
 }

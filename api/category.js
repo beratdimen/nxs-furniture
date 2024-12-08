@@ -113,6 +113,37 @@ export const listAllProducts = async () => {
   }
 };
 
+export const fetchSimilarProducts = async (categoryId, excludeProductId) => {
+  try {
+    const { data, error } = await supabase
+      .from("products")
+      .select(
+        `
+          *,
+          productsCategories (
+            categories (*)
+          ),
+          product_images(*)
+        `
+      )
+      .eq("productsCategories.categories.id", categoryId)
+      .neq("id", excludeProductId) 
+      .limit(4); 
+
+    if (error) {
+      console.error("Error fetching similar products:", error);
+      return [];
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching similar products:", error.message);
+    return [];
+  }
+};
+
+
+
 export const searchProducts = async (searchTerm) => {
   try {
     const { data, error } = await supabase

@@ -105,12 +105,10 @@ const AdminDashboard = () => {
         </h1>
       </header>
 
-      {/* Analytics Container */}
       <div
         className="analytics-container"
         style={{ display: "flex", justifyContent: "space-around", gap: "20px" }}
       >
-        {/* Category Distribution */}
         <div
           style={{
             width: "45%",
@@ -127,7 +125,7 @@ const AdminDashboard = () => {
           />
         </div>
 
-        {/* User Statistics */}
+        
         <div
           style={{
             width: "45%",

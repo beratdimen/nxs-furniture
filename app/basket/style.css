@@ -1,7 +1,9 @@
 .basketContainer {
   margin-top: 40px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  padding: 24px;
+
   h2 {
     text-align: center;
     letter-spacing: 1.3px;
@@ -13,7 +15,6 @@
     align-items: center;
     gap: 16px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.377);
-    padding: 24px;
     border-radius: 16px;
     text-align: center;
   }
@@ -155,6 +156,6 @@
   }
 
   .next:hover {
-    background-color: rgb(212, 119, 4);
+    background-color: rgb(226, 142, 39);
   }
 }

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
 import { toast } from "sonner";
 import Link from "next/link";
+import "./style.css";
 
 const supabase = createClient();
 
@@ -249,14 +250,14 @@ export default function ProductItem({ product: initialProduct }) {
             </p>
           </div>
           <p className="categories">
-            {product.productsCategories
-              .map((x) => x.categories.name)
+            {product?.productsCategories
+              .map((x) => x?.categories?.name)
               .join(", ")}
           </p>
-          <p className="description">{product.content}</p>
+          <p className="description">{product?.content}</p>
           <div className="sell">
             <p>
-              Price: <span>${product.price}</span>
+              Price: <span>${product?.price}</span>
             </p>
 
             <button onClick={addToBasket}>Buy Now</button>

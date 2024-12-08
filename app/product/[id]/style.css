@@ -218,3 +218,9 @@ hr {
   border-top: thin solid #00000022;
   margin: 20px 0;
 }
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}

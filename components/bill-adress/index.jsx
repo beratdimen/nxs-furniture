@@ -4,11 +4,10 @@ import { useFormState } from "react-dom";
 import FormValidation from "@/actions/actions";
 import "./style.css";
 
-export default function BillAdress() {
+export default function BillAdress({ selectedAddress, setSelectedAddress }) {
   const [user, setUser] = useState(null);
   const [addresses, setAddresses] = useState([]);
-  const [selectedAddress, setSelectedAddress] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [state, action] = useFormState(
     (prevState, formData) => FormValidation(prevState, formData),

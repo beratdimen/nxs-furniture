@@ -6,17 +6,17 @@ import { CloseIcon, DisLikeIcon, LikeIcon, SaveIcon } from "@/helpers/icons";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
-import { viewPost } from "@/api/category";
+import { fetchSimilarProducts, viewPost } from "@/api/category";
 import { toast } from "sonner";
 import Accordion from "@/components/accordion";
 import DiscountSection from "@/components/product/discount";
 import LoanSection from "@/components/product/loan-section";
 import DeliverySection from "@/components/product/delivery";
 import BankTable from "@/components/product/payment";
+import ProductItem from "@/components/product-item";
 
 export default function Detail() {
   const { id } = useParams();
-  const router = useRouter();
   const priceRef = useRef();
   const [isActive, setIsActive] = useState(false);
   const [product, setProduct] = useState({});
@@ -24,6 +24,7 @@ export default function Detail() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [user, setUser] = useState(null);
   const [productLike, setProductLike] = useState(false);
+  const [similarProducts, setSimilarProducts] = useState([]);
 
   const supabase = createClient();
 
@@ -140,19 +141,25 @@ export default function Detail() {
   };
 
   useEffect(() => {
+    if (product?.id) {
+      getSimilarProducts();
+    }
+
     const likeControl = async () => {
-      let { data, error } = await supabase
-        .from("productsLikes")
-        .select("*")
-        .eq("user_id", user?.user?.id)
-        .eq("product_id", product?.id);
+      if (product?.id && user?.id) {
+        const { data, error } = await supabase
+          .from("productsLikes")
+          .select("*")
+          .eq("user_id", user?.user?.id)
+          .eq("product_id", product?.id);
 
-      if (data?.length > 0) {
-        setProductLike(true);
-      }
+        if (data?.length > 0) {
+          setProductLike(true);
+        }
 
-      if (error) {
-        console.log(error);
+        if (error) {
+          console.log(error);
+        }
       }
     };
 
@@ -200,6 +207,18 @@ export default function Detail() {
       toast.error("Sepete eklenirken hata oluştu: " + error.message);
     }
   };
+
+  const getSimilarProducts = async () => {
+    if (product?.productsCategories[0]?.categories?.id) {
+      const categoryId = product?.productsCategories[0]?.categories?.id;
+      const productId = product.id;
+
+      const fetchedProducts = await fetchSimilarProducts(categoryId, productId);
+      setSimilarProducts(fetchedProducts);
+    }
+  };
+
+  console.log(similarProducts, " dsadasdsadasdasa");
 
   return (
     <div className="detailContainer">
@@ -295,6 +314,18 @@ export default function Detail() {
         <hr />
         <BankTable />
       </dialog>
+
+      <div>
+        <h1>{product?.title}</h1>
+        <p>{product?.content}</p>
+
+        <h2>Benzer Ürünler</h2>
+        <div className="productsGrid">
+          {similarProducts.map((similarProduct) => (
+            <ProductItem key={similarProduct.id} product={similarProduct} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

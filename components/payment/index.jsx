@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./style.css";
 import PaymentForm from "../payment-form";
-export default function CreditCard() {
+export default function CreditCard({ totalPrice }) {
   const [cardDetails, setCardDetails] = useState({
     holderName: "berat dimen",
     cardNumber: "0000 0000 0000 0000",
@@ -30,7 +30,11 @@ export default function CreditCard() {
           </div>
         </div>
       </div>
-      <PaymentForm />
+      <PaymentForm
+        setCardDetails={setCardDetails}
+        cardDetails={cardDetails}
+        totalPrice={totalPrice}
+      />
     </div>
   );
 }
