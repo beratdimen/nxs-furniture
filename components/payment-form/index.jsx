@@ -11,11 +11,13 @@ export default function PaymentForm({
   setOrderState,
 }) {
   const creditRef = useRef();
+
   function handleCreditModal() {
     if (creditRef.current) {
       creditRef.current.showModal();
     }
   }
+
   const [formState, setFormState] = useState({
     holderName: "",
     cardNumber: "",
@@ -30,29 +32,29 @@ export default function PaymentForm({
     const newErrors = {};
 
     if (!formState.holderName.trim()) {
-      newErrors.holderName = "Kart sahibinin adı zorunludur.";
+      newErrors.holderName = "Cardholder's name is required.";
     }
 
     if (!formState.cardNumber || !/^\d{16}$/.test(formState.cardNumber)) {
-      newErrors.cardNumber = "Kart numarası 16 haneli olmalıdır.";
+      newErrors.cardNumber = "Card number must be 16 digits.";
     }
 
     if (
       !formState.expiryMonth ||
       !(formState.expiryMonth >= 1 && formState.expiryMonth <= 12)
     ) {
-      newErrors.expiryMonth = "Geçerli bir ay girin (01-12).";
+      newErrors.expiryMonth = "Please enter a valid month (01-12).";
     }
 
     if (
       !formState.expiryYear ||
       !(formState.expiryYear >= 23 && formState.expiryYear <= 99)
     ) {
-      newErrors.expiryYear = "Geçerli bir yıl girin (23-99).";
+      newErrors.expiryYear = "Please enter a valid year (23-99).";
     }
 
     if (!formState.cvc || !/^\d{3}$/.test(formState.cvc)) {
-      newErrors.cvc = "CVC 3 haneli olmalıdır.";
+      newErrors.cvc = "CVC must be 3 digits.";
     }
 
     setErrors(newErrors);
@@ -75,6 +77,7 @@ export default function PaymentForm({
       handleCreditModal();
       console.log("Form Data:", formState);
     }
+
     setCardDetails({
       holderName: formObj.holderName,
       cardNumber: formObj.cardNumber,
@@ -89,12 +92,12 @@ export default function PaymentForm({
     <div className="cardDetail">
       <form id="form" name="paymentForm" onSubmit={handleSubmit}>
         <div className="holderName">
-          <h6>Kart Sahibinin Adı</h6>
+          <h6>Cardholder's Name</h6>
           <input
             type="text"
             name="holderName"
             id="holderInput"
-            placeholder="Örn. Berat Dimen"
+            placeholder="e.g. John Doe"
             autoComplete="off"
             value={formState.holderName}
             onChange={handleInputChange}
@@ -105,14 +108,14 @@ export default function PaymentForm({
         </div>
 
         <div className="holderNumber">
-          <h6>Kart Numarası</h6>
+          <h6>Card Number</h6>
           <input
             type="text"
             name="cardNumber"
             id="numberInput"
             maxLength="16"
             autoComplete="off"
-            placeholder="Örn. 0000 0000 0000 0000"
+            placeholder="e.g. 0000 0000 0000 0000"
             value={formState.cardNumber}
             onChange={handleInputChange}
           />
@@ -123,14 +126,14 @@ export default function PaymentForm({
 
         <div className="generalInputs">
           <div className="expDate">
-            <h6>Son Kullanma Tarihi</h6>
+            <h6>Expiration Date</h6>
             <label id="aayy">
               <input
                 type="text"
                 name="expiryMonth"
                 id="aa"
                 maxLength="2"
-                placeholder="07"
+                placeholder="MM"
                 value={formState.expiryMonth}
                 onChange={handleInputChange}
               />
@@ -139,7 +142,7 @@ export default function PaymentForm({
                 name="expiryYear"
                 id="yy"
                 maxLength="2"
-                placeholder="29"
+                placeholder="YY"
                 value={formState.expiryYear}
                 onChange={handleInputChange}
               />
@@ -159,7 +162,7 @@ export default function PaymentForm({
               name="cvc"
               id="cvInput"
               maxLength="3"
-              placeholder="264"
+              placeholder="e.g. 123"
               value={formState.cvc}
               onChange={handleInputChange}
             />
@@ -167,7 +170,7 @@ export default function PaymentForm({
           </div>
         </div>
 
-        <button type="submit">Gönder</button>
+        <button type="submit">Submit</button>
       </form>
 
       <CreditCardModal

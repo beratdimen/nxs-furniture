@@ -32,7 +32,7 @@ export default function SimilarProducts({ product = null, user = null }) {
 
   return (
     <div className="similarProducts">
-      <h2>Benzer Ürünler</h2>
+      <h2>Similar Products</h2>
       <div className="productsGrid">
         {similarProducts.map((similarProduct) => (
           <ProductItem key={similarProduct.id} product={similarProduct} />

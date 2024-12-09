@@ -2,11 +2,21 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: fit-content;
+  width: 100%;
   max-width: 100%;
   margin-top: 90px;
   padding-inline: 24px;
   margin-bottom: 28px;
+
+  form {
+    button {
+      background-color: var(--button);
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      color: white;
+    }
+  }
 }
 
 .holderName {
@@ -25,6 +35,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-bottom: 16px;
 }
 
 .cvc {
@@ -49,14 +60,16 @@
 
 #aayy {
   display: flex;
+  gap: 8px;
+  width: 100%;
 }
 
 .expDate input {
-  width: 70px;
+  width: 100%;
 }
 
 .cvc input {
-  width: 160px;
+  width: 100%;
 }
 
 .btn {
@@ -70,4 +83,10 @@
   margin: 0 auto;
   padding-block: 15px;
   border-radius: 8px;
+}
+
+.error {
+  font-size: 12px;
+  color: red;
+  font-weight: bold;
 }

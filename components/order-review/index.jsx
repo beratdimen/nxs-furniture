@@ -6,7 +6,17 @@ import { createClient } from "@/utils/supabase/client";
 
 export default function OrderReview({ id }) {
   const [order, setOrder] = useState(null);
+  const [user, setUser] = useState(null);
   const supabase = createClient();
+
+  const userFetch = async () => {
+    const { data, error } = await supabase.auth.getUser();
+    if (data?.user && !error) {
+      setUser(data.user);
+    } else {
+      console.error("Error fetching user:", error);
+    }
+  };
 
   useEffect(() => {
     const fetchOrder = async () => {
@@ -25,23 +35,28 @@ export default function OrderReview({ id }) {
     };
 
     fetchOrder();
+    userFetch();
   }, [id]);
+
+  function shortenId(uuid) {
+    return uuid.slice(0, 6);
+  }
 
   return (
     <div className="reviewContainer">
       <h2>Order Summary</h2>
       {order ? (
         <div className="orderContent">
-          <p>Order No.: #{order.id}</p>
+          <p>Order No.: #{shortenId(order.id)}</p>
           <p>Date: {new Date(order.created_at).toLocaleDateString()}</p>
-          <p>Customer: {order.user_id}</p>
-          <p>Email: {order.email || "Bilgi mevcut değil"}</p>
+          <p>Customer: {user?.user_metadata?.firstName}</p>
+          <p>Email: {user?.email || "No information available"}</p>
         </div>
       ) : (
         <p>Loading...</p>
       )}
 
-      <h3>Ürünler</h3>
+      <h3>Products</h3>
       {order && order.order_items ? (
         order.order_items.map((item) => (
           <div className="basketCard" key={item.id}>
@@ -53,46 +68,46 @@ export default function OrderReview({ id }) {
             />
             <div className="basketCardContent">
               <h4>{item.title}</h4>
-              <p>Miktar: {item.quantity}</p>
-              <p>Birim Fiyat: {item.price} TL</p>
-              <p>Toplam: {item.quantity * item.price} TL</p>
+              <p>Quantity: {item.quantity}</p>
+              <p>Unit Price: {item.price} TL</p>
+              <p>Total: {item.quantity * item.price} TL</p>
             </div>
           </div>
         ))
       ) : (
-        <p>Ürünler yükleniyor...</p>
+        <p>Loading products...</p>
       )}
 
-      <h3>Fiyat Özeti</h3>
+      <h3>Price Summary</h3>
       {order ? (
         <div className="summaryContent">
           <p>
-            Ürünler Toplamı: <span>${order?.total_price.toFixed(2)} </span>
+            Products Total: <span>${order?.total_price.toFixed(2)}</span>
           </p>
           <p>
-            Kargo Ücreti: <span>$20</span>
+            Shipping Fee: <span>$20</span>
           </p>
           <p>
-            İndirim: <span>$0</span>
+            Discount: <span>$0</span>
           </p>
           <h6>
-            Genel Toplam : <span>${order?.total_price.toFixed(2)} </span>
+            Grand Total: <span>${order?.total_price.toFixed(2)}</span>
           </h6>
         </div>
       ) : (
-        <p>Özet yükleniyor...</p>
+        <p>Loading summary...</p>
       )}
 
-      <h3>Teslimat & Fatura Bilgileri</h3>
+      <h3>Delivery & Invoice Information</h3>
       <div className="deliveryInformation">
         <p>
-          Teslimat Adresi:{" "}
+          Delivery Address:{" "}
           <strong>{order?.billing_address?.address_line1}</strong>
           {" - "}
           {order?.billing_address?.city}, {order?.billing_address?.country}
         </p>
-        <p>Kargo:Ali Kargo - Tahmini Teslim: 21 Ekim 2024</p>
-        <p>Ödeme Yöntemi: Kredi Kartı</p>
+        <p>Courier: Ali Kargo - Estimated Delivery: October 21, 2024</p>
+        <p>Payment Method: Credit Card</p>
       </div>
     </div>
   );

@@ -14,6 +14,13 @@ export default function CreditCard({
     expYear: "29",
     cvv: "264",
   });
+
+  const formatCardNumber = (cardNumber) => {
+    return cardNumber
+      .replace(/\d(?=\d{4})/g, "*")
+      .replace(/(.{4})/g, "$1 ")
+      .trim();
+  };
   return (
     <div className="cardContainer">
       <div className="card">
@@ -25,7 +32,7 @@ export default function CreditCard({
         </div>
         <div className="card-front">
           <div className="oval"></div>
-          <p id="cardNumber">{cardDetails.cardNumber}</p>
+          <p id="cardNumber">{formatCardNumber(cardDetails.cardNumber)}</p>
           <div className="cardName">
             <p id="name">{cardDetails.holderName}</p>
             <div className="f">

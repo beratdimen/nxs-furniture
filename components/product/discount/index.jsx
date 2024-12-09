@@ -5,11 +5,11 @@ export default function DiscountSection() {
     <div className="discount-section">
       <div className="discount-card">
         <p className="title">
-          15.000 TL ve üzeri Nexus Mobilya Koleksiyonları Alışverişinde %10
-          İndirim!
+          10% Discount on Nexus Furniture Collections for Purchases Over 15,000
+          TL!
         </p>
         <p className="price">
-          Sepette: <span className="highlight">7.292 TL</span>
+          In Cart: <span className="highlight">$7.292</span>
         </p>
       </div>
     </div>

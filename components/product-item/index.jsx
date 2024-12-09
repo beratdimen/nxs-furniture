@@ -82,7 +82,7 @@ export default function ProductItem({ product: initialProduct }) {
 
   const addToBasket = async () => {
     if (!user) {
-      toast.error("Giriş yapmalısınız.");
+      toast.error("You need to log in.");
       return;
     }
 
@@ -104,7 +104,7 @@ export default function ProductItem({ product: initialProduct }) {
         ]);
 
         if (error) throw error;
-        toast.success("Ürün sepete eklendi!");
+        toast.success("The product has been added to the cart!");
       } else {
         const { data, error } = await supabase
           .from("basket")
@@ -113,16 +113,21 @@ export default function ProductItem({ product: initialProduct }) {
           .single();
 
         if (error) throw error;
-        toast.success("Ürün adedi artırıldı! " + Number(control.quantity + 1));
+        toast.success(
+          "The product quantity has been increased! " +
+            Number(control.quantity + 1)
+        );
       }
     } catch (error) {
-      toast.error("Sepete eklenirken hata oluştu: " + error.message);
+      toast.error(
+        "An error occurred while adding the item to the cart: " + error.message
+      );
     }
   };
 
   const handleRating = async (newRating) => {
     if (!user) {
-      toast.error("Giriş yapmalısınız.");
+      toast.error("You need to log in.");
       return;
     }
 

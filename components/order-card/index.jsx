@@ -12,32 +12,46 @@ export default function OrderCard({ order }) {
   };
 
   function shortenId(uuid) {
-    return uuid.slice(0, 6); // UUID'den ilk 6 karakteri alır
+    return uuid.slice(0, 6); // Get the first 6 characters of the UUID
   }
+
+  const statusLabels = {
+    pending: "Pending",
+    completed: "Completed",
+    canceled: "Canceled",
+  };
 
   return (
     <div className="order-card">
       <div className="order-header">
-        <p>Sipariş ID: {shortenId(order.id)}</p>
-        <p>Tutar: ${order.total_price.toFixed(2)}</p>
-        <p className={`status ${order.status}`}>{order.status}</p>
-        <button className="details-button" onClick={toggleDetails}>
-          {showDetails ? "Gizle" : "Özet Göster"}
-        </button>
-        <button
-          className="details-button"
-          onClick={() => router.push(`/my-orders/${order?.id}`)}
-        >
-          Detaya Git
-        </button>
+        <p>
+          <strong>Order ID:</strong> #{shortenId(order.id)}
+        </p>
+        <p>
+          <strong>Amount:</strong> ${order.total_price.toFixed(2)}
+        </p>
+        <p className={`status ${order.status}`}>
+          {statusLabels[order.status] || "Unknown"}
+        </p>
+        <div className="button-group">
+          <button className="details-button" onClick={toggleDetails}>
+            {showDetails ? "Hide" : "Show Summary"}
+          </button>
+          <button
+            className="details-button"
+            onClick={() => router.push(`/my-orders/${order?.id}`)}
+          >
+            Go to Details
+          </button>
+        </div>
       </div>
       {showDetails && (
         <div className="order-details">
           <p>
-            <strong>Durum:</strong> {order.status}
+            <strong>Status:</strong> {statusLabels[order.status]}
           </p>
           <p>
-            <strong>Tutar:</strong> ${order.total_price.toFixed(2)}
+            <strong>Amount:</strong> ${order.total_price.toFixed(2)}
           </p>
         </div>
       )}

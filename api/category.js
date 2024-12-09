@@ -293,3 +293,27 @@ export const listAllProjects = async () => {
     return [];
   }
 };
+
+export const basketItems = async (user) => {
+  try {
+    const { data, error } = await supabase
+      .from("basket")
+      .select(`*`)
+      .eq("user_id", user?.id);
+
+    if (error) {
+      console.error("Error fetching  projects:", error);
+      return [];
+    }
+
+    if (!data || data.length === 0) {
+      console.log("No projects found");
+      return [];
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching all projects :", error.message);
+    return [];
+  }
+};

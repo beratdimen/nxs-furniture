@@ -14,7 +14,7 @@ const Accordion = ({ dizi }) => {
 
   return (
     <div className="accordionContainer">
-      <h1>Ürüne Özel Fırsatlar</h1>
+      <h1>Special Offers for the Product</h1>
 
       <div className="accordion">
         <div className="accordion-div">
@@ -22,14 +22,14 @@ const Accordion = ({ dizi }) => {
             className="accordion-btn"
             onClick={() => toggleSection("detail")}
           >
-            Ürün Özellikleri
+            Product Features
           </button>
-          {openSection === "where-to-buy" ? <MinusIcon /> : <PlusIcon />}
+          {openSection === "detail" ? <MinusIcon /> : <PlusIcon />}
         </div>
         {openSection === "detail" && (
           <div className="accordion-content">
             <div className="productSpecs">
-              <h2 className="specsTitle">Detail:</h2>
+              <h2 className="specsTitle">Details:</h2>
               <div className="specsGrid">
                 {dizi.map((detail) => (
                   <div key={detail.label} className="specItem">
@@ -49,9 +49,9 @@ const Accordion = ({ dizi }) => {
             className="accordion-btn"
             onClick={() => toggleSection("offers")}
           >
-            Ürüne Özel Fırsatlar
+            Special Offers for the Product
           </button>
-          {openSection === "where-to-buy" ? <MinusIcon /> : <PlusIcon />}
+          {openSection === "offers" ? <MinusIcon /> : <PlusIcon />}
         </div>
         {openSection === "offers" && (
           <div className="accordion-content">
@@ -66,26 +66,25 @@ const Accordion = ({ dizi }) => {
             className="accordion-btn"
             onClick={() => toggleSection("delivery")}
           >
-            Teslimat ve Kurulum
+            Delivery and Installation
           </button>
-          {openSection === "where-to-buy" ? <MinusIcon /> : <PlusIcon />}
+          {openSection === "delivery" ? <MinusIcon /> : <PlusIcon />}
         </div>
         {openSection === "delivery" && (
           <div className="accordion-content">
             <DeliverySection />
 
             <p>
-              Bu ürün nakliyeyle teslim edilir. Ürün gönderime hazır olduğunda,
-              ekibimiz seninle iletişime geçer ve müsait olduğun hafta için
-              teslimatı planlar. <a>Detaylı bilgi {">"} </a>
+              This product is delivered by shipping. When the product is ready
+              for shipment, our team will contact you to schedule the delivery
+              during the week you are available.{" "}
+              <a>Detailed Information {">"} </a>
             </p>
+            <p>Delivery is free for orders of 30,000 TL and above.</p>
             <p>
-              30.000 TL ve üzeri siparişlerde bu ürünün teslimatı ücretsizdir.
-            </p>
-            <p>
-              Ürün demonte olarak teslim edilir. Kurulumunu kolayca yapabilmen
-              için de ihtiyacın olan tüm parçalar kurulum şemasıyla birlikte
-              gönderilir. <a>Detaylı bilgi {">"} </a>
+              The product is delivered disassembled. All necessary parts along
+              with the installation scheme are sent to make assembly easier.{" "}
+              <a>Detailed Information {">"} </a>
             </p>
           </div>
         )}
@@ -97,28 +96,30 @@ const Accordion = ({ dizi }) => {
             className="accordion-btn"
             onClick={() => toggleSection("where-to-buy")}
           >
-            Hangi Showroomda Görebilirim?
+            Where Can I See It in a Showroom?
           </button>
           {openSection === "where-to-buy" ? <MinusIcon /> : <PlusIcon />}
         </div>
         {openSection === "where-to-buy" && (
           <div className="accordion-content">
             <p>
-              ADANA Adana Real Bulvarı, ANKARA Ankara Etlik Satış Noktası,
-              Ankara Oran, Ankara Plevne Caddesi Satış Noktası, Ankara Söğütözü,
-              İstanbul Yolu Satış Noktası, İSTANBUL Bakırköy, İstanbul Esenyurt,
-              İstanbul Pendik Homecity Outlet, ÇANAKKALE Çanakkale Satış
-              Noktası, ÇORUM Çorum Satış Noktası, DİYARBAKIR Diyarbakır Satış
-              Noktası, EDİRNE Edirne, ERZURUM Erzurum, ISPARTA Isparta, İZMİR
-              İzmir Bornova Satış Noktası, İzmir-Bayraklı, İzmir-Karabağlar,
-              KAHRAMANMARAŞ Kahramanmaraş Satış Noktası, KOCAELİ Kocaeli Outlet,
-              MERSİN Mersin Erdemli Satış Noktası, RİZE Rize Satış Noktası,
-              SAKARYA Sakarya Satış Noktası, SİVAS Sivas, TEKİRDAĞ Tekirdağ,
-              Tekirdağ Çerkezköy, TRABZON Trabzon, ŞANLIURFA Urfa Satış Noktası,
-              UŞAK Uşak, VAN Van Satış Noktası
+              ADANA Adana Real Boulevard, ANKARA Ankara Etlik Sales Point,
+              Ankara Oran, Ankara Plevne Street Sales Point, Ankara Söğütözü,
+              Istanbul Yolu Sales Point, ISTANBUL Bakırköy, Istanbul Esenyurt,
+              Istanbul Pendik Homecity Outlet, ÇANAKKALE Çanakkale Sales Point,
+              ÇORUM Çorum Sales Point, DIYARBAKIR Diyarbakir Sales Point, EDİRNE
+              Edirne, ERZURUM Erzurum, ISPARTA Isparta, IZMIR İzmir Bornova
+              Sales Point, İzmir-Bayraklı, İzmir-Karabağlar, KAHRAMANMARAŞ
+              Kahramanmaraş Sales Point, KOCAELİ Kocaeli Outlet, MERSİN Mersin
+              Erdemli Sales Point, RİZE Rize Sales Point, SAKARYA Sakarya Sales
+              Point, SİVAS Sivas, TEKİRDAĞ Tekirdağ, Tekirdağ Çerkezköy, TRABZON
+              Trabzon, ŞANLIURFA Urfa Sales Point, UŞAK Uşak, VAN Van Sales
+              Point
             </p>
             <p>
-              <a>Showroomlarımızı yakından tanımak ister misin? {">"} </a>
+              <a>
+                Would you like to get to know our showrooms up close? {">"}{" "}
+              </a>
             </p>
           </div>
         )}
@@ -130,26 +131,26 @@ const Accordion = ({ dizi }) => {
             className="accordion-btn"
             onClick={() => toggleSection("payment")}
           >
-            Ödeme ve Taksit
+            Payment and Installment
           </button>
-          {openSection === "where-to-buy" ? <MinusIcon /> : <PlusIcon />}
+          {openSection === "payment" ? <MinusIcon /> : <PlusIcon />}
         </div>
         {openSection === "payment" && (
           <div className="accordion-content">
             <DeliverySection />
 
             <p>
-              İptal ve iade şartlarımız hakkında daha fazla bilgi almak için
-              aşağıdaki makaleye göz atabilirsiniz:
-              <a>İptal ve İade {">"} </a>
+              To learn more about our cancellation and return policies, please
+              check the following article:
+              <a>Cancellation and Return {">"} </a>
             </p>
             <p>
-              Bu ürünü 2 yıl boyunca Nexus Mobilya garantisi altında gönül
-              rahatlığıyla kullanabilirsin.
+              This product comes with the Nexus Furniture warranty for 2 years,
+              allowing you to use it with peace of mind.
             </p>
 
             <p>
-              <a>Detaylı bilgi {">"} </a>
+              <a>Detailed Information {">"} </a>
             </p>
           </div>
         )}
@@ -161,20 +162,20 @@ const Accordion = ({ dizi }) => {
             className="accordion-btn"
             onClick={() => toggleSection("credit")}
           >
-            Alışveriş Kredisi
+            Shopping Credit
           </button>
 
-          {openSection === "where-to-buy" ? <MinusIcon /> : <PlusIcon />}
+          {openSection === "credit" ? <MinusIcon /> : <PlusIcon />}
         </div>
         {openSection === "credit" && (
           <div className="accordion-content">
             <p>
-              - Vade ve taksit tutarları ürünün listeleme fiyatına göre
-              hesaplanmıştır. Takım ürünlerinde yapılacak ürün ekleme/çıkarma
-              işlemleri sonrasında nihai taksit tutarı ve vade sepette yeniden
-              hesaplanacaktır.
+              - Installment amounts and terms are calculated based on the listed
+              product price. Any addition or removal of items in product sets
+              will recalculate the final installment amount and terms at
+              checkout.
             </p>
-            <p>- Maksimum vade seçeneği 36 Ay'dır.</p>
+            <p>- Maximum term option is 36 months.</p>
 
             <BankTable />
           </div>

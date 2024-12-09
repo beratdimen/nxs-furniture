@@ -137,15 +137,19 @@ export default function BasketPage() {
             <>
               {basketItems.length > 0 ? (
                 basketItems.map(({ id, quantity, product }) => (
-                  <div key={id} className="basketItem">
+                  <div class="basketItem">
                     <img
                       src={product.image_url}
                       alt={product.title}
-                      className="productImage"
+                      class="productImage"
                     />
-                    <div className="productDetails">
-                      <h3>{product.title}</h3>
-                      <p>{product.content}</p>
+
+                    <div class="productDetails">
+                      <h3>{product.title}</h3> <p>{product.content}</p>
+                      <p>Estimated Shipping Delivery: Within 2 days</p>
+                    </div>
+
+                    <div class="priceSection">
                       <div className="quantityControls">
                         <button onClick={() => updateQuantity(id, -1)}>
                           -
@@ -153,11 +157,11 @@ export default function BasketPage() {
                         <span>{quantity}</span>
                         <button onClick={() => updateQuantity(id, 1)}>+</button>
                       </div>
-                      <p>${product.price}</p>
-                      <p className="productPrice">
+                      <p class="productPrice">
                         {quantity} x ${product.price} = $
                         {product.price * quantity}
                       </p>
+                      <p class="discount">Kazancınız: 500 TL</p>
                     </div>
                   </div>
                 ))

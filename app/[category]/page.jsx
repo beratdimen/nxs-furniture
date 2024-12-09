@@ -61,8 +61,8 @@ export default function CategoriesPage() {
           />
 
           <p>
-            There is no product in {category}. Also you can see the similar
-            products.
+            No products are currently available in the {category} category.
+            However, you can explore similar products.
           </p>
         </div>
       ) : (

@@ -5,9 +5,9 @@ export default function DeliverySection() {
   return (
     <div className="delivery-section">
       <p className="delivery-title">
-        <DeliveryIcon /> Hızlı Teslimat: 13-20 Aralık
+        <DeliveryIcon /> Fast Delivery: December 13-20
       </p>
-      <p className="delivery-subtitle">Teslimat ve Kurulum</p>
+      <p className="delivery-subtitle">Delivery and Installation</p>
     </div>
   );
 }

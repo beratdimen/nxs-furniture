@@ -44,7 +44,7 @@ export default function MyOrdersPage() {
 
   return (
     <div className="orders-container">
-      <h1>Siparişlerim</h1>
+      <h1>My Orders</h1>
       {orders?.length > 0 ? (
         <div className="orders-list">
           {orders.map((order) => (
@@ -53,7 +53,7 @@ export default function MyOrdersPage() {
         </div>
       ) : (
         <div className="no-orders">
-          <p>Henüz siparişiniz bulunmamaktadır.</p>
+          <p>You don't have an order yet.</p>
         </div>
       )}
     </div>

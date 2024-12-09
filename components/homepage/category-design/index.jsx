@@ -10,13 +10,13 @@ export default function CategoryDesign() {
           className="mainImage"
         />
         <div className="textContent">
-          <h1>Yenilenen Pandora</h1>
+          <h1>The New Pandora</h1>
           <p>
-            Modüler gardırop ile işlevselliği şıklıkla birleştiren modern
-            tasarımıyla yaşam alanınıza estetik katıyor.
+            Add elegance to your living space with a modern design that combines
+            functionality and style through its modular wardrobe.
           </p>
           <a href="#" className="ctaButton">
-            Hemen Keşfet&gt;
+          Discover Now &gt;
           </a>
 
           <div className="thumbnailSection">

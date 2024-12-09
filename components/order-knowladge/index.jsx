@@ -348,8 +348,10 @@ export default function OrderKnowladge() {
             transform="matrix(0 -.029 .02 -.012 27.689 9.321)"
           />
         </svg>
-        <h3>Hızlı Teslimat</h3>
-        <p>Siparişleriniz en kısa sürede hazırlanarak kargoya verilir</p>
+        <h3>Fast Delivery</h3>
+        <p>
+          Your orders are prepared and shipped in the shortest possible time.
+        </p>
       </div>
       <div className="feature-item">
         <svg
@@ -367,8 +369,11 @@ export default function OrderKnowladge() {
             <path stroke="#fff" strokeLinecap="round" d="M15 23L22 30L34 18" />
           </g>
         </svg>
-        <h3>%100 Güvenli Alışveriş</h3>
-        <p>256Bit SSL sertifikası ve 3D ödeme ile bilgileriniz güvende</p>
+        <h3>100% Secure Shopping</h3>
+        <p>
+          Your information is safe with 256-bit SSL certification and 3D Secure
+          payment.
+        </p>
       </div>
       <div className="feature-item">
         <svg
@@ -386,8 +391,8 @@ export default function OrderKnowladge() {
             d="M34 41h8v-3h-5.1v-4.5H42v-3h-5.1V26H42v-3h-8zm20-15v-3h-8v18h8v-3h-5.1v-4.5H54v-3h-5.1V26zM23.9 41v-7.5H25l2.5 7.5h3l-2.6-7.9c1.8-.8 3.1-2.7 3.1-4.9c0-2.9-2.2-5.2-5-5.2h-5v18zm0-15H26c1.2 0 2.1 1 2.1 2.2s-1 2.2-2.1 2.2h-2.1zm-11 15v-7.5H18v-3h-5.1V26H18v-3h-8v18z"
           />
         </svg>
-        <h3>Ücretsiz Kargo</h3>
-        <p>Tüm ürünlerde Türkiye'nin her yerine ücretsiz teslimat!</p>
+        <h3>Free Shipping</h3>
+        <p>Enjoy free delivery across Turkey for all products!</p>
       </div>
       <div className="feature-item">
         <svg
@@ -414,8 +419,11 @@ export default function OrderKnowladge() {
           <circle cx="21" cy="23" r="7" fill="#37474f" />
           <circle cx="21" cy="23" r="4" fill="#546e7a" />
         </svg>
-        <h3>Müşteri Memnuniyeti</h3>
-        <p>%100 müşteri memnuniyeti odaklı ve güvenilir hizmet anlayışı</p>
+        <h3>Customer Satisfaction</h3>
+        <p>
+          We are dedicated to providing 100% customer satisfaction with reliable
+          service.
+        </p>
       </div>
     </div>
   );

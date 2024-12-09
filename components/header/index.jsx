@@ -9,7 +9,7 @@ import "./style.css";
 import Link from "next/link";
 import { createClient } from "@/utils/supabase/server";
 import { signout } from "@/actions/actions";
-import { listCategoriesForHeader } from "@/api/category";
+import { basketItems, listCategoriesForHeader } from "@/api/category";
 import SearchComponent from "../search";
 
 export default async function Header() {
@@ -19,6 +19,7 @@ export default async function Header() {
   } = await supabase.auth.getUser();
 
   const categories = await listCategoriesForHeader();
+  const basketCount = await basketItems(user);
   return (
     <div className="headerContainer">
       <div className="headerContent">
@@ -38,20 +39,28 @@ export default async function Header() {
         </ul>
         <div className="headerRight">
           <Link href={"/basket"}>
-            <BasketIcon /> Sepetim
+            <div className="basketWrapper">
+              <BasketIcon />
+              {basketItems?.length > 0 && (
+                <span className="badge">{basketItems?.length}</span>
+              )}
+            </div>
           </Link>
           {user ? (
-            <>
-              <p>{user.user_metadata.firstName}</p>
-              <form action={signout}>
-                <button>
-                  <LogoutIcon />
-                </button>
-              </form>
-            </>
+            <div className="userMenu">
+              <p className="userHover">
+                <UserIcon /> {user?.user_metadata?.firstName}
+              </p>
+              <div className="dropdownMenu">
+                <Link href={"/my-orders"}>My Orders</Link>
+                <form action={signout}>
+                  <button>Logout</button>
+                </form>
+              </div>
+            </div>
           ) : (
             <Link href={"/login"}>
-              <UserIcon /> Giriş Yap
+              <UserIcon /> Login
             </Link>
           )}
 
@@ -60,11 +69,6 @@ export default async function Header() {
           </button>
         </div>
       </div>
-      {/* <div className="search">
-        <SearchIcon />
-        <input type="text" placeholder="Search in website.." />
-        <button>Search</button>
-      </div> */}
       <SearchComponent />
     </div>
   );

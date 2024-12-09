@@ -61,7 +61,7 @@ export default function CreditCardModal({
           .single();
 
         if (orderError) {
-          toast.error("Orders tablosuna eklerken hata:");
+          toast.error("Error while adding to the orders table.");
         }
 
         const orderItemsInsert = orderState?.basketItems.map((item) => ({
@@ -76,11 +76,11 @@ export default function CreditCardModal({
           .insert(orderItemsInsert);
 
         if (orderItemsError) {
-          toast.error("Order_items tablosuna eklerken hata");
+          toast.error("Error while adding to the order_items table.");
         }
 
         if (!orderItemsError) {
-          toast.success("Sipariş oluşturuldu ve ürünler başarıyla eklendi");
+          toast.success("Order created and products added successfully.");
           closeCreditModal();
           setActiveStep(3);
           setOrderState({ ...orderState, orderId: orderId });
@@ -90,11 +90,11 @@ export default function CreditCardModal({
             .match({ user_id: orderState?.user_id });
         }
       } catch (error) {
-        toast.error("Sunucu hatası:", error);
-        console.log("Sunucu hatası:", error);
+        toast.error("Server error:", error);
+        console.log("Server error:", error);
       }
     } else {
-      toast.error("Your Password is Wrong");
+      toast.error("Your password is incorrect.");
     }
   };
 
@@ -107,13 +107,15 @@ export default function CreditCardModal({
       <dialog className="dialogCredit" ref={creditRef} open={isActive}>
         <header className="header">
           <span className="time">{formatDate()}</span>
-          <button className="closeButton">Kapat</button>
+          <button className="closeButton" onClick={closeCreditModal}>
+            Close
+          </button>
         </header>
 
         <main className="main">
           <p className="instruction">
-            Kartınızı kullanarak 3D güvenlik ile alışverişinizi tamamlamak için
-            lütfen cep telefonunuza gelen şifreyi aşağıdaki alana giriniz.
+            To complete your purchase securely with 3D security using your card,
+            please enter the 6-digit code sent to your phone below.
           </p>
 
           <div className="cardInfo">
@@ -122,40 +124,40 @@ export default function CreditCardModal({
               alt="Garanti BBVA"
               className="bankLogo"
             />
-            <h3>3D SECURE ÖDEME DOĞRULAMA</h3>
+            <h3>3D SECURE PAYMENT VERIFICATION</h3>
             <div className="paymentDetails">
               <p>
-                <strong>Tutar:</strong> ${totalPrice}
+                <strong>Amount:</strong> ${totalPrice}
               </p>
               <p>
-                <strong>Mağaza:</strong> Nexus Furniture
+                <strong>Store:</strong> Nexus Furniture
               </p>
               <p>
-                <strong>Kart No:</strong>
+                <strong>Card Number:</strong>
                 {formatCardNumber(cardDetails.cardNumber)}
               </p>
               <p>
-                <strong>Tarih:</strong> {formatDate()}
+                <strong>Date:</strong> {formatDate()}
               </p>
             </div>
           </div>
 
           <div className="verification">
             <p>
-              Sonu <strong>XXXX</strong> ile biten telefon numaranıza gönderilen
-              doğrulama (123456) şifresini giriniz.
+              Enter the verification code sent to your phone ending in{" "}
+              <strong>XXXX</strong>. The default code is (123456).
             </p>
             <input
               type="text"
-              placeholder="6 haneli şifreyi girin"
+              placeholder="Enter the 6-digit code"
               className="input"
               onChange={(e) => setPassword(e.target.value)}
               value={password}
             />
             <button className="submitButton" onClick={handleSubmit}>
-              GÖNDER
+              SUBMIT
             </button>
-            <button className="newPasswordButton">YENİ ŞİFRE GÖNDER</button>
+            <button className="newPasswordButton">SEND NEW PASSWORD</button>
           </div>
         </main>
       </dialog>

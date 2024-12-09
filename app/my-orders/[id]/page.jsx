@@ -5,5 +5,9 @@ import { useParams } from "next/navigation";
 export default function OrderDetail() {
   const { id } = useParams();
 
-  return <OrderReview id={id} />;
+  return (
+    <div className="ordersContainer">
+      <OrderReview id={id} />
+    </div>
+  );
 }

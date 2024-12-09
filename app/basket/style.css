@@ -17,56 +17,78 @@
     border-radius: 16px;
     text-align: center;
   }
-
   .basketItem {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 15px;
-    width: 80%;
-    margin: 4px auto;
+    justify-content: space-between;
+    margin: 40px;
+    padding: 16px;
+    border-bottom: 1px solid #eee;
   }
 
   .productImage {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     object-fit: cover;
-    margin-right: 20px;
+    border-radius: 8px;
+    margin-right: 16px;
   }
 
   .productDetails {
     flex: 1;
+    margin-left: 16px;
+  }
+
+  .productDetails h3 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 4px;
+  }
+
+  .productDetails p {
+    font-size: 12px;
+    color: #777;
   }
 
   .quantityControls {
     display: flex;
+    justify-content: flex-end;
     align-items: center;
-    margin: 10px 0;
+    gap: 8px;
+  }
 
-    button {
-      width: 30px;
-      height: 30px;
-      background-color: var(--button);
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-    }
+  .quantityControls button {
+    width: 32px;
+    height: 32px;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+  }
 
-    span {
-      margin: 0 10px;
-      font-size: 16px;
-    }
+  .quantityControls input {
+    width: 40px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
   }
 
   .productPrice {
+    font-size: 16px;
     font-weight: bold;
-    color: #333;
+    color: #f7931e;
+    text-align: right;
+  }
+
+  .discount {
+    font-size: 14px;
+    color: #28a745;
+    margin-top: 4px;
+    text-align: right;
   }
 }
 
@@ -87,6 +109,12 @@
   background-color: var(--button);
   height: 100%;
   transition: width 0.3s ease;
+}
+
+.priceSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .progressSteps {

@@ -6,13 +6,14 @@
 h1 {
   text-align: center;
   color: #333;
+  font-size: 24px;
 }
 
 .orders-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
 
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
   justify-content: center;
   margin: 20px 0;
 }
@@ -20,49 +21,77 @@ h1 {
 .order-card {
   border: 1px solid #ddd;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  width: 300px;
-  transition: transform 0.2s;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  background: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .order-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
 .order-header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 8px;
+  gap: 12px;
+}
+
+.status {
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  display: inline-block;
 }
 
 .status.pending {
-  color: orange;
+  background-color: #fffae6;
+  color: #d89e00;
+  border: 1px solid #d89e00;
 }
 
 .status.completed {
-  color: green;
+  background-color: #e6f7e9;
+  color: #28a745;
+  border: 1px solid #28a745;
+}
+
+.status.canceled {
+  background-color: #fbeaea;
+  color: #dc3545;
+  border: 1px solid #dc3545;
 }
 
 .details-button {
   background: #007bff;
+  width: 100%;
   color: white;
-  padding: 5px 8px;
+  padding: 8px 40px;
   border: none;
   cursor: pointer;
   border-radius: 4px;
-  transition: background 0.2s;
+  font-size: 12px;
+  transition: background 0.2s ease, transform 0.1s ease;
 }
 
 .details-button:hover {
   background: #0056b3;
+  transform: scale(1.05);
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
 }
 
 .order-details {
-  margin-top: 10px;
-  padding: 10px;
+  margin-top: 15px;
+  padding: 15px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 6px;
   background-color: #f9f9f9;
 }
