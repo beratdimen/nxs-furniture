@@ -5,8 +5,9 @@ import {
   listProductsAllCategories,
   listNewUserStats,
 } from "@/api/category";
+import dynamic from "next/dynamic";
 import React, { useEffect, useState } from "react";
-import ApexCharts from "react-apexcharts";
+const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const AdminDashboard = () => {
   const [categoryChartData, setCategoryChartData] = useState([]);
@@ -125,7 +126,6 @@ const AdminDashboard = () => {
           />
         </div>
 
-        
         <div
           style={{
             width: "45%",
