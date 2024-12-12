@@ -5,7 +5,7 @@ export default function Empty() {
     <div className="empty">
       <Image src={"/img/bag.png"} width={300} height={300} alt="Empty Cart" />
       <h3>Cart is Empty</h3>
-      <p>You haven't added any products yet. Let's start shopping!</p>
+      <p>You havent added any products yet. Lets start shopping!</p>
     </div>
   );
 }

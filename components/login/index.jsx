@@ -49,7 +49,7 @@ export default function AuthForms() {
             </button>
           </form>
           <p>
-            Don't have an account? <button onClick={toggleForm}>Sign Up</button>
+            Dont have an account? <button onClick={toggleForm}>Sign Up</button>
           </p>
         </div>
       </div>

@@ -13,7 +13,7 @@ export default function AdminLayout({ children }) {
           <Sidebar />
           <div className="main-content">
             <Header />
-            <Content children={children} />
+            <Content>{children}</Content>
           </div>
         </div>
       </body>

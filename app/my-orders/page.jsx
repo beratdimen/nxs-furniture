@@ -53,7 +53,7 @@ export default function MyOrdersPage() {
         </div>
       ) : (
         <div className="no-orders">
-          <p>You don't have an order yet.</p>
+          <p>You dont have an order yet.</p>
         </div>
       )}
     </div>

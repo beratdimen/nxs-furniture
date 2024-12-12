@@ -137,7 +137,7 @@ export default function BasketPage() {
             <>
               {basketItems.length > 0 ? (
                 basketItems.map(({ id, quantity, product }) => (
-                  <div class="basketItem">
+                  <div key={id} class="basketItem">
                     <img
                       src={product.image_url}
                       alt={product.title}

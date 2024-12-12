@@ -92,7 +92,7 @@ export default function PaymentForm({
     <div className="cardDetail">
       <form id="form" name="paymentForm" onSubmit={handleSubmit}>
         <div className="holderName">
-          <h6>Cardholder's Name</h6>
+          <h6>Cardholders Name</h6>
           <input
             type="text"
             name="holderName"
