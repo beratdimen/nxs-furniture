@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { toast } from "sonner";
 
 export default function CategoriesEditModal({
-  newCategories,
+  editCategories,
   category,
   listCategories,
 }) {
@@ -19,8 +19,8 @@ export default function CategoriesEditModal({
   }, [category]);
 
   const close = () => {
-    if (newCategories.current) {
-      newCategories.current.close();
+    if (editCategories.current) {
+      editCategories.current.close();
       setIsActive(false);
     }
 
@@ -55,7 +55,7 @@ export default function CategoriesEditModal({
         onClick={close}
       ></div>
 
-      <dialog ref={newCategories} open={isActive}>
+      <dialog ref={editCategories} open={isActive}>
         <form ref={formRef} onSubmit={handleSubmit}>
           <input
             type="text"

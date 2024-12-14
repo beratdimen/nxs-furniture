@@ -37,7 +37,7 @@ export default function ProductItem({ product: initialProduct }) {
         console.log("error :>> ", error);
       }
     } else {
-      toast.error("Giriş Yapmalısınız");
+      toast.error("You need to log in");
     }
   };
 
@@ -151,7 +151,7 @@ export default function ProductItem({ product: initialProduct }) {
 
         if (updateError) throw updateError;
 
-        toast.success("Değerlendirmeniz başarıyla güncellendi!");
+        toast.success("Your review has been successfully updated!");
       } else {
         const { error: insertError } = await supabase
           .from("product_rating")
@@ -163,13 +163,13 @@ export default function ProductItem({ product: initialProduct }) {
 
         if (insertError) throw insertError;
 
-        toast.success("Puanlama başarıyla kaydedildi!");
+        toast.success("Scoring saved successfully!");
       }
 
       await updateProductRating();
     } catch (error) {
       console.error(error);
-      toast.error("Puanlama sırasında bir hata oluştu.");
+      toast.error("An error occurred during scoring.");
     }
   };
 
@@ -198,7 +198,7 @@ export default function ProductItem({ product: initialProduct }) {
 
         if (updateError) throw updateError;
 
-        toast.success("Ürün değerlendirmesi başarıyla güncellendi!");
+        toast.success("Product review successfully updated!");
 
         const updatedProduct = {
           ...product,
@@ -208,8 +208,8 @@ export default function ProductItem({ product: initialProduct }) {
         setProduct(updatedProduct);
       }
     } catch (error) {
-      console.error("Puan güncelleme sırasında bir hata oluştu:", error);
-      toast.error("Güncelleme sırasında bir hata oluştu.");
+      console.error("An error occurred while updating the score:", error);
+      toast.error("An error occurred during the update.");
     }
   };
 

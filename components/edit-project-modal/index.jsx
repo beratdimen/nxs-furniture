@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { toast } from "sonner";
 
 export default function ProjectEditModal({
-  projectRef,
+  editProjectRef,
   project,
   listProjects,
 }) {
@@ -19,8 +19,8 @@ export default function ProjectEditModal({
   }, [project]);
 
   const close = () => {
-    if (projectRef.current) {
-      projectRef.current.close();
+    if (editProjectRef.current) {
+      editProjectRef.current.close();
       setIsActive(false);
     }
 
@@ -55,7 +55,7 @@ export default function ProjectEditModal({
         onClick={close}
       ></div>
 
-      <dialog ref={projectRef} open={isActive}>
+      <dialog ref={editProjectRef} open={isActive}>
         <form ref={formRef} onSubmit={handleSubmit}>
           <input
             type="text"

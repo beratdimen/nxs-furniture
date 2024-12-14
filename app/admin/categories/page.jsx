@@ -11,6 +11,7 @@ export default function CategoriesPage() {
   const supabase = createClient();
   const [categoriess, setCategoriess] = useState();
   const newCategories = useRef(null);
+  const editCategories = useRef(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   const listCategories = async () => {
@@ -50,8 +51,8 @@ export default function CategoriesPage() {
 
   function handleEdit(category) {
     setSelectedCategory(category);
-    if (newCategories.current) {
-      newCategories.current.showModal();
+    if (editCategories.current) {
+      editCategories.current.showModal();
     }
   }
 
@@ -96,7 +97,7 @@ export default function CategoriesPage() {
       />
 
       <CategoriesEditModal
-        newCategories={newCategories}
+        editCategories={editCategories}
         category={selectedCategory}
         listCategories={listCategories}
       />

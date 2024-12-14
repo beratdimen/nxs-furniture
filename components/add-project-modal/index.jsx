@@ -4,7 +4,7 @@ import "./style.css";
 import { createClient } from "@/utils/supabase/client";
 import { toast } from "sonner";
 
-export default function AddProjectModal({ projectRef, listProjects }) {
+export default function AddProjectModal({ addProject, listProjects }) {
   const supabase = createClient();
   const [isActive, setIsActive] = useState(false);
   const [imagePreview, setImagePreview] = useState(null);
@@ -28,8 +28,8 @@ export default function AddProjectModal({ projectRef, listProjects }) {
   };
 
   const closeModal = () => {
-    if (projectRef.current) {
-      projectRef.current.close();
+    if (addProject.current) {
+      addProject.current.close();
       setIsActive(false);
     }
 
@@ -114,7 +114,7 @@ export default function AddProjectModal({ projectRef, listProjects }) {
         onClick={closeModal}
       ></div>
 
-      <dialog ref={projectRef}>
+      <dialog ref={addProject}>
         <form ref={formRef} onSubmit={handleSubmit}>
           <input type="text" name="title" placeholder="Title" required />
 

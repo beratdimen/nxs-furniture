@@ -10,13 +10,14 @@ import ProjectEditModal from "@/components/edit-project-modal";
 export default function ProjectPages() {
   const supabase = createClient();
 
-  const projectRef = useRef(null);
+  const addProject = useRef(null);
+  const editProjectRef = useRef(null);
   const [projects, setProjects] = useState();
   const [selectedProject, setSelectedProject] = useState(null);
 
   function handleClickModal() {
-    if (projectRef.current) {
-      projectRef.current.showModal();
+    if (addProject.current) {
+      addProject.current.showModal();
     }
   }
 
@@ -48,8 +49,8 @@ export default function ProjectPages() {
 
   function handleEdit(project) {
     setSelectedProject(project);
-    if (projectRef.current) {
-      projectRef.current.showModal();
+    if (editProjectRef.current) {
+      editProjectRef.current.showModal();
     }
   }
 
@@ -92,11 +93,11 @@ export default function ProjectPages() {
         </tbody>
       </table>
 
-      <AddProjectModal projectRef={projectRef} listProjects={listProjects} />
+      <AddProjectModal addProject={addProject} listProjects={listProjects} />
       <ProjectEditModal
         project={selectedProject}
         listProjects={listProjects}
-        projectRef={projectRef}
+        editProjectRef={editProjectRef}
       />
     </div>
   );
