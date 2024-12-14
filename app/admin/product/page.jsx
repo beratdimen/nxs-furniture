@@ -6,13 +6,15 @@ import AddModal from "@/components/add-product-modal";
 import { createClient } from "@/utils/supabase/client";
 import { toast } from "sonner";
 import { AddProductsIcon, DeleteIcon, EditIcon } from "@/helpers/icons";
+import ProductsEditModal from "@/components/edit-product-modal";
 
 export default function ProductsPage() {
   const supabase = createClient();
 
   const [products, setProducts] = useState([]);
-  const [selectedProduct, setSelectedProduct] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const newProduct = useRef(null);
+  const editProduct = useRef(null);
 
   const listProducts = async () => {
     const responseProducts = await listAllProducts();
@@ -49,13 +51,16 @@ export default function ProductsPage() {
 
   const handleEdit = (product) => {
     setSelectedProduct(product);
+    if (editProduct.current) {
+      editProduct.current.showModal();
+    }
   };
 
   return (
     <div className="addProductContainer">
       <div className="head">
         <h1>Products Page</h1>
-        <button className="add" onClick={handleClick}>
+        <button className="add" onClick={() => handleClick()}>
           Add Product <AddProductsIcon />
         </button>
       </div>
@@ -112,11 +117,11 @@ export default function ProductsPage() {
       </table>
 
       <AddModal newProduct={newProduct} listProducts={listProducts} />
-      {/* <ProductsEditModal
-        newProduct={newProduct}
+      <ProductsEditModal
+        editProduct={editProduct}
         product={selectedProduct}
         listProducts={listProducts}
-      /> */}
+      />
     </div>
   );
 }
