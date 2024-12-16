@@ -7,7 +7,7 @@ import { createClient } from "@/utils/supabase/server";
 
 const defaultUserMetadata = {
   firstName: "",
-  role: "admin",
+  role: "customer",
 };
 
 export async function login(formData) {
