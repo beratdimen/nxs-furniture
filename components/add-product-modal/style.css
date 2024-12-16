@@ -14,7 +14,6 @@
   display: block;
 }
 
-/* Modal styling */
 dialog {
   border: none;
   border-radius: 10px;
@@ -30,7 +29,6 @@ dialog {
   transform: translate(-50%, -50%);
 }
 
-/* Form styling */
 form {
   display: flex;
   flex-direction: column;
@@ -57,7 +55,6 @@ label {
   margin-bottom: 5px;
 }
 
-/* Image preview styling */
 img {
   display: block;
   margin-top: 10px;
@@ -67,7 +64,6 @@ img {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Button styling */
 .send {
   padding: 10px 15px;
   background-color: #007bff;
@@ -91,7 +87,6 @@ button:hover {
   background-color: #5a6268;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   dialog {
     width: 90%;

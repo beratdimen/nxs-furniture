@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  listAllProducts,
-  listProductsAllCategories,
-  listNewUserStats,
-} from "@/api/category";
+import { listAllProducts, listProductsAllCategories } from "@/api/category";
 import dynamic from "next/dynamic";
 import React, { useEffect, useState } from "react";
 const ApexCharts = dynamic(() => import("react-apexcharts"), { ssr: false });
@@ -14,7 +10,6 @@ const AdminDashboard = () => {
   const [userStats, setUserStats] = useState([]);
   const [salesTrends, setSalesTrends] = useState([]);
 
-  // Kategorilere göre analiz
   const fetchCategoryData = async () => {
     const response = await listProductsAllCategories();
     const categories = response.map((item) => ({
@@ -25,7 +20,7 @@ const AdminDashboard = () => {
   };
 
   const fetchUserStats = async () => {
-    const response = await listNewUserStats();
+    const response = await listProductsAllCategories();
     const stats = response.map((user) => ({
       x: new Date(user.date).getTime(),
       y: user.count,

@@ -11,7 +11,11 @@ export default function BillAdress({ selectedAddress, setSelectedAddress }) {
 
   const [state, action] = useFormState(
     (prevState, formData) => FormValidation(prevState, formData),
-    { error: null }
+    {
+      error: {
+        fullName: "",
+      },
+    }
   );
 
   const supabase = createClient();
@@ -59,7 +63,7 @@ export default function BillAdress({ selectedAddress, setSelectedAddress }) {
 
     const formData = new FormData(e.target);
     const formObj = Object.fromEntries(formData);
-
+    console.log(formObj, "formobj");
     try {
       const { data, error } = await supabase.from("billing_address").upsert([
         {
@@ -127,14 +131,12 @@ export default function BillAdress({ selectedAddress, setSelectedAddress }) {
         )}
       </div>
 
-      {/* Modal - New Address Form */}
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
             <h3>Create New Address</h3>
             <hr />
             <form onSubmit={handleSubmit} action={action}>
-              {/* Form Fields */}
               <div className="name">
                 <label>
                   <h6>Full Name</h6>
@@ -142,10 +144,9 @@ export default function BillAdress({ selectedAddress, setSelectedAddress }) {
                     type="text"
                     name="fullName"
                     placeholder="Enter Your Name"
-                    required
                   />
-                  {state.error?.fullName && (
-                    <p className="error">{state.error.fullName}</p>
+                  {state.error?.full_name && (
+                    <p className="error">{state.error.full_name}</p>
                   )}
                 </label>
 
@@ -165,9 +166,11 @@ export default function BillAdress({ selectedAddress, setSelectedAddress }) {
                   type="text"
                   name="address"
                   placeholder="Enter Your Address"
-                  required
                 />
               </label>
+              {state.error?.address && (
+                <p className="error">{state.error.address}</p>
+              )}
 
               <div className="city">
                 <label>
@@ -176,17 +179,17 @@ export default function BillAdress({ selectedAddress, setSelectedAddress }) {
                     type="text"
                     name="city"
                     placeholder="Enter Your City"
-                    required
                   />
                 </label>
-
+                {state.error?.city && (
+                  <p className="error">{state.error.city}</p>
+                )}
                 <label>
                   <h6>State</h6>
                   <input
                     type="text"
                     name="state"
                     placeholder="Enter Your State"
-                    required
                   />
                 </label>
               </div>
@@ -197,7 +200,6 @@ export default function BillAdress({ selectedAddress, setSelectedAddress }) {
                   type="text"
                   name="country"
                   placeholder="Enter Your Country"
-                  required
                 />
               </label>
 
@@ -205,17 +207,16 @@ export default function BillAdress({ selectedAddress, setSelectedAddress }) {
                 <label>
                   <h6>Postal Code</h6>
                   <input
-                    type="text"
+                    type="number"
                     name="postalCode"
                     placeholder="Enter Your Postal Code"
-                    required
                   />
                 </label>
 
                 <label>
                   <h6>Phone Number</h6>
                   <input
-                    type="text"
+                    type="number"
                     name="phoneNumber"
                     placeholder="Enter Your Phone Number"
                     required
@@ -227,7 +228,7 @@ export default function BillAdress({ selectedAddress, setSelectedAddress }) {
                 <label>
                   <h6>Tax Number</h6>
                   <input
-                    type="text"
+                    type="number"
                     name="taxNumber"
                     placeholder="Enter Your Tax Number"
                   />
@@ -236,7 +237,7 @@ export default function BillAdress({ selectedAddress, setSelectedAddress }) {
                 <label>
                   <h6>Tax Office</h6>
                   <input
-                    type="text"
+                    type="number"
                     name="taxOffice"
                     placeholder="Enter Your Tax Office"
                   />

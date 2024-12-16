@@ -21,6 +21,7 @@ export default function CreditCard({
       .replace(/(.{4})/g, "$1 ")
       .trim();
   };
+  
   return (
     <div className="cardContainer">
       <div className="card">

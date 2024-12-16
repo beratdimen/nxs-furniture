@@ -113,6 +113,34 @@ export const listAllProducts = async () => {
   }
 };
 
+export const listAllOrders = async () => {
+  try {
+    const { data, error } = await supabase
+      .from("orders")
+      .select(
+        "*, order_items(*, product:products (title, content, price, image_url)) ,billing_address(*)"
+      );
+
+    if (error) {
+      console.error("Error fetching orders:", error);
+      return [];
+    }
+
+    if (!data || data.length === 0) {
+      console.log("No orders found");
+      return [];
+    }
+
+    return data;
+  } catch (error) {
+    console.error(
+      "Error fetching all orders :",
+      error.message
+    );
+    return [];
+  }
+};
+
 export const fetchSimilarProducts = async (categoryId, excludeProductId) => {
   try {
     const { data, error } = await supabase

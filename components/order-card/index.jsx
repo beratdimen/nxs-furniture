@@ -12,7 +12,7 @@ export default function OrderCard({ order }) {
   };
 
   function shortenId(uuid) {
-    return uuid.slice(0, 6); // Get the first 6 characters of the UUID
+    return uuid.slice(0, 6); 
   }
 
   const statusLabels = {

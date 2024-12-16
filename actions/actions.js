@@ -7,6 +7,7 @@ import { createClient } from "@/utils/supabase/server";
 
 const defaultUserMetadata = {
   firstName: "",
+  role: "admin",
 };
 
 export async function login(formData) {
@@ -72,6 +73,7 @@ export default async function FormValidation(prevState, formData) {
     city: !formObj.city && "City is required.",
     postalCode: !formObj.postalCode && "Postal Code is required.",
   };
+  console.log(errors, "eroorrr");
 
   const filteredErrors = Object.fromEntries(
     Object.entries(errors).filter(([_, v]) => v)

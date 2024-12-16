@@ -86,7 +86,7 @@
 }
 
 .error {
-  font-size: 12px;
   color: red;
-  font-weight: bold;
+  font-size: 14px;
+  margin-top: 5px;
 }

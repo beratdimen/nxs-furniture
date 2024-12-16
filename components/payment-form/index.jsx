@@ -11,13 +11,7 @@ export default function PaymentForm({
   setOrderState,
 }) {
   const creditRef = useRef();
-
-  function handleCreditModal() {
-    if (creditRef.current) {
-      creditRef.current.showModal();
-    }
-  }
-
+  
   const [formState, setFormState] = useState({
     holderName: "",
     cardNumber: "",
@@ -25,6 +19,14 @@ export default function PaymentForm({
     expiryYear: "",
     cvc: "",
   });
+
+  function handleCreditModal() {
+    if (creditRef.current) {
+      creditRef.current.showModal();
+    }
+  }
+
+
 
   const [errors, setErrors] = useState({});
 
