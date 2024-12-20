@@ -78,7 +78,7 @@ button:hover svg {
   fill: #d9534f;
 }
 
-/* Son satırdaki çizgiyi kaldır */
+
 table tr:last-child td {
   border-bottom: none;
 }

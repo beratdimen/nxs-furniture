@@ -4,7 +4,22 @@
   margin-block: 24px;
   padding-inline: 16px;
   justify-content: center;
+
   img {
+    width: 100%;
+    max-width: 50%;
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 768px) {
+  .bodyContainer img {
     width: 50%;
+  }
+}
+
+@media (max-width: 476px) {
+  .bodyContainer img {
+    width: 100%;
   }
 }

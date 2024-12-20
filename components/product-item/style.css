@@ -88,3 +88,99 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .textureCard {
+    width: 100%;
+    box-shadow: none;
+    border-radius: 8px;
+  }
+
+  .textureCard img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .textureCard .like {
+    width: 20px;
+    height: 20px;
+    top: 8px;
+    right: 8px;
+  }
+
+  .textureCard .content {
+    padding: 12px;
+
+    .categories {
+      font-size: 12px;
+    }
+
+    .description {
+      font-size: 10px;
+    }
+
+    .rating {
+      flex-direction: column;
+      align-items: flex-start;
+
+      p {
+        font-size: 10px;
+      }
+    }
+
+    .sell {
+      flex-direction: column;
+      align-items: flex-start;
+
+      p {
+        font-size: 11px;
+
+        span {
+          font-size: 13px;
+        }
+      }
+
+      button {
+        width: 100%;
+        padding: 8px 12px;
+        margin-top: 8px;
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .textureCard {
+    padding: 8px;
+  }
+
+  .textureCard .content {
+    gap: 6px;
+
+    .rating {
+      flex-direction: column;
+      align-items: flex-start;
+
+      p {
+        font-size: 9px;
+      }
+    }
+
+    .sell {
+      p {
+        font-size: 10px;
+
+        span {
+          font-size: 12px;
+        }
+      }
+
+      button {
+        font-size: 12px;
+        padding: 6px 10px;
+      }
+    }
+  }
+}
