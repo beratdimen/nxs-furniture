@@ -24,7 +24,7 @@ export default async function Header() {
     <div className="headerContainer">
       <div className="headerContent">
         <Link href={"/"}>
-          <h1>LOGO</h1>
+          <img src="/img/logo-bakir.png" alt="" />
         </Link>
 
         <ul className="nav">

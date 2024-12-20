@@ -46,12 +46,12 @@ export default function ProjectsPage() {
           )
         );
         setProjectLikes((prev) => ({ ...prev, [projectId]: true }));
-        toast.success("Beğenildi");
+        toast.success("The project was liked");
       } else {
         console.log("error :>> ", error);
       }
     } else {
-      toast.error("Giriş Yapmalısınız");
+      toast.error("you must log in");
     }
   };
 
@@ -72,7 +72,7 @@ export default function ProjectsPage() {
           )
         );
         setProjectLikes((prev) => ({ ...prev, [projectId]: false }));
-        toast.success("Beğeni kaldırıldı");
+        toast.success("Like removed");
       } else {
         console.log("error :>> ", error);
       }

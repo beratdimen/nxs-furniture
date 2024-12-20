@@ -1,25 +1,50 @@
 "use client";
 
-import { useRef, useState } from "react";
+import {  useState } from "react";
 import "./style.css";
 import { login, signup } from "@/actions/actions";
+import * as Yup from "yup";
+import { Field, Form, Formik } from "formik";
+import { toast } from "sonner";
 
 export default function AuthForms() {
   const [isSignIn, setIsSignIn] = useState(false);
-  const signUpFormRef = useRef(null);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const SignupSchema = Yup.object().shape({
+    name: Yup.string()
+      .min(2, "Too Short!")
+      .max(50, "Too Long!")
+      .required("Required"),
+    password: Yup.string()
+      .min(8, "Password must be at least 8 characters long")
+      .matches(/\d/, "Password must contain at least one number")
+      .required("Password is required"),
+    email: Yup.string().email("Invalid email").required("Required"),
+  });
+
+  const SigninSchema = Yup.object().shape({
+    password: Yup.string()
+      .min(8, "Password must be at least 8 characters long")
+      .matches(/\d/, "Password must contain at least one number")
+      .required("Password is required"),
+    email: Yup.string().email("Invalid email").required("Required"),
+  });
 
   const toggleForm = () => {
     setIsSignIn(!isSignIn);
   };
 
-  const handleSignUp = async (e) => {
-    e.preventDefault();
+  const handleSignUp = async (values) => {
+    await signup(values);
+  };
 
-    const formData = new FormData(signUpFormRef.current);
-
-    await signup(formData);
-
-    signUpFormRef.current.reset();
+  const handleSignIn = async (values) => {
+    const response = await login(values);
+    console.log(response, "responseeee");
+    if (response?.error) {
+      toast.error("dont habe a user");
+    }
   };
 
   return (
@@ -27,12 +52,42 @@ export default function AuthForms() {
       <div className={`authForms ${isSignIn ? "slideLeft" : ""}`}>
         <div className="authForm">
           <h2>Create Account</h2>
-          <form ref={signUpFormRef} onSubmit={handleSignUp}>
-            <input type="text" name="name" placeholder="Name" />
-            <input type="email" name="email" placeholder="Email" />
-            <input type="password" name="password" placeholder="Password" />
-            <button className="authButton">Sign Up</button>
-          </form>
+
+          <Formik
+            initialValues={{
+              name: "",
+              password: "",
+              email: "",
+            }}
+            validationSchema={SignupSchema}
+            onSubmit={(values, { resetForm }) => {
+              handleSignUp(values);
+              resetForm();
+
+              console.log(values);
+            }}
+          >
+            {({ errors, touched }) => (
+              <Form>
+                <Field type="text" name="name" placeholder="Name" />
+                {errors.name && touched.name ? (
+                  <p className="error">{errors.name}</p>
+                ) : null}
+
+                <Field type="email" name="email" placeholder="Email" />
+                {errors.email && touched.email ? (
+                  <p className="error">{errors.email}</p>
+                ) : null}
+                <Field type="password" name="password" placeholder="Password" />
+                {errors.password && touched.password ? (
+                  <p className="error">{errors.password}</p>
+                ) : null}
+                <button className="authButton" type="submit">
+                  Submit
+                </button>
+              </Form>
+            )}
+          </Formik>
           <p>
             Already have an account?
             <button onClick={toggleForm}>Sign In</button>
@@ -41,13 +96,36 @@ export default function AuthForms() {
 
         <div className="authForm">
           <h2>Welcome Back!</h2>
-          <form action="">
-            <input type="email" name="email" placeholder="Email" />
-            <input type="password" name="password" placeholder="Password" />
-            <button className="authButton" formAction={login}>
-              Sign In
-            </button>
-          </form>
+          <p>{errorMessage}</p>
+          <Formik
+            initialValues={{
+              password: "",
+              email: "",
+            }}
+            validationSchema={SigninSchema}
+            onSubmit={(values, { resetForm }) => {
+              handleSignIn(values);
+              resetForm();
+
+              console.log(values);
+            }}
+          >
+            {({ errors, touched }) => (
+              <Form>
+                <Field type="email" name="email" placeholder="Email" />
+                {errors.email && touched.email ? (
+                  <p className="error">{errors.email}</p>
+                ) : null}
+                <Field type="password" name="password" placeholder="Password" />
+                {errors.password && touched.password ? (
+                  <p className="error">{errors.password}</p>
+                ) : null}
+                <button className="authButton" type="submit">
+                  Submit
+                </button>
+              </Form>
+            )}
+          </Formik>
           <p>
             Dont have an account? <button onClick={toggleForm}>Sign Up</button>
           </p>
