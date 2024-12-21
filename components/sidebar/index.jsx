@@ -32,11 +32,9 @@ export default async function Sidebar() {
             <Link href="/admin/project">Projects</Link>
           </li>
           <li>
-            <form action={signout}>
-              <button>
-                <LogoutIcon />
-              </button>
-            </form>
+            <Link href={"/"}>
+              <LogoutIcon />
+            </Link>
           </li>
         </ul>
       </nav>

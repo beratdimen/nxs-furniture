@@ -237,7 +237,12 @@ export default function ProductItem({ product: initialProduct }) {
 
         <div className="content">
           <Link href={`/product/${product.id}`}>
-            <h4>{product.title} </h4>
+            <h4 className="tooltip">
+              {product.title.length > 15
+                ? `${product.title.slice(0, 15)}...`
+                : product.title}
+              <span className="tooltiptext">{product.title}</span>
+            </h4>
           </Link>
           <div className="rating">
             <ReactStars
@@ -255,12 +260,17 @@ export default function ProductItem({ product: initialProduct }) {
               <p>{product.view}</p>
             </p>
           </div>
-          <p className="categories">
+          <p className="description">
             {product?.productsCategories
               .map((x) => x?.categories?.name)
               .join(", ")}
           </p>
-          <p className="description">{product?.content}</p>
+          <p className="description tooltip">
+            {product.content.length > 24
+              ? `${product.content.slice(0, 24)}...`
+              : product.content}
+            <span className="tooltiptext">{product.content}</span>
+          </p>
           <div className="sell">
             <p>
               Price: <span>${product?.price}</span>
