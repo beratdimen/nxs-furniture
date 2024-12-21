@@ -55,6 +55,8 @@
       width: 100%;
       overflow-y: auto;
       height: 500px;
+      scrollbar-width: auto;
+      scrollbar-color: #007bff #f1f1f1;
 
       form {
         max-width: 600px;
@@ -145,4 +147,40 @@ form {
   display: flex;
   flex-direction: column;
   gap: 24px;
+}
+
+@media (max-width: 920px) {
+  .address {
+    width: 100%;
+    flex-direction: column;
+
+    .modal-overlay {
+      .modal-content {
+        max-width: 90%;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .address {
+    .modal-overlay {
+      .modal-content {
+        padding: 16px;
+      }
+    }
+
+    form {
+      gap: 12px;
+    }
+
+    input {
+      padding: 8px 10px;
+      font-size: 13px;
+    }
+
+    button {
+      font-size: 14px;
+    }
+  }
 }

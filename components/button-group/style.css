@@ -14,3 +14,9 @@
     background-color: var(--button4);
   }
 }
+
+@media (max-width: 920px) {
+  .delete {
+    margin-top: 32px;
+  }
+}

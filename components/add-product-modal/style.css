@@ -86,7 +86,7 @@ button:hover {
   background-color: #5a6268;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 826px) {
   dialog {
     width: 90%;
   }

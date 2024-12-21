@@ -13,8 +13,7 @@
   gap: 8px;
 }
 
-
-@media (max-width: 768px) {
+@media (max-width: 826px) {
   .similarProducts {
     h5 {
       font-size: 12px;
@@ -26,7 +25,7 @@
     }
 
     .productsGrid {
-      grid-template-columns: repeat(3,1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 8px;
 
       .textureCard {

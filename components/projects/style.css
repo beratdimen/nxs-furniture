@@ -177,8 +177,7 @@
   right: 10px;
 }
 
-
-@media (max-width: 768px) {
+@media (max-width: 826px) {
   .projects {
     grid-template-columns: repeat(2, 1fr);
   }

@@ -28,7 +28,6 @@ dialog {
   transform: translate(-50%, -50%);
 }
 
-
 .close[type="button"] {
   background-color: #6c757d;
 }
@@ -37,7 +36,7 @@ dialog {
   background-color: #5a6268;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 826px) {
   dialog {
     width: 90%;
   }

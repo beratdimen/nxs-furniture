@@ -78,12 +78,11 @@ button:hover svg {
   fill: #d9534f;
 }
 
-
 table tr:last-child td {
   border-bottom: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 826px) {
   table {
     display: block;
     overflow-x: auto;

@@ -96,8 +96,7 @@ h1 {
   background-color: #f9f9f9;
 }
 
-
-@media (max-width: 768px) {
+@media (max-width: 940px) {
   .orders-list {
     grid-template-columns: repeat(3, 1fr);
   }

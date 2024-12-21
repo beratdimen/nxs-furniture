@@ -98,3 +98,11 @@
 #name {
   text-transform: uppercase;
 }
+
+@media (max-width: 920px) {
+  .cardContainer {
+    margin-top: 64px;
+    flex-direction: column;
+    gap: 16px;
+  }
+}

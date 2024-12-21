@@ -90,3 +90,9 @@
   font-size: 14px;
   margin-top: 5px;
 }
+
+@media (max-width: 920px) {
+  .cardDetail {
+    margin-top: 0;
+  }
+}

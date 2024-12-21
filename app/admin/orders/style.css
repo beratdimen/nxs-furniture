@@ -109,7 +109,7 @@ table tr:last-child td {
   border: 1px solid #dc3545;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 826px) {
   table {
     display: block;
     overflow-x: auto;
