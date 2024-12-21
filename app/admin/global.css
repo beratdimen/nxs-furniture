@@ -102,6 +102,24 @@ p {
   font-size: 18px;
 }
 
+.analytics-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  flex-wrap: wrap; /* Daha küçük ekranlarda sarmalanmayı etkinleştirir */
+}
+
+.analytics-container > div {
+  width: 100%; /* Varsayılan olarak tüm genişliği kullanır */
+  max-width: 400px; /* Maksimum genişlik belirler */
+  margin: 0 auto; /* Ortalamayı sağlar */
+}
+
+.sales-trend-container > div {
+  width: 100%; /* Daha küçük ekranlarda tam genişlik */
+  max-width: 600px; /* Maksimum genişlik belirler */
+}
+
 @media (max-width: 826px) {
   .sidebar {
     width: 200px;
@@ -118,4 +136,40 @@ p {
 
 .generalBody {
   display: none !important;
+}
+
+@media (max-width: 1024px) {
+  .analytics-container > div {
+    width: 45%;
+  }
+
+  .sales-trend-container > div {
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .analytics-container {
+    flex-direction: column;
+  }
+
+  .analytics-container > div {
+    width: 100%;
+  }
+
+  .sales-trend-container > div {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .analytics-container > div,
+  .sales-trend-container > div {
+    padding: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  h4 {
+    font-size: 14px;
+  }
 }

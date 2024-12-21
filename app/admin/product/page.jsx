@@ -12,9 +12,12 @@ export default function ProductsPage() {
   const supabase = createClient();
 
   const [products, setProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const newProduct = useRef(null);
   const editProduct = useRef(null);
+
+  const productsPerPage = 5;
 
   const listProducts = async () => {
     const responseProducts = await listAllProducts();
@@ -25,6 +28,13 @@ export default function ProductsPage() {
   useEffect(() => {
     listProducts();
   }, []);
+
+  const totalPages = Math.ceil(products.length / productsPerPage);
+
+  const currentProducts = products.slice(
+    (currentPage - 1) * productsPerPage,
+    currentPage * productsPerPage
+  );
 
   function handleClick() {
     if (newProduct.current) {
@@ -56,6 +66,12 @@ export default function ProductsPage() {
     }
   };
 
+  const changePage = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+
   return (
     <div className="addProductContainer">
       <div className="head">
@@ -70,7 +86,7 @@ export default function ProductsPage() {
           <tr>
             <th>Name</th>
             <th>Content</th>
-            <th>İmage</th>
+            <th>Image</th>
             <th>Category</th>
             <th>Price</th>
             <th>View</th>
@@ -82,7 +98,7 @@ export default function ProductsPage() {
             <th colSpan={2}>Actions</th>
           </tr>
 
-          {products.map((x) => (
+          {currentProducts.map((x) => (
             <tr key={x.id}>
               <td>{x.title}</td>
               <td>{x.content}</td>
@@ -115,6 +131,30 @@ export default function ProductsPage() {
           ))}
         </tbody>
       </table>
+
+      <div className="pagination">
+        <button
+          onClick={() => changePage(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+          <button
+            key={page}
+            className={currentPage === page ? "active" : ""}
+            onClick={() => changePage(page)}
+          >
+            {page}
+          </button>
+        ))}
+        <button
+          onClick={() => changePage(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
+      </div>
 
       <AddModal newProduct={newProduct} listProducts={listProducts} />
       <ProductsEditModal

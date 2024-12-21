@@ -217,7 +217,12 @@ export default function ProductItem({ product: initialProduct }) {
     <>
       <div className="textureCard">
         <Link href={`/product/${product.id}`}>
-          <Image src={"/img/9.jpg"} width={200} height={200} alt="card-img" />
+          <Image
+            src={product.image_url}
+            width={200}
+            height={200}
+            alt="card-img"
+          />
         </Link>
         <button
           className="like"

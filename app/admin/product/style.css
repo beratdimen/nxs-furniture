@@ -82,6 +82,30 @@ table tr:last-child td {
   border-bottom: none;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+  gap: 8px;
+}
+
+.pagination button {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  background-color: white;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.pagination button:disabled {
+  background-color: #f8f9fa;
+  cursor: not-allowed;
+}
+
 @media (max-width: 826px) {
   table {
     display: block;

@@ -7,13 +7,16 @@ import { listAllProjects } from "@/api/category";
 import { createClient } from "@/utils/supabase/client";
 import { toast } from "sonner";
 import ProjectEditModal from "@/components/edit-project-modal";
+
 export default function ProjectPages() {
   const supabase = createClient();
 
   const addProject = useRef(null);
   const editProjectRef = useRef(null);
-  const [projects, setProjects] = useState();
+  const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const projectsPerPage = 5;
 
   function handleClickModal() {
     if (addProject.current) {
@@ -54,6 +57,19 @@ export default function ProjectPages() {
     }
   }
 
+  const totalPages = Math.ceil(projects.length / projectsPerPage);
+
+  const currentProjects = projects.slice(
+    (currentPage - 1) * projectsPerPage,
+    currentPage * projectsPerPage
+  );
+
+  const changePage = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+
   return (
     <div className="addProductContainer">
       <div className="head">
@@ -71,7 +87,7 @@ export default function ProjectPages() {
             <th>Image</th>
             <th colSpan={2}>Actions</th>
           </tr>
-          {projects?.map((proj) => (
+          {currentProjects.map((proj) => (
             <tr key={proj.id}>
               <td>{proj.title}</td>
               <td>{proj.view}</td>
@@ -92,6 +108,30 @@ export default function ProjectPages() {
           ))}
         </tbody>
       </table>
+
+      <div className="pagination">
+        <button
+          onClick={() => changePage(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+          <button
+            key={page}
+            className={currentPage === page ? "active" : ""}
+            onClick={() => changePage(page)}
+          >
+            {page}
+          </button>
+        ))}
+        <button
+          onClick={() => changePage(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
+      </div>
 
       <AddProjectModal addProject={addProject} listProjects={listProjects} />
       <ProjectEditModal

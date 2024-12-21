@@ -180,6 +180,9 @@ export default function AddModal({ newProduct, listProducts }) {
             onChange={handleCategoryChange}
             required
           >
+            <option value="" disabled hidden>
+              Category
+            </option>
             {categories.map((category) => (
               <option key={category.id} value={category.id}>
                 {category.name}
