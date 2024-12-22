@@ -118,97 +118,98 @@
   opacity: 1;
 }
 
-@media (max-width: 826px) {
-  .textureCard {
-    width: 100%;
-    box-shadow: none;
-    border-radius: 8px;
-  }
+@media (max-width: 940px) {
+  .textureContainer {
+    .productsGrid {
+      .textureCard {
+        border-radius: 8px;
+        .content {
+          padding: 12px;
 
-  .textureCard img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px 8px 0 0;
-  }
+          .categories {
+            font-size: 12px;
+          }
 
-  .textureCard .like {
-    width: 20px;
-    height: 20px;
-    top: 8px;
-    right: 8px;
-  }
+          .description {
+            font-size: 10px;
+          }
 
-  .textureCard .content {
-    padding: 12px;
+          .rating {
+            align-items: center;
 
-    .categories {
-      font-size: 12px;
-    }
+            p {
+              font-size: 10px;
+            }
+          }
 
-    .description {
-      font-size: 10px;
-    }
+          .sell {
+            flex-direction: column;
+            align-items: flex-start;
 
-    .rating {
-      flex-direction: column;
-      align-items: flex-start;
+            p {
+              display: flex;
+              font-size: 11px;
 
-      p {
-        font-size: 10px;
-      }
-    }
+              span {
+                font-size: 13px;
+              }
+            }
 
-    .sell {
-      flex-direction: column;
-      align-items: flex-start;
-
-      p {
-        font-size: 11px;
-
-        span {
-          font-size: 13px;
+            button {
+              width: 100%;
+              padding: 8px 12px;
+              margin-top: 8px;
+              font-size: 13px;
+            }
+          }
         }
-      }
 
-      button {
-        width: 100%;
-        padding: 8px 12px;
-        margin-top: 8px;
-        font-size: 13px;
+        img {
+          border-radius: 8px 8px 0 0;
+        }
+
+        .like {
+          width: 20px;
+          height: 20px;
+          top: 8px;
+          right: 8px;
+        }
       }
     }
   }
 }
-
 @media (max-width: 480px) {
-  .textureCard {
-    padding: 8px;
-  }
+  .textureContainer {
+    .productsGrid {
+      .textureCard {
+        padding: 8px;
+        .content {
+          gap: 6px;
 
-  .textureCard .content {
-    gap: 6px;
+          .rating {
+            align-items: center;
 
-    .rating {
-      flex-direction: column;
-      align-items: flex-start;
+            p {
+              font-size: 9px;
+            }
+          }
 
-      p {
-        font-size: 9px;
-      }
-    }
+          .sell {
+            align-items: flex-start;
+            p {
+              font-size: 10px;
 
-    .sell {
-      p {
-        font-size: 10px;
+              span {
+                font-size: 12px;
+              }
+            }
 
-        span {
-          font-size: 12px;
+            button {
+              font-size: 12px;
+              padding: 6px 10px;
+            }
+          }
         }
-      }
-
-      button {
-        font-size: 12px;
-        padding: 6px 10px;
       }
     }
   }

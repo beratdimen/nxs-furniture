@@ -139,7 +139,10 @@ export default function BillAddress({ selectedAddress, setSelectedAddress }) {
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <h3>Create New Address</h3>
+            <div className="modal-header">
+              <h3>Create New Address</h3>
+              <button onClick={() => setIsModalOpen(false)}>X</button>
+            </div>
             <hr />
             <Formik
               initialValues={{

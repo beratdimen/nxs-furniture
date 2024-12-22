@@ -58,6 +58,17 @@
       scrollbar-width: auto;
       scrollbar-color: #007bff #f1f1f1;
 
+      .modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        button {
+          border: none;
+          background: transparent;
+        }
+      }
+
       form {
         max-width: 600px;
         border-radius: 12px;
