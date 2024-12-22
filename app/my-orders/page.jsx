@@ -1,6 +1,7 @@
 "use client";
 import OrderCard from "@/components/order-card";
 import { createClient } from "@/utils/supabase/client";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function MyOrdersPage() {
@@ -54,6 +55,10 @@ export default function MyOrdersPage() {
       ) : (
         <div className="no-orders">
           <p>You dont have an order yet.</p>
+          <div className="startShop">
+            <img src="/img/rightArrow.gif" alt="" />
+            <Link href={"/"}>Start Shopping </Link>
+          </div>
         </div>
       )}
     </div>

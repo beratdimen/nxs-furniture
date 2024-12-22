@@ -1,10 +1,4 @@
-import {
-  BasketIcon,
-  HamburgerIcon,
-  LogoutIcon,
-  SearchIcon,
-  UserIcon,
-} from "@/helpers/icons";
+import { BasketIcon, HamburgerIcon, UserIcon } from "@/helpers/icons";
 import "./style.css";
 import Link from "next/link";
 import { createClient } from "@/utils/supabase/server";
@@ -20,6 +14,7 @@ export default async function Header() {
 
   const categories = await listCategoriesForHeader();
   const basketCount = await basketItems(user);
+
   return (
     <div className="headerContainer">
       <div className="headerContent">

@@ -8,6 +8,7 @@
   top: 0;
   z-index: 999999999999999;
   background-color: white;
+  gap: 16px;
 
   .headerContent {
     display: flex;

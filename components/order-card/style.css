@@ -96,6 +96,24 @@ h1 {
   background-color: #f9f9f9;
 }
 
+.no-orders img {
+  width: 80px;
+}
+
+.startShop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    color: #d89e00;
+  }
+}
+
 @media (max-width: 940px) {
   .orders-list {
     grid-template-columns: repeat(3, 1fr);
