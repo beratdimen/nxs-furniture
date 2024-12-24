@@ -5,6 +5,7 @@
   width: fit-content;
   position: relative;
   border-radius: 12px;
+  justify-content: space-between;
 
   .like {
     position: absolute;

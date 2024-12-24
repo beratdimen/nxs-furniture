@@ -1,15 +1,17 @@
 "use client";
 
-import {  useState } from "react";
+import { useState } from "react";
 import "./style.css";
 import { login, signup } from "@/actions/actions";
 import * as Yup from "yup";
 import { Field, Form, Formik } from "formik";
 import { toast } from "sonner";
+import { HiddenIcon, ShowIcon } from "@/helpers/icons";
 
 export default function AuthForms() {
   const [isSignIn, setIsSignIn] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
 
   const SignupSchema = Yup.object().shape({
     name: Yup.string()
@@ -47,6 +49,9 @@ export default function AuthForms() {
     }
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
   return (
     <div className="authContainer">
       <div className={`authForms ${isSignIn ? "slideLeft" : ""}`}>
@@ -78,7 +83,20 @@ export default function AuthForms() {
                 {errors.email && touched.email ? (
                   <p className="error">{errors.email}</p>
                 ) : null}
-                <Field type="password" name="password" placeholder="Password" />
+                <div className="passwordField">
+                  <Field
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    placeholder={showPassword ? "Password" : "******"}
+                  />
+                  <button
+                    type="button"
+                    className="togglePasswordButton"
+                    onClick={togglePasswordVisibility}
+                  >
+                    {showPassword ? <HiddenIcon /> : <ShowIcon />}
+                  </button>
+                </div>
                 {errors.password && touched.password ? (
                   <p className="error">{errors.password}</p>
                 ) : null}
@@ -116,7 +134,20 @@ export default function AuthForms() {
                 {errors.email && touched.email ? (
                   <p className="error">{errors.email}</p>
                 ) : null}
-                <Field type="password" name="password" placeholder="Password" />
+                <div className="passwordField">
+                  <Field
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    placeholder={showPassword ? "Password" : "******"}
+                  />
+                  <button
+                    type="button"
+                    className="togglePasswordButton"
+                    onClick={togglePasswordVisibility}
+                  >
+                    {showPassword ? <HiddenIcon /> : <ShowIcon />}
+                  </button>
+                </div>
                 {errors.password && touched.password ? (
                   <p className="error">{errors.password}</p>
                 ) : null}

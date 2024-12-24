@@ -55,10 +55,6 @@
         gap: 4px;
         color: black;
       }
-
-      .hamburger {
-        display: none;
-      }
     }
   }
 
@@ -171,5 +167,46 @@
     &:hover .dropdownMenu {
       display: block;
     }
+  }
+}
+
+.hamburger {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .headerContainer {
+    .headerContent {
+      .nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: white;
+        width: 100%;
+        z-index: 999;
+        padding: 16px 0;
+        gap: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      .nav.active {
+        display: flex;
+      }
+      .headerRight {
+        justify-content: space-between;
+      }
+    }
+  }
+
+  .hamburger {
+    display: block;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+  }
+
+  .hamburger .nav.active {
+    display: flex;
   }
 }

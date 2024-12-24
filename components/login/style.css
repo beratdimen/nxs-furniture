@@ -58,3 +58,18 @@
   color: #ff3b3b;
   margin-block: 4px;
 }
+
+.passwordField {
+  position: relative;
+  display: flex;
+  align-items: center;
+  /* border: 1px solid #ddd;
+  border-radius: 5px; */
+}
+
+.togglePasswordButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 8px;
+}

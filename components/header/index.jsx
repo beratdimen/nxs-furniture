@@ -1,10 +1,11 @@
-import { BasketIcon, HamburgerIcon, UserIcon } from "@/helpers/icons";
+import { BasketIcon, UserIcon } from "@/helpers/icons";
 import "./style.css";
 import Link from "next/link";
 import { createClient } from "@/utils/supabase/server";
 import { signout } from "@/actions/actions";
 import { basketItems, listCategoriesForHeader } from "@/api/category";
 import SearchComponent from "../search";
+import HeaderNav from "./hamburger";
 
 export default async function Header() {
   const supabase = createClient();
@@ -13,32 +14,37 @@ export default async function Header() {
   } = await supabase.auth.getUser();
 
   const categories = await listCategoriesForHeader();
-  const basketCount = await basketItems(user);
+
+  const getBasketCount = async (user) => {
+    const basketItemsData = await basketItems(user);
+
+    if (!basketItemsData || basketItemsData.length === 0) {
+      return 0;
+    }
+
+    const totalQuantity = basketItemsData.reduce(
+      (total, item) => total + (item.quantity || 1),
+      0
+    );
+
+    return totalQuantity;
+  };
+
+  const basketCount = await getBasketCount(user);
 
   return (
     <div className="headerContainer">
       <div className="headerContent">
         <Link href={"/"}>
-          <img src="/img/logo-bakir.png" alt="" />
+          <img src="/img/logo-bakir.png" alt="Logo" />
         </Link>
+        <HeaderNav categories={categories || []} />
 
-        <ul className="nav">
-          <Link href={"/"}>
-            <li>Home</li>
-          </Link>
-          {categories?.map((category) => (
-            <Link href={`/${category?.slug}`} key={category?.id}>
-              <li>{category?.name}</li>
-            </Link>
-          ))}
-        </ul>
         <div className="headerRight">
           <Link href={"/basket"}>
             <div className="basketWrapper">
               <BasketIcon />
-              {basketItems?.length > 0 && (
-                <span className="badge">{basketItems?.length}</span>
-              )}
+              {basketCount > 0 && <span className="badge">{basketCount}</span>}
             </div>
           </Link>
           {user ? (
@@ -58,10 +64,6 @@ export default async function Header() {
               <UserIcon /> Login
             </Link>
           )}
-
-          <button className="hamburger">
-            <HamburgerIcon />
-          </button>
         </div>
       </div>
       <SearchComponent />
