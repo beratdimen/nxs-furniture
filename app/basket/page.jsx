@@ -19,7 +19,6 @@ export default function BasketPage() {
   const [user, setUser] = useState(null);
   const [basketItems, setBasketItems] = useState([]);
   const [orderState, setOrderState] = useState({});
-  console.log("orderState :>> ", orderState);
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -60,7 +59,7 @@ export default function BasketPage() {
   }, [user?.id]);
 
   const nextStep = () => {
-    if (activeStep == 0) {
+    if (activeStep === 0) {
       if (basketItems.length > 0) {
         setOrderState({
           basketItems: basketItems,
@@ -72,7 +71,7 @@ export default function BasketPage() {
         toast.error("Product is not defined");
       }
     }
-    if (activeStep == 1) {
+    if (activeStep === 1) {
       if (selectedAddress?.id) {
         setOrderState({
           ...orderState,
@@ -121,6 +120,26 @@ export default function BasketPage() {
     }
   };
 
+  const deleteItem = async (id) => {
+    try {
+      const { data, error } = await supabase
+        .from("basket")
+        .delete()
+        .eq("id", id)
+        .single();
+
+      if (error) {
+        console.error("Error deleting item:", error);
+        return;
+      }
+
+      setBasketItems((prev) => prev.filter((item) => item.id !== id));
+      toast.success("Ürün sepetten silindi");
+    } catch (error) {
+      console.error("Error deleting item:", error.message);
+    }
+  };
+
   return (
     <div
       className="basketContainer"
@@ -143,9 +162,9 @@ export default function BasketPage() {
                       alt={product.title}
                       className="productImage"
                     />
-
                     <div className="productDetails">
-                      <h3>{product.title}</h3> <p>{product.content}</p>
+                      <h3>{product.title}</h3>
+                      <p>{product.content}</p>
                       <p>Estimated Shipping Delivery: Within 2 days</p>
                     </div>
 
@@ -162,6 +181,13 @@ export default function BasketPage() {
                         {product.price * quantity}
                       </p>
                       <p className="discount">Kazancınız: 500 TL</p>
+
+                      <button
+                        className="deleteButton"
+                        onClick={() => deleteItem(id)}
+                      >
+                        Sil
+                      </button>
                     </div>
                   </div>
                 ))

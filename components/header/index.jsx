@@ -6,6 +6,7 @@ import { signout } from "@/actions/actions";
 import { basketItems, listCategoriesForHeader } from "@/api/category";
 import SearchComponent from "../search";
 import HeaderNav from "./hamburger";
+import BasketCount from "./basket-count";
 
 export default async function Header() {
   const supabase = createClient();
@@ -14,23 +15,6 @@ export default async function Header() {
   } = await supabase.auth.getUser();
 
   const categories = await listCategoriesForHeader();
-
-  const getBasketCount = async (user) => {
-    const basketItemsData = await basketItems(user);
-
-    if (!basketItemsData || basketItemsData.length === 0) {
-      return 0;
-    }
-
-    const totalQuantity = basketItemsData.reduce(
-      (total, item) => total + (item.quantity || 1),
-      0
-    );
-
-    return totalQuantity;
-  };
-
-  const basketCount = await getBasketCount(user);
 
   return (
     <div className="headerContainer">
@@ -41,12 +25,7 @@ export default async function Header() {
         <HeaderNav categories={categories || []} />
 
         <div className="headerRight">
-          <Link href={"/basket"}>
-            <div className="basketWrapper">
-              <BasketIcon />
-              {basketCount > 0 && <span className="badge">{basketCount}</span>}
-            </div>
-          </Link>
+          <BasketCount user={user} />
           {user ? (
             <div className="userMenu">
               <p className="userHover">

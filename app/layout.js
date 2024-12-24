@@ -3,7 +3,6 @@ import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { Toaster } from "sonner";
-import { headers } from "next/headers";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -22,7 +21,6 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
- 
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
