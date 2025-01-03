@@ -92,7 +92,7 @@ export default function AddModal({ newProduct, listProducts }) {
 
       if (productError) throw new Error("Product insertion failed");
 
-      toast.success("Ürün Eklendi");
+      toast.success("Product Added");
 
       if (otherFiles) {
         for (const file of otherFiles) {

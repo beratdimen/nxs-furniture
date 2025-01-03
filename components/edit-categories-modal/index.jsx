@@ -40,11 +40,11 @@ export default function CategoriesEditModal({
       .select();
 
     if (data) {
-      toast.success("Kategori güncellendi");
+      toast.success("Category updated");
       listCategories();
       close();
     } else {
-      toast.error("Kategori güncellenemedi");
+      toast.error("Category could not be updated");
     }
   }
 

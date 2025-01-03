@@ -59,9 +59,12 @@ export default function BillAddress({ selectedAddress, setSelectedAddress }) {
     city: Yup.string().required("City is required"),
     state: Yup.string().required("State is required"),
     country: Yup.string().required("Country is required"),
-    postalCode: Yup.number().typeError("Must be a number"),
+    postalCode: Yup.string()
+      .matches(/^\d{6}$/, "Postal code must be exactly 6 digits")
+      .required("Postal code is required"),
     phoneNumber: Yup.string()
-      .matches(/^[0-9]+$/, "Must be only digits")
+      .length(6, "Postal code must be exactly 6 digits")
+      .matches(/^05\d{9}$/, "Phone number must be a valid Turkish number")
       .required("Phone number is required"),
     taxNumber: Yup.string(),
     taxOffice: Yup.string(),

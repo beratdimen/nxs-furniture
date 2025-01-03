@@ -61,11 +61,11 @@ export default function ProductsEditModal({
       .select();
 
     if (data) {
-      toast.success("Kategori güncellendi");
+      toast.success("Category updated");
       listProducts();
       close();
     } else {
-      toast.error("Kategori güncellenemedi");
+      toast.error("Category could not be updated");
     }
   }
 

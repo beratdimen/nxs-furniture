@@ -40,11 +40,11 @@ export default function ProjectEditModal({
       .select();
 
     if (data) {
-      toast.success("Kategori güncellendi");
+      toast.success("Category updated");
       listProjects();
       close();
     } else {
-      toast.error("Kategori güncellenemedi");
+      toast.error("Category could not be updated");
     }
   }
 

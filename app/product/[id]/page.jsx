@@ -119,7 +119,7 @@ export default function Detail() {
         console.log("error :>> ", error);
       }
     } else {
-      toast.error("Giriş Yapmalısınız");
+      toast.error("You must log in");
     }
   };
 

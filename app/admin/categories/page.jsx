@@ -38,9 +38,9 @@ export default function CategoriesPage() {
 
       if (!error) {
         listCategories();
-        toast.success("Kategori silindi");
+        toast.success("Category deleted");
       } else {
-        toast.error("Silme işlemi başarısız");
+        toast.error("Deletion failed");
       }
     }
   }

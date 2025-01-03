@@ -113,7 +113,7 @@ export default function BasketPage() {
         )
       );
       if (!error) {
-        toast.success("Ürün arttırıldı");
+        toast.success("The number of products has been increased");
       }
     } catch (error) {
       console.error("Error updating quantity:", error.message);
@@ -133,7 +133,7 @@ export default function BasketPage() {
       }
 
       setBasketItems((prev) => prev.filter((item) => item.id !== id));
-      toast.success("Ürün sepetten silindi");
+      toast.success("The product was deleted from the cart");
     } catch (error) {
       console.error("Error deleting item:", error.message);
     }
@@ -179,7 +179,7 @@ export default function BasketPage() {
                         {quantity} x ${product.price} = $
                         {product.price * quantity}
                       </p>
-                      <p className="discount">Kazancınız: 500 TL</p>
+                      <p className="discount">Your earnings: 500 TL</p>
 
                       <button
                         className="deleteButton"

@@ -72,7 +72,7 @@ export default function AddProjectModal({ addProject, listProjects }) {
 
       if (projectError) throw new Error("project insertion failed");
 
-      toast.success("Ürün Eklendi");
+      toast.success("Product Added");
 
       if (otherFiles) {
         for (const file of otherFiles) {

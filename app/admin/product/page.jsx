@@ -52,9 +52,9 @@ export default function ProductsPage() {
 
       if (!error) {
         listProducts();
-        toast.success("Ürün Silindi");
+        toast.success("Product Deleted");
       } else {
-        toast.error("Silme işlemi başarısız");
+        toast.error("Deletion failed");
       }
     }
   }

@@ -30,11 +30,11 @@ export default function AddCategoriesModal({ newCategories, listCategories }) {
       .single();
 
     if (data) {
-      toast.success("kategori eklendi");
+      toast.success("category added");
       listCategories();
       close();
     } else {
-      toast.error("eklenemedi");
+      toast.error("adding category failed");
     }
     if (formRef.current) {
       formRef.current.reset();

@@ -43,9 +43,9 @@ export default function ProjectPages() {
 
       if (!error) {
         listProjects();
-        toast.success("Ürün Silindi");
+        toast.success("Product Deleted");
       } else {
-        toast.error("Silme işlemi başarısız");
+        toast.error("Deletion failed");
       }
     }
   }
