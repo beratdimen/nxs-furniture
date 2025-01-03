@@ -24,7 +24,7 @@ export default function Footer() {
           <li>Careers</li>
         </ul>
         <div className="logo">
-          <h5>LOGO</h5>
+          <img src="./img/logo-bakir.png" alt="" />
           <div className="social">
             <FacebookIcon />
             <InstagramIcon />

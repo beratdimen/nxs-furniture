@@ -4,7 +4,7 @@
   justify-content: space-between;
   padding: 48px 120px;
   margin-top: 24px;
-
+  flex-wrap: wrap;
   ul {
     display: flex;
     flex-direction: column;
@@ -18,10 +18,13 @@
 
   .logo {
     display: flex;
-    text-align: right;
     flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
 
+    img {
+      width: 80px;
+    }
     .social {
       display: flex;
       gap: 8px;
@@ -38,5 +41,29 @@
 
   p {
     font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footerContainer {
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    padding: 24px;
+
+    ul {
+      align-items: center;
+    }
+
+    .logo {
+      text-align: center;
+      margin-top: 16px;
+    }
+  }
+
+  .altFooter {
+    flex-direction: column;
+    text-align: center;
+    padding: 12px 24px;
   }
 }

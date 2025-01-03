@@ -125,8 +125,7 @@ export default function BasketPage() {
       const { data, error } = await supabase
         .from("basket")
         .delete()
-        .eq("id", id)
-        .single();
+        .eq("id", id);
 
       if (error) {
         console.error("Error deleting item:", error);
