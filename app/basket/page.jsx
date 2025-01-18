@@ -185,7 +185,7 @@ export default function BasketPage() {
                         className="deleteButton"
                         onClick={() => deleteItem(id)}
                       >
-                        Sil
+                        Delete
                       </button>
                     </div>
                   </div>

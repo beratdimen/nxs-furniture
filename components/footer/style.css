@@ -5,31 +5,51 @@
   padding: 48px 120px;
   margin-top: 24px;
   flex-wrap: wrap;
-  ul {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    padding: 0px;
-    list-style: none;
-    li {
-      font-size: 12px;
-    }
-  }
+  gap: 24px;
+}
 
-  .logo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
+.footerContainer ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
 
-    img {
-      width: 80px;
-    }
-    .social {
-      display: flex;
-      gap: 8px;
-    }
-  }
+.footerContainer ul h5 {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.footerContainer ul li {
+  font-size: 14px;
+  color: #666;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.footerContainer ul li:hover {
+  color: #000;
+}
+
+.footerContainer .logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.footerContainer .logo img {
+  width: 100px;
+}
+
+.footerContainer .logo .social {
+  display: flex;
+  gap: 16px;
 }
 
 .altFooter {
@@ -38,32 +58,55 @@
   justify-content: space-between;
   padding: 12px 120px;
   color: var(--buttonText);
-
-  p {
-    font-size: 12px;
-  }
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
-@media (max-width: 480px) {
+.altFooter p {
+  font-size: 12px;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
   .footerContainer {
-    flex-direction: column;
-    gap: 24px;
     align-items: center;
     padding: 24px;
+    gap: 32px;
+  }
 
-    ul {
-      align-items: center;
-    }
+  .footerContainer ul {
+    align-items: center;
+  }
 
-    .logo {
-      text-align: center;
-      margin-top: 16px;
-    }
+  .footerContainer .logo {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 16px;
   }
 
   .altFooter {
     flex-direction: column;
     text-align: center;
     padding: 12px 24px;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footerContainer {
+    padding: 16px;
+    gap: 24px;
+  }
+
+  .footerContainer ul h5 {
+    font-size: 14px;
+  }
+
+  .footerContainer ul li {
+    font-size: 12px;
+  }
+
+  .altFooter {
+    padding: 8px 16px;
   }
 }
